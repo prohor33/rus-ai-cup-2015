@@ -1,0 +1,33 @@
+In file included from RemoteProcessClient.cpp:1:
+In file included from ./RemoteProcessClient.h:9:
+In file included from ./csimplesocket/ActiveSocket.h:46:
+./csimplesocket/SimpleSocket.h:61:12: fatal error: 'linux/if_packet.h' file not found
+  #include <linux/if_packet.h>
+           ^
+1 error generated.
+In file included from Runner.cpp:1:
+In file included from ./Runner.h:8:
+In file included from ./RemoteProcessClient.h:9:
+In file included from ./csimplesocket/ActiveSocket.h:46:
+./csimplesocket/SimpleSocket.h:61:12: fatal error: 'linux/if_packet.h' file not found
+  #include <linux/if_packet.h>
+           ^
+1 error generated.
+In file included from csimplesocket/ActiveSocket.cpp:43:
+In file included from csimplesocket/ActiveSocket.h:46:
+csimplesocket/SimpleSocket.h:61:12: fatal error: 'linux/if_packet.h' file not found
+  #include <linux/if_packet.h>
+           ^
+1 error generated.
+In file included from csimplesocket/PassiveSocket.cpp:43:
+In file included from csimplesocket/PassiveSocket.h:45:
+In file included from csimplesocket/ActiveSocket.h:46:
+csimplesocket/SimpleSocket.h:61:12: fatal error: 'linux/if_packet.h' file not found
+  #include <linux/if_packet.h>
+           ^
+1 error generated.
+In file included from csimplesocket/SimpleSocket.cpp:43:
+csimplesocket/SimpleSocket.h:61:12: fatal error: 'linux/if_packet.h' file not found
+  #include <linux/if_packet.h>
+           ^
+1 error generated.

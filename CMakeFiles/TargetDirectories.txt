@@ -1,0 +1,1 @@
+/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir
