@@ -32,8 +32,8 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   cout << Utils::DirToStr(dir) << endl;
   
   
-  double nextWaypointX = (self.getNextWaypointX() + 0.5) * game.getTrackTileSize();
-  double nextWaypointY = (self.getNextWaypointY() + 0.5) * game.getTrackTileSize();
+  double nextWaypointX = Utils::TileToCoord(self.getNextWaypointX());
+  double nextWaypointY = Utils::TileToCoord(self.getNextWaypointY());
   
   double angleToWaypoint = self.getAngleTo(nextWaypointX, nextWaypointY);
   double speedModule = hypot(self.getSpeedX(), self.getSpeedY());

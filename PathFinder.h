@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <list>
 #include <queue>
 #include <tuple>
 #include <unordered_set>
@@ -50,6 +51,8 @@ public:
   world_(nullptr),
   game_(nullptr) {};
   
+  static int MAX_TILE_PATTERN_SIZE;
+  
   static PathFinder* Instance() {
     if (!instance_)
       instance_ = new PathFinder();
@@ -79,6 +82,7 @@ private:
     typedef std::shared_ptr<TileNode> TileNodePtr;
   typedef std::queue<TileNodePtr> QueueType;
   QueueType queue_;
+  std::list<model::Direction> result_;
   
   model::Direction FindPathRec(TileNodePtr node, int targ_x, int targ_y);
 };

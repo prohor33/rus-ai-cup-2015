@@ -2,6 +2,7 @@
 
 #include <string>
 #include "Direction.h"
+#include "Game.h"
 
 namespace model {
   class World;
@@ -29,6 +30,9 @@ public:
       default:
         return "WRONG_DIR";
     }
+  }
+  static double TileToCoord(int v) {
+    return (v + 0.5) * game_->getTrackTileSize();
   }
   
 private:

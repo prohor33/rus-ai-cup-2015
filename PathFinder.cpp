@@ -6,6 +6,8 @@
 #include "Utils.h"
 
 PathFinder* PathFinder::instance_ = nullptr;
+int PathFinder::MAX_TILE_PATTERN_SIZE = 6;
+
 
 bool PathFinder::FindPathTo(const model::Car* car, int targ_x, int targ_y, Direction& dir) {
   assert(world_ && game_);
@@ -15,6 +17,7 @@ bool PathFinder::FindPathTo(const model::Car* car, int targ_x, int targ_y, Direc
     QueueType empty_q;
     std::swap(queue_, empty_q);
     visited_tiles_.clear();
+    result_.clear();
   }
   int tile_x = Utils::CoordToTile(car->getX());
   int tile_y = Utils::CoordToTile(car->getY());
@@ -24,6 +27,29 @@ bool PathFinder::FindPathTo(const model::Car* car, int targ_x, int targ_y, Direc
   if (res == _UNKNOWN_DIRECTION_)
     return false;
   dir = res;
+  
+  if (result_.size() >= MAX_TILE_PATTERN_SIZE)
+    return true;  // no need for second pass
+  
+  // find path to the second next target point
+  int next_waypoint_i = -1;
+  int i = 0;
+  for (auto p : world_->getWaypoints()) {
+    if (p[0] == car->getNextWaypointX() &&
+        p[1] == car->getNextWaypointY()) {
+      next_waypoint_i = i + 1;
+    }
+    i++;
+  }
+  if (next_waypoint_i < 0 || next_waypoint_i >= world_->getWaypoints().size())
+    return false;
+  
+  auto second_next_p = world_->getWaypoints()[next_waypoint_i];
+  double target2_x = Utils::TileToCoord(second_next_p[0]);
+  double target2_y = Utils::TileToCoord(second_next_p[1]);
+  
+  std::list<model::Direction> result0 = result_;
+  
   return true;
 }
 
@@ -50,6 +76,7 @@ Direction PathFinder::FindPathRec(TileNodePtr node, int targ_x, int targ_y) {
     while (cur_node->parent) {
 //      cout << "to coord (" << cur_node->x << ", " << cur_node->y <<
 //      ") decided to go " << Utils::DirToStr(cur_node->dir) << endl;
+      result_.push_front(cur_node->dir);
       prev_node = cur_node;
       cur_node = cur_node->parent;
     }
