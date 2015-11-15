@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		54B430881BF7CE0800E2336E /* Bonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430631BF7CE0800E2336E /* Bonus.cpp */; };
+		54B430891BF7CE0800E2336E /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430661BF7CE0800E2336E /* Car.cpp */; };
+		54B4308A1BF7CE0800E2336E /* CircularUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430691BF7CE0800E2336E /* CircularUnit.cpp */; };
+		54B4308B1BF7CE0800E2336E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B4306C1BF7CE0800E2336E /* Game.cpp */; };
+		54B4308C1BF7CE0800E2336E /* Move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B4306E1BF7CE0800E2336E /* Move.cpp */; };
+		54B4308D1BF7CE0800E2336E /* OilSlick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430701BF7CE0800E2336E /* OilSlick.cpp */; };
+		54B4308E1BF7CE0800E2336E /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430721BF7CE0800E2336E /* Player.cpp */; };
+		54B4308F1BF7CE0800E2336E /* PlayerContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430741BF7CE0800E2336E /* PlayerContext.cpp */; };
+		54B430901BF7CE0800E2336E /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430761BF7CE0800E2336E /* Projectile.cpp */; };
+		54B430911BF7CE0800E2336E /* RectangularUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430791BF7CE0800E2336E /* RectangularUnit.cpp */; };
+		54B430921BF7CE0800E2336E /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B4307C1BF7CE0800E2336E /* Unit.cpp */; };
+		54B430931BF7CE0800E2336E /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B4307E1BF7CE0800E2336E /* World.cpp */; };
+		54B430941BF7CE0800E2336E /* MyStrategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430801BF7CE0800E2336E /* MyStrategy.cpp */; };
+		54B430951BF7CE0800E2336E /* RemoteProcessClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430821BF7CE0800E2336E /* RemoteProcessClient.cpp */; };
+		54B430961BF7CE0800E2336E /* Runner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430841BF7CE0800E2336E /* Runner.cpp */; };
+		54B430971BF7CE0800E2336E /* Strategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430861BF7CE0800E2336E /* Strategy.cpp */; };
+		54B430A31BF7CF8200E2336E /* ActiveSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430991BF7CF8200E2336E /* ActiveSocket.cpp */; };
+		54B430A41BF7CF8200E2336E /* HTTPActiveSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B4309C1BF7CF8200E2336E /* HTTPActiveSocket.cpp */; };
+		54B430A51BF7CF8200E2336E /* PassiveSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B4309E1BF7CF8200E2336E /* PassiveSocket.cpp */; };
+		54B430A61BF7CF8200E2336E /* SimpleSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430A01BF7CF8200E2336E /* SimpleSocket.cpp */; };
+		54B430AD1BF8C03300E2336E /* PathFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430AA1BF8C03300E2336E /* PathFinder.cpp */; };
+		54B430B01BF8C2FF00E2336E /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430AE1BF8C2FF00E2336E /* Utils.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5407A7541BF7CC8100477F6F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5407A7561BF7CC8100477F6F /* rus-ai-cup-2015 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rus-ai-cup-2015"; sourceTree = BUILT_PRODUCTS_DIR; };
+		54B430631BF7CE0800E2336E /* Bonus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bonus.cpp; sourceTree = "<group>"; };
+		54B430641BF7CE0800E2336E /* Bonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bonus.h; sourceTree = "<group>"; };
+		54B430651BF7CE0800E2336E /* BonusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonusType.h; sourceTree = "<group>"; };
+		54B430661BF7CE0800E2336E /* Car.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Car.cpp; sourceTree = "<group>"; };
+		54B430671BF7CE0800E2336E /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		54B430681BF7CE0800E2336E /* CarType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarType.h; sourceTree = "<group>"; };
+		54B430691BF7CE0800E2336E /* CircularUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CircularUnit.cpp; sourceTree = "<group>"; };
+		54B4306A1BF7CE0800E2336E /* CircularUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularUnit.h; sourceTree = "<group>"; };
+		54B4306B1BF7CE0800E2336E /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Direction.h; sourceTree = "<group>"; };
+		54B4306C1BF7CE0800E2336E /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		54B4306D1BF7CE0800E2336E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		54B4306E1BF7CE0800E2336E /* Move.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Move.cpp; sourceTree = "<group>"; };
+		54B4306F1BF7CE0800E2336E /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; };
+		54B430701BF7CE0800E2336E /* OilSlick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OilSlick.cpp; sourceTree = "<group>"; };
+		54B430711BF7CE0800E2336E /* OilSlick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilSlick.h; sourceTree = "<group>"; };
+		54B430721BF7CE0800E2336E /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		54B430731BF7CE0800E2336E /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		54B430741BF7CE0800E2336E /* PlayerContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerContext.cpp; sourceTree = "<group>"; };
+		54B430751BF7CE0800E2336E /* PlayerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerContext.h; sourceTree = "<group>"; };
+		54B430761BF7CE0800E2336E /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
+		54B430771BF7CE0800E2336E /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
+		54B430781BF7CE0800E2336E /* ProjectileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectileType.h; sourceTree = "<group>"; };
+		54B430791BF7CE0800E2336E /* RectangularUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RectangularUnit.cpp; sourceTree = "<group>"; };
+		54B4307A1BF7CE0800E2336E /* RectangularUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectangularUnit.h; sourceTree = "<group>"; };
+		54B4307B1BF7CE0800E2336E /* TileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileType.h; sourceTree = "<group>"; };
+		54B4307C1BF7CE0800E2336E /* Unit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unit.cpp; sourceTree = "<group>"; };
+		54B4307D1BF7CE0800E2336E /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		54B4307E1BF7CE0800E2336E /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		54B4307F1BF7CE0800E2336E /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		54B430801BF7CE0800E2336E /* MyStrategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyStrategy.cpp; sourceTree = SOURCE_ROOT; };
+		54B430811BF7CE0800E2336E /* MyStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStrategy.h; sourceTree = SOURCE_ROOT; };
+		54B430821BF7CE0800E2336E /* RemoteProcessClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RemoteProcessClient.cpp; sourceTree = SOURCE_ROOT; };
+		54B430831BF7CE0800E2336E /* RemoteProcessClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteProcessClient.h; sourceTree = SOURCE_ROOT; };
+		54B430841BF7CE0800E2336E /* Runner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Runner.cpp; sourceTree = SOURCE_ROOT; };
+		54B430851BF7CE0800E2336E /* Runner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner.h; sourceTree = SOURCE_ROOT; };
+		54B430861BF7CE0800E2336E /* Strategy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strategy.cpp; sourceTree = SOURCE_ROOT; };
+		54B430871BF7CE0800E2336E /* Strategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Strategy.h; sourceTree = SOURCE_ROOT; };
+		54B430991BF7CF8200E2336E /* ActiveSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveSocket.cpp; sourceTree = "<group>"; };
+		54B4309A1BF7CF8200E2336E /* ActiveSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveSocket.h; sourceTree = "<group>"; };
+		54B4309B1BF7CF8200E2336E /* Host.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Host.h; sourceTree = "<group>"; };
+		54B4309C1BF7CF8200E2336E /* HTTPActiveSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPActiveSocket.cpp; sourceTree = "<group>"; };
+		54B4309D1BF7CF8200E2336E /* HTTPActiveSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPActiveSocket.h; sourceTree = "<group>"; };
+		54B4309E1BF7CF8200E2336E /* PassiveSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PassiveSocket.cpp; sourceTree = "<group>"; };
+		54B4309F1BF7CF8200E2336E /* PassiveSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassiveSocket.h; sourceTree = "<group>"; };
+		54B430A01BF7CF8200E2336E /* SimpleSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleSocket.cpp; sourceTree = "<group>"; };
+		54B430A11BF7CF8200E2336E /* SimpleSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleSocket.h; sourceTree = "<group>"; };
+		54B430A21BF7CF8200E2336E /* StatTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatTimer.h; sourceTree = "<group>"; };
+		54B430AA1BF8C03300E2336E /* PathFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathFinder.cpp; sourceTree = SOURCE_ROOT; };
+		54B430AB1BF8C03300E2336E /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFinder.h; sourceTree = SOURCE_ROOT; };
+		54B430AC1BF8C03300E2336E /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = SOURCE_ROOT; };
+		54B430AE1BF8C2FF00E2336E /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = SOURCE_ROOT; };
+		54B430AF1BF8C2FF00E2336E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5407A7531BF7CC8100477F6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5407A74D1BF7CC8100477F6F = {
+			isa = PBXGroup;
+			children = (
+				5407A7581BF7CC8100477F6F /* rus-ai-cup-2015 */,
+				5407A7571BF7CC8100477F6F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5407A7571BF7CC8100477F6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5407A7561BF7CC8100477F6F /* rus-ai-cup-2015 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5407A7581BF7CC8100477F6F /* rus-ai-cup-2015 */ = {
+			isa = PBXGroup;
+			children = (
+				54B430AE1BF8C2FF00E2336E /* Utils.cpp */,
+				54B430AF1BF8C2FF00E2336E /* Utils.h */,
+				54B430AA1BF8C03300E2336E /* PathFinder.cpp */,
+				54B430AB1BF8C03300E2336E /* PathFinder.h */,
+				54B430AC1BF8C03300E2336E /* stdafx.h */,
+				54B430981BF7CF8200E2336E /* csimplesocket */,
+				54B430621BF7CE0800E2336E /* model */,
+				54B430801BF7CE0800E2336E /* MyStrategy.cpp */,
+				54B430811BF7CE0800E2336E /* MyStrategy.h */,
+				54B430821BF7CE0800E2336E /* RemoteProcessClient.cpp */,
+				54B430831BF7CE0800E2336E /* RemoteProcessClient.h */,
+				54B430841BF7CE0800E2336E /* Runner.cpp */,
+				54B430851BF7CE0800E2336E /* Runner.h */,
+				54B430861BF7CE0800E2336E /* Strategy.cpp */,
+				54B430871BF7CE0800E2336E /* Strategy.h */,
+			);
+			path = "rus-ai-cup-2015";
+			sourceTree = "<group>";
+		};
+		54B430621BF7CE0800E2336E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				54B430631BF7CE0800E2336E /* Bonus.cpp */,
+				54B430641BF7CE0800E2336E /* Bonus.h */,
+				54B430651BF7CE0800E2336E /* BonusType.h */,
+				54B430661BF7CE0800E2336E /* Car.cpp */,
+				54B430671BF7CE0800E2336E /* Car.h */,
+				54B430681BF7CE0800E2336E /* CarType.h */,
+				54B430691BF7CE0800E2336E /* CircularUnit.cpp */,
+				54B4306A1BF7CE0800E2336E /* CircularUnit.h */,
+				54B4306B1BF7CE0800E2336E /* Direction.h */,
+				54B4306C1BF7CE0800E2336E /* Game.cpp */,
+				54B4306D1BF7CE0800E2336E /* Game.h */,
+				54B4306E1BF7CE0800E2336E /* Move.cpp */,
+				54B4306F1BF7CE0800E2336E /* Move.h */,
+				54B430701BF7CE0800E2336E /* OilSlick.cpp */,
+				54B430711BF7CE0800E2336E /* OilSlick.h */,
+				54B430721BF7CE0800E2336E /* Player.cpp */,
+				54B430731BF7CE0800E2336E /* Player.h */,
+				54B430741BF7CE0800E2336E /* PlayerContext.cpp */,
+				54B430751BF7CE0800E2336E /* PlayerContext.h */,
+				54B430761BF7CE0800E2336E /* Projectile.cpp */,
+				54B430771BF7CE0800E2336E /* Projectile.h */,
+				54B430781BF7CE0800E2336E /* ProjectileType.h */,
+				54B430791BF7CE0800E2336E /* RectangularUnit.cpp */,
+				54B4307A1BF7CE0800E2336E /* RectangularUnit.h */,
+				54B4307B1BF7CE0800E2336E /* TileType.h */,
+				54B4307C1BF7CE0800E2336E /* Unit.cpp */,
+				54B4307D1BF7CE0800E2336E /* Unit.h */,
+				54B4307E1BF7CE0800E2336E /* World.cpp */,
+				54B4307F1BF7CE0800E2336E /* World.h */,
+			);
+			path = model;
+			sourceTree = SOURCE_ROOT;
+		};
+		54B430981BF7CF8200E2336E /* csimplesocket */ = {
+			isa = PBXGroup;
+			children = (
+				54B430991BF7CF8200E2336E /* ActiveSocket.cpp */,
+				54B4309A1BF7CF8200E2336E /* ActiveSocket.h */,
+				54B4309B1BF7CF8200E2336E /* Host.h */,
+				54B4309C1BF7CF8200E2336E /* HTTPActiveSocket.cpp */,
+				54B4309D1BF7CF8200E2336E /* HTTPActiveSocket.h */,
+				54B4309E1BF7CF8200E2336E /* PassiveSocket.cpp */,
+				54B4309F1BF7CF8200E2336E /* PassiveSocket.h */,
+				54B430A01BF7CF8200E2336E /* SimpleSocket.cpp */,
+				54B430A11BF7CF8200E2336E /* SimpleSocket.h */,
+				54B430A21BF7CF8200E2336E /* StatTimer.h */,
+			);
+			path = csimplesocket;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5407A7551BF7CC8100477F6F /* rus-ai-cup-2015 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5407A75D1BF7CC8100477F6F /* Build configuration list for PBXNativeTarget "rus-ai-cup-2015" */;
+			buildPhases = (
+				5407A7521BF7CC8100477F6F /* Sources */,
+				5407A7531BF7CC8100477F6F /* Frameworks */,
+				5407A7541BF7CC8100477F6F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "rus-ai-cup-2015";
+			productName = "rus-ai-cup-2015";
+			productReference = 5407A7561BF7CC8100477F6F /* rus-ai-cup-2015 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5407A74E1BF7CC8100477F6F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Prohor;
+				TargetAttributes = {
+					5407A7551BF7CC8100477F6F = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 5407A7511BF7CC8100477F6F /* Build configuration list for PBXProject "rus-ai-cup-2015" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5407A74D1BF7CC8100477F6F;
+			productRefGroup = 5407A7571BF7CC8100477F6F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5407A7551BF7CC8100477F6F /* rus-ai-cup-2015 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5407A7521BF7CC8100477F6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54B430A41BF7CF8200E2336E /* HTTPActiveSocket.cpp in Sources */,
+				54B4308E1BF7CE0800E2336E /* Player.cpp in Sources */,
+				54B4308C1BF7CE0800E2336E /* Move.cpp in Sources */,
+				54B430911BF7CE0800E2336E /* RectangularUnit.cpp in Sources */,
+				54B430A51BF7CF8200E2336E /* PassiveSocket.cpp in Sources */,
+				54B430971BF7CE0800E2336E /* Strategy.cpp in Sources */,
+				54B430931BF7CE0800E2336E /* World.cpp in Sources */,
+				54B430901BF7CE0800E2336E /* Projectile.cpp in Sources */,
+				54B430961BF7CE0800E2336E /* Runner.cpp in Sources */,
+				54B430891BF7CE0800E2336E /* Car.cpp in Sources */,
+				54B4308A1BF7CE0800E2336E /* CircularUnit.cpp in Sources */,
+				54B430881BF7CE0800E2336E /* Bonus.cpp in Sources */,
+				54B430951BF7CE0800E2336E /* RemoteProcessClient.cpp in Sources */,
+				54B430AD1BF8C03300E2336E /* PathFinder.cpp in Sources */,
+				54B4308D1BF7CE0800E2336E /* OilSlick.cpp in Sources */,
+				54B430921BF7CE0800E2336E /* Unit.cpp in Sources */,
+				54B4308F1BF7CE0800E2336E /* PlayerContext.cpp in Sources */,
+				54B430A61BF7CF8200E2336E /* SimpleSocket.cpp in Sources */,
+				54B430A31BF7CF8200E2336E /* ActiveSocket.cpp in Sources */,
+				54B430B01BF8C2FF00E2336E /* Utils.cpp in Sources */,
+				54B430941BF7CE0800E2336E /* MyStrategy.cpp in Sources */,
+				54B4308B1BF7CE0800E2336E /* Game.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5407A75B1BF7CC8100477F6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5407A75C1BF7CC8100477F6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5407A75E1BF7CC8100477F6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"STRIPFLAGS[sdk=*]" = "-D_MARCH -std=c++11 -O2 -Wall -Wno-unknown-pragmas\"";
+			};
+			name = Debug;
+		};
+		5407A75F1BF7CC8100477F6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5407A7511BF7CC8100477F6F /* Build configuration list for PBXProject "rus-ai-cup-2015" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5407A75B1BF7CC8100477F6F /* Debug */,
+				5407A75C1BF7CC8100477F6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5407A75D1BF7CC8100477F6F /* Build configuration list for PBXNativeTarget "rus-ai-cup-2015" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5407A75E1BF7CC8100477F6F /* Debug */,
+				5407A75F1BF7CC8100477F6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5407A74E1BF7CC8100477F6F /* Project object */;
+}
