@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <assert.h>
 #include <iostream>
-
-using namespace std;
-using namespace model;
+#include <vector>
+#include <list>
+#include <queue>
+#include <tuple>
+#include <unordered_set>
+#include <memory>

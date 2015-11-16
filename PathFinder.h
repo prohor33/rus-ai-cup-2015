@@ -1,10 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <list>
-#include <queue>
-#include <tuple>
-#include <unordered_set>
 #include "TileType.h"
 #include "Direction.h"
 

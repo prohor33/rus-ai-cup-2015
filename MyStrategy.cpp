@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MyStrategy.h"
 #include "Utils.h"
 #include "PathFinder.h"

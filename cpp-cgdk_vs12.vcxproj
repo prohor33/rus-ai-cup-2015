@@ -60,6 +60,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>model;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -88,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MyStrategy.cpp" />
+    <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="RemoteProcessClient.cpp" />
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="Strategy.cpp" />
@@ -107,11 +109,14 @@
     <ClCompile Include="model\OilSlick.cpp" />
     <ClCompile Include="model\Projectile.cpp" />
     <ClCompile Include="model\RectangularUnit.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyStrategy.h" />
+    <ClInclude Include="PathFinder.h" />
     <ClInclude Include="RemoteProcessClient.h" />
     <ClInclude Include="Runner.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Strategy.h" />
     <ClInclude Include="model\Bonus.h" />
     <ClInclude Include="model\BonusType.h" />
@@ -136,6 +141,7 @@
     <ClInclude Include="csimplesocket\PassiveSocket.h" />
     <ClInclude Include="csimplesocket\SimpleSocket.h" />
     <ClInclude Include="csimplesocket\StatTimer.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

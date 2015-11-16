@@ -1,9 +1,12 @@
-#include "PathFinder.h"
 #include "stdafx.h"
+#include "PathFinder.h"
 #include "Car.h"
 #include "World.h"
 #include "Game.h"
 #include "Utils.h"
+
+using namespace std;
+using namespace model;
 
 PathFinder* PathFinder::instance_ = nullptr;
 int PathFinder::MAX_TILE_PATTERN_SIZE = 6;
