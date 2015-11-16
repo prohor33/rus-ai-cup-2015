@@ -2,21 +2,13 @@
 
 #include "TileType.h"
 #include "Direction.h"
+#include "Structs.h"
 
 namespace model {
   class World;
   class Game;
   class Car;
 }
-
-struct Coord {
-  int x;
-  int y;
-  bool operator==(const Coord &other) const {
-    return x == other.x && y == other.y;
-  }
-  
-};
 
 namespace std {
   
@@ -43,6 +35,7 @@ namespace std {
 class PathFinder {
 public:
   PathFinder() :
+  car_(nullptr),
   world_(nullptr),
   game_(nullptr) {};
   
@@ -59,6 +52,9 @@ public:
     game_ = game;
   }
   bool FindPathChain();
+  const std::list<TileNodePtr>& get_result() const {
+    return result_;
+  }
   
 private:
   static PathFinder* instance_;
@@ -67,17 +63,6 @@ private:
   const model::Game* game_;
   std::vector<std::vector<model::TileType>> tile_map_;
   std::unordered_set<Coord> visited_tiles_;
-  
-  struct TileNode {
-    TileNode(int tmp_x, int tmp_y, model::Direction tmp_dir, std::shared_ptr<TileNode> tmp_p) :
-    x(tmp_x), y(tmp_y), dir(tmp_dir), parent(tmp_p) {};
-    int x;
-    int y;
-    model::Direction dir; // direction to this cell
-    std::shared_ptr<TileNode> parent;
-  };
-  typedef std::shared_ptr<TileNode> TileNodePtr;
-  typedef std::queue<TileNodePtr> QueueType;
   QueueType queue_;
   std::list<TileNodePtr> result_;
   std::list<TileNodePtr> local_result_;

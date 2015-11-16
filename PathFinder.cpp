@@ -9,7 +9,7 @@ using namespace std;
 using namespace model;
 
 PathFinder* PathFinder::instance_ = nullptr;
-int PathFinder::PATH_CHAIN_SIZE = 50;
+int PathFinder::PATH_CHAIN_SIZE = 6;
 
 bool PathFinder::FindPathChain() {
   assert(world_ && game_);
@@ -26,11 +26,11 @@ bool PathFinder::FindPathChain() {
       next_waypoint = 0;
   }
   
-  cout << "result:\n";
-  for (auto n : result_) {
-    cout << Utils::DirToStr(n->dir) << " => (" << n->x << ", " << n->y << ")" << endl;
-  }
-  cout << "\n\n";
+//  cout << "result:\n";
+//  for (auto n : result_) {
+//    cout << Utils::DirToStr(n->dir) << " => (" << n->x << ", " << n->y << ")" << endl;
+//  }
+//  cout << "\n\n";
   
   return true;
 }
@@ -42,7 +42,7 @@ bool PathFinder::FindPathFromTo(int waypoint_from, int waypoint_to) {
     // start from car
     from_x = Utils::CoordToTile(car_->getX());
     from_y = Utils::CoordToTile(car_->getY());
-    cout << "current position: (" << from_x << ", " << from_y << ")" << endl;
+//    cout << "current position: (" << from_x << ", " << from_y << ")" << endl;
   } else {
     from_x = world_->getWaypoints()[waypoint_from][0];
     from_y = world_->getWaypoints()[waypoint_from][1];
@@ -69,8 +69,6 @@ Direction PathFinder::FindPathRec(TileNodePtr node, int targ_x, int targ_y) {
   int x = node->x;
   int y = node->y;
   
-//  cout << "going deeper (" << node->x << ", " << node->y << ")" << endl;
-  
   auto insert_to_queue = [&] (int x, int y, Direction dir) {
     if (visited_tiles_.find({x, y}) == visited_tiles_.end())
       queue_.push(TileNodePtr(new TileNode(x, y, dir, node)));
@@ -79,14 +77,12 @@ Direction PathFinder::FindPathRec(TileNodePtr node, int targ_x, int targ_y) {
   visited_tiles_.insert({x, y});
   if (x == targ_x && y == targ_y) {
     // found it!
-    cout << "found target! (" << targ_x << ", " << targ_y << ")" << endl;
+//    cout << "found target! (" << targ_x << ", " << targ_y << ")" << endl;
     // go back to see who is the first parent
     TileNodePtr cur_node = node;
     TileNodePtr prev_node;
     local_result_.clear();
     while (cur_node->parent) {
-//      cout << "to coord (" << cur_node->x << ", " << cur_node->y <<
-//      ") decided to go " << Utils::DirToStr(cur_node->dir) << endl;
       local_result_.push_front(cur_node);
       prev_node = cur_node;
       cur_node = cur_node->parent;
