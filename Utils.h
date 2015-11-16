@@ -33,6 +33,9 @@ public:
   static double TileToCoord(int v) {
     return (v + 0.5) * game_->getTrackTileSize();
   }
+  static void PrintCoord(int x, int y) {
+    std::cout << "(" << x << ", " << y << ")\n";
+  }
   
 private:
   static const model::World* world_;

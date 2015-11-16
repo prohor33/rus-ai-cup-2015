@@ -46,21 +46,23 @@ public:
   world_(nullptr),
   game_(nullptr) {};
   
-  static int MAX_TILE_PATTERN_SIZE;
+  static int PATH_CHAIN_SIZE;
   
   static PathFinder* Instance() {
     if (!instance_)
       instance_ = new PathFinder();
     return instance_;
   }
-  void UpdateWorld(const model::World* world, const model::Game* game) {
+  void UpdateWorld(const model::Car* car, const model::World* world, const model::Game* game) {
+    car_ = car;
     world_ = world;
     game_ = game;
   }
-  bool FindPathTo(const model::Car* car, int x, int y, model::Direction& dir);
+  bool FindPathChain();
   
 private:
   static PathFinder* instance_;
+  const model::Car* car_;
   const model::World* world_;
   const model::Game* game_;
   std::vector<std::vector<model::TileType>> tile_map_;
@@ -74,10 +76,13 @@ private:
     model::Direction dir; // direction to this cell
     std::shared_ptr<TileNode> parent;
   };
-    typedef std::shared_ptr<TileNode> TileNodePtr;
+  typedef std::shared_ptr<TileNode> TileNodePtr;
   typedef std::queue<TileNodePtr> QueueType;
   QueueType queue_;
-  std::list<model::Direction> result_;
+  std::list<TileNodePtr> result_;
+  std::list<TileNodePtr> local_result_;
   
+  bool FindPathFromTo(int waypoint_from, int waypoint_to);
   model::Direction FindPathRec(TileNodePtr node, int targ_x, int targ_y);
+  void PrepareToFindRec();
 };

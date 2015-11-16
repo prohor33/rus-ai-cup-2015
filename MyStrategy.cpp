@@ -22,15 +22,19 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
 //      move.setUseNitro(true);
 //  }
   
-  Utils::UpdateWorld(&world, &game);
-  PathFinder::Instance()->UpdateWorld(&world, &game);
+//  for (auto p : world.getWaypoints()) {
+//    Utils::PrintCoord(p[0], p[1]);
+//  }
+//  cout << "\n\n\n";
+//  return;
   
-  Direction dir;
-  if (!PathFinder::Instance()->FindPathTo(&self, self.getNextWaypointX(), self.getNextWaypointY(), dir))
+  Utils::UpdateWorld(&world, &game);
+  PathFinder::Instance()->UpdateWorld(&self, &world, &game);
+  
+  if (!PathFinder::Instance()->FindPathChain())
     cout << "error: can't find path" << endl;
-  if (dir == _DIRECTION_COUNT_)
-    cout << "already in place" << endl;
-  cout << Utils::DirToStr(dir) << endl;
+//    cout << "already in place" << endl;
+//  cout << Utils::DirToStr(dir) << endl;
   
   
   double nextWaypointX = Utils::TileToCoord(self.getNextWaypointX());

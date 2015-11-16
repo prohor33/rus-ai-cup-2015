@@ -9,50 +9,57 @@ using namespace std;
 using namespace model;
 
 PathFinder* PathFinder::instance_ = nullptr;
-int PathFinder::MAX_TILE_PATTERN_SIZE = 6;
+int PathFinder::PATH_CHAIN_SIZE = 50;
 
-
-bool PathFinder::FindPathTo(const model::Car* car, int targ_x, int targ_y, Direction& dir) {
+bool PathFinder::FindPathChain() {
   assert(world_ && game_);
   
-  {
-    tile_map_ = world_->getTilesXY();
-    QueueType empty_q;
-    std::swap(queue_, empty_q);
-    visited_tiles_.clear();
-    result_.clear();
+  int prev_waypoint = -1;
+  int next_waypoint = car_->getNextWaypointIndex();
+  result_.clear();
+  while (result_.size() < PATH_CHAIN_SIZE) {
+    if (!FindPathFromTo(prev_waypoint, next_waypoint))
+      return false;
+    prev_waypoint = next_waypoint;
+    next_waypoint++;
+    if (next_waypoint >= world_->getWaypoints().size())
+      next_waypoint = 0;
   }
-  int tile_x = Utils::CoordToTile(car->getX());
-  int tile_y = Utils::CoordToTile(car->getY());
-//  cout << "current position: (" << tile_x << ", " << tile_y << ")" << endl;
-  Direction res = FindPathRec(TileNodePtr(new TileNode(tile_x, tile_y, _UNKNOWN_DIRECTION_, TileNodePtr())), targ_x, targ_y);
+  
+  cout << "result:\n";
+  for (auto n : result_) {
+    cout << Utils::DirToStr(n->dir) << " => (" << n->x << ", " << n->y << ")" << endl;
+  }
+  cout << "\n\n";
+  
+  return true;
+}
+
+bool PathFinder::FindPathFromTo(int waypoint_from, int waypoint_to) {
+  int from_x, from_y;
+  
+  if (waypoint_from < 0) {
+    // start from car
+    from_x = Utils::CoordToTile(car_->getX());
+    from_y = Utils::CoordToTile(car_->getY());
+    cout << "current position: (" << from_x << ", " << from_y << ")" << endl;
+  } else {
+    from_x = world_->getWaypoints()[waypoint_from][0];
+    from_y = world_->getWaypoints()[waypoint_from][1];
+  }
+  
+  int to_x = world_->getWaypoints()[waypoint_to][0];
+  int to_y = world_->getWaypoints()[waypoint_to][1];
+  
+  PrepareToFindRec();
+  Direction res = FindPathRec(TileNodePtr(new TileNode(from_x, from_y, _UNKNOWN_DIRECTION_, TileNodePtr())), to_x, to_y);
+  
+  for (auto n : local_result_)
+    result_.push_back(n);
   
   if (res == _UNKNOWN_DIRECTION_)
     return false;
-  dir = res;
-  
-  if (result_.size() >= MAX_TILE_PATTERN_SIZE)
-    return true;  // no need for second pass
-  
-  // find path to the second next target point
-  int next_waypoint_i = -1;
-  int i = 0;
-  for (auto p : world_->getWaypoints()) {
-    if (p[0] == car->getNextWaypointX() &&
-        p[1] == car->getNextWaypointY()) {
-      next_waypoint_i = i + 1;
-    }
-    i++;
-  }
-  if (next_waypoint_i < 0 || next_waypoint_i >= world_->getWaypoints().size())
-    return false;
-  
-  auto second_next_p = world_->getWaypoints()[next_waypoint_i];
-  double target2_x = Utils::TileToCoord(second_next_p[0]);
-  double target2_y = Utils::TileToCoord(second_next_p[1]);
-  
-  std::list<model::Direction> result0 = result_;
-  
+
   return true;
 }
 
@@ -72,14 +79,15 @@ Direction PathFinder::FindPathRec(TileNodePtr node, int targ_x, int targ_y) {
   visited_tiles_.insert({x, y});
   if (x == targ_x && y == targ_y) {
     // found it!
-//    cout << "found target! (" << targ_x << ", " << targ_y << ")" << endl;
+    cout << "found target! (" << targ_x << ", " << targ_y << ")" << endl;
     // go back to see who is the first parent
     TileNodePtr cur_node = node;
     TileNodePtr prev_node;
+    local_result_.clear();
     while (cur_node->parent) {
 //      cout << "to coord (" << cur_node->x << ", " << cur_node->y <<
 //      ") decided to go " << Utils::DirToStr(cur_node->dir) << endl;
-      result_.push_front(cur_node->dir);
+      local_result_.push_front(cur_node);
       prev_node = cur_node;
       cur_node = cur_node->parent;
     }
@@ -141,4 +149,11 @@ Direction PathFinder::FindPathRec(TileNodePtr node, int targ_x, int targ_y) {
   }
   
   return _UNKNOWN_DIRECTION_;  // can't find
+}
+
+void PathFinder::PrepareToFindRec() {
+  tile_map_ = world_->getTilesXY();
+  QueueType empty_q;
+  std::swap(queue_, empty_q);
+  visited_tiles_.clear();
 }
