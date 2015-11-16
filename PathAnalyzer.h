@@ -11,11 +11,18 @@ namespace model {
 
 class PathPattern {
 public:
-  PathPattern(std::vector<model::Direction> pattern) :
-  pattern_(pattern) {};
+  PathPattern(std::vector<model::Direction> seq) :
+  seq_(seq) {};
+  
+  bool CheckIfNow(const std::vector<model::Direction>& path) {
+    if (seq_.size() > path.size())
+      return false;
+    std::vector<model::Direction> path_tmp(path.begin(), path.begin() + seq_.size());
+    return seq_ == path_tmp;
+  }
   
 private:
-  std::vector<model::Direction> pattern_;
+  std::vector<model::Direction> seq_;
 };
 
 class PathAnalyzer {
@@ -39,5 +46,6 @@ private:
   const model::World* world_;
   const model::Game* game_;
   std::list<TileNodePtr> path_;
+  std::vector<model::Direction> dir_path_;
   std::vector<PathPattern> patterns_;
 };

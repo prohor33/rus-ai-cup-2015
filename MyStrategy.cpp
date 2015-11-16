@@ -2,7 +2,8 @@
 #include "MyStrategy.h"
 #include "Utils.h"
 #include "PathFinder.h"
-#include "stdafx.h"
+#include "PathAnalyzer.h"
+
 
 #define PI 3.14159265358979323846
 #define _USE_MATH_DEFINES
@@ -30,11 +31,14 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   
   Utils::UpdateWorld(&world, &game);
   PathFinder::Instance()->UpdateWorld(&self, &world, &game);
+  PathAnalyzer::Instance()->UpdateWorld(&self, &world, &game);
   
   if (!PathFinder::Instance()->FindPathChain())
     cout << "error: can't find path" << endl;
   
   const std::list<TileNodePtr> path = PathFinder::Instance()->get_result();
+  
+  PathAnalyzer::Instance()->Analyze(path);
   
 //    cout << "already in place" << endl;
 //  cout << Utils::DirToStr(dir) << endl;
