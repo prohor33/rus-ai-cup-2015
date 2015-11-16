@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Structs.h"
+#include "Direction.h"
 
 namespace model {
   class World;
@@ -8,12 +9,18 @@ namespace model {
   class Car;
 }
 
+class PathPattern {
+public:
+  PathPattern(std::vector<model::Direction> pattern) :
+  pattern_(pattern) {};
+  
+private:
+  std::vector<model::Direction> pattern_;
+};
+
 class PathAnalyzer {
 public:
-  PathAnalyzer() :
-  car_(nullptr),
-  world_(nullptr),
-  game_(nullptr) {};
+  PathAnalyzer();
   static PathAnalyzer* Instance() {
     if (!instance_)
       instance_ = new PathAnalyzer();
@@ -32,4 +39,5 @@ private:
   const model::World* world_;
   const model::Game* game_;
   std::list<TileNodePtr> path_;
+  std::vector<PathPattern> patterns_;
 };
