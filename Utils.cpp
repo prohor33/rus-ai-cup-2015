@@ -5,11 +5,11 @@
 
 using namespace model;
 
-const World* Utils::world_ = nullptr;
-const Game* Utils::game_ = nullptr;
+const World* Utils::world = nullptr;
+const Game* Utils::game = nullptr;
 
 int Utils::CoordToTile(double v) {
-  return (int)(v / game_->getTrackTileSize());
+  return (int)(v / game->getTrackTileSize());
 }
 
 Direction Utils::ConvertDirToLocal(Direction dir, Direction local) {

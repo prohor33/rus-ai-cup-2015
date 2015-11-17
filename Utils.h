@@ -13,9 +13,9 @@ namespace model {
 
 class Utils {
 public:
-  static void UpdateWorld(const model::World* world, const model::Game* game) {
-    world_ = world;
-    game_ = game;
+  static void UpdateWorld(const model::World* world_tmp, const model::Game* game_tmp) {
+    world = world_tmp;
+    game = game_tmp;
   }
   static int CoordToTile(double v);
   static std::string DirToStr(model::Direction dir) {
@@ -33,7 +33,7 @@ public:
     }
   }
   static double TileToCoord(int v) {
-    return (v + 0.5) * game_->getTrackTileSize();
+    return (v + 0.5) * game->getTrackTileSize();
   }
   static void PrintCoord(int x, int y) {
     std::cout << "(" << x << ", " << y << ")\n";
@@ -56,7 +56,6 @@ public:
     }
   }
   
-private:
-  static const model::World* world_;
-  static const model::Game* game_;
+  static const model::World* world;
+  static const model::Game* game;
 };

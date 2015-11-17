@@ -36,16 +36,21 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   if (!PathFinder::Instance()->FindPathChain())
     cout << "error: can't find path" << endl;
   
-  const std::vector<TileNodePtr> path = PathFinder::Instance()->get_result();
+  const std::vector<TileNodePtr> tile_path = PathFinder::Instance()->get_result();
   
-  PathAnalyzer::Instance()->Analyze(path);
+  PathAnalyzer::Instance()->Analyze(tile_path);
+  const std::vector<std::vector<double>>& path = PathAnalyzer::Instance()->GetPath();
+  
   
 //    cout << "already in place" << endl;
 //  cout << Utils::DirToStr(dir) << endl;
   
   
-  double nextWaypointX = Utils::TileToCoord(self.getNextWaypointX());
-  double nextWaypointY = Utils::TileToCoord(self.getNextWaypointY());
+//  double nextWaypointX = Utils::TileToCoord(self.getNextWaypointX());
+//  double nextWaypointY = Utils::TileToCoord(self.getNextWaypointY());
+  
+  double nextWaypointX = path[0][0];
+  double nextWaypointY = path[0][1];
   
   double angleToWaypoint = self.getAngleTo(nextWaypointX, nextWaypointY);
   double speedModule = hypot(self.getSpeedX(), self.getSpeedY());

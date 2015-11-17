@@ -30,6 +30,8 @@
 		54B430AD1BF8C03300E2336E /* PathFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430AA1BF8C03300E2336E /* PathFinder.cpp */; };
 		54B430B01BF8C2FF00E2336E /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430AE1BF8C2FF00E2336E /* Utils.cpp */; };
 		54B430B31BFA873D00E2336E /* PathAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430B11BFA873D00E2336E /* PathAnalyzer.cpp */; };
+		54B430B71BFB9D8B00E2336E /* PathPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430B51BFB9D8B00E2336E /* PathPattern.cpp */; };
+		54B430BA1BFBA4A800E2336E /* TrajTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430B81BFBA4A800E2336E /* TrajTile.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +103,10 @@
 		54B430B11BFA873D00E2336E /* PathAnalyzer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathAnalyzer.cpp; sourceTree = SOURCE_ROOT; };
 		54B430B21BFA873D00E2336E /* PathAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathAnalyzer.h; sourceTree = SOURCE_ROOT; };
 		54B430B41BFA880A00E2336E /* Structs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = SOURCE_ROOT; };
+		54B430B51BFB9D8B00E2336E /* PathPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathPattern.cpp; sourceTree = SOURCE_ROOT; };
+		54B430B61BFB9D8B00E2336E /* PathPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathPattern.h; sourceTree = SOURCE_ROOT; };
+		54B430B81BFBA4A800E2336E /* TrajTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrajTile.cpp; sourceTree = SOURCE_ROOT; };
+		54B430B91BFBA4A800E2336E /* TrajTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrajTile.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,10 @@
 		5407A7581BF7CC8100477F6F /* rus-ai-cup-2015 */ = {
 			isa = PBXGroup;
 			children = (
+				54B430B81BFBA4A800E2336E /* TrajTile.cpp */,
+				54B430B91BFBA4A800E2336E /* TrajTile.h */,
+				54B430B51BFB9D8B00E2336E /* PathPattern.cpp */,
+				54B430B61BFB9D8B00E2336E /* PathPattern.h */,
 				54B430B41BFA880A00E2336E /* Structs.h */,
 				54B430B11BFA873D00E2336E /* PathAnalyzer.cpp */,
 				54B430B21BFA873D00E2336E /* PathAnalyzer.h */,
@@ -267,6 +277,7 @@
 				54B430A41BF7CF8200E2336E /* HTTPActiveSocket.cpp in Sources */,
 				54B4308E1BF7CE0800E2336E /* Player.cpp in Sources */,
 				54B4308C1BF7CE0800E2336E /* Move.cpp in Sources */,
+				54B430B71BFB9D8B00E2336E /* PathPattern.cpp in Sources */,
 				54B430911BF7CE0800E2336E /* RectangularUnit.cpp in Sources */,
 				54B430A51BF7CF8200E2336E /* PassiveSocket.cpp in Sources */,
 				54B430971BF7CE0800E2336E /* Strategy.cpp in Sources */,
@@ -279,6 +290,7 @@
 				54B430881BF7CE0800E2336E /* Bonus.cpp in Sources */,
 				54B430951BF7CE0800E2336E /* RemoteProcessClient.cpp in Sources */,
 				54B430AD1BF8C03300E2336E /* PathFinder.cpp in Sources */,
+				54B430BA1BFBA4A800E2336E /* TrajTile.cpp in Sources */,
 				54B4308D1BF7CE0800E2336E /* OilSlick.cpp in Sources */,
 				54B430921BF7CE0800E2336E /* Unit.cpp in Sources */,
 				54B4308F1BF7CE0800E2336E /* PlayerContext.cpp in Sources */,

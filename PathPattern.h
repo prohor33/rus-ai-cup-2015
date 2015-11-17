@@ -5,7 +5,9 @@
 
 enum PathPatternType {
   RIGHT_TURN = 0,
+  RIGHT_CUT_TURN,
   LEFT_TURN,
+  LEFT_CUT_TURN,
   LONG_LINE,
   LINE
 };
