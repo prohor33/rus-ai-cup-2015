@@ -2,6 +2,8 @@
 
 #include "Direction.h"
 #include "Game.h"
+#include "PathAnalyzer.h"
+
 
 namespace model {
   class World;
@@ -35,6 +37,23 @@ public:
   }
   static void PrintCoord(int x, int y) {
     std::cout << "(" << x << ", " << y << ")\n";
+  }
+  static model::Direction ConvertDirToLocal(model::Direction dir, model::Direction local);
+  static void PrintPattern(PathPatternType type) {
+    switch (type) {
+    case RIGHT_TURN:
+      std::cout << "RIGHT_TURN" << std::endl;
+      break;
+    case LEFT_TURN:
+      std::cout << "LEFT_TURN" << std::endl;
+      break;
+    case LONG_LINE:
+      std::cout << "LONG_LINE" << std::endl;
+      break;
+    case LINE:
+      std::cout << "LINE" << std::endl;
+      break;
+    }
   }
   
 private:

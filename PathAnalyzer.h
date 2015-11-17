@@ -9,10 +9,18 @@ namespace model {
   class Car;
 }
 
+enum PathPatternType {
+  RIGHT_TURN = 0,
+  LEFT_TURN,
+  LONG_LINE,
+  LINE
+};
+
 class PathPattern {
 public:
-  PathPattern(std::vector<model::Direction> seq) :
-  seq_(seq) {};
+  PathPattern(std::vector<model::Direction> seq, PathPatternType type_tmp) :
+  seq_(seq),
+  type(type_tmp) {};
   
   bool CheckIfNow(const std::vector<model::Direction>& path) {
     if (seq_.size() > path.size())
@@ -21,6 +29,7 @@ public:
     return seq_ == path_tmp;
   }
   
+  PathPatternType type;
 private:
   std::vector<model::Direction> seq_;
 };
