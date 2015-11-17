@@ -22,3 +22,4 @@ struct TileNode {
 
 typedef std::shared_ptr<TileNode> TileNodePtr;
 typedef std::queue<TileNodePtr> QueueType;
+typedef std::shared_ptr<class TrajTile> TrajTilePtr;

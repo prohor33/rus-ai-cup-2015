@@ -16,10 +16,13 @@ car_(nullptr),
 world_(nullptr),
 game_(nullptr) {
   
-  patterns_.push_back(PathPattern({ UP, RIGHT }, RIGHT_TURN));
-  patterns_.push_back(PathPattern({ UP, LEFT }, LEFT_TURN));
-  patterns_.push_back(PathPattern({ UP, UP, UP, UP }, LONG_LINE));
-  patterns_.push_back(PathPattern({ UP, UP }, LINE));
+  const double PADDING = 0.2;
+  const double PADDING_FROM_CENTER = 0.25;
+
+  patterns_.push_back(PathPattern({ UP, UP, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }));
+  patterns_.push_back(PathPattern({ UP, UP, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER }));
+  patterns_.push_back(PathPattern({ UP, UP, UP, UP }, LONG_LINE, {}));
+  patterns_.push_back(PathPattern({ UP, UP, UP }, LINE, {}));
 };
 
 void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
@@ -28,7 +31,7 @@ void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
   //int car_x = Utils::CoordToTile(car_->getX());
   //int car_y = Utils::CoordToTile(car_->getY());
   // add current node
-//  path_.push_front(TileNodePtr(new TileNode(car_x, car_y, _UNKNOWN_DIRECTION_, TileNodePtr())));
+  // path_.push_front(TileNodePtr(new TileNode(car_x, car_y, _UNKNOWN_DIRECTION_, TileNodePtr())));
 
   dir_path_.clear();
   dir_path_.reserve(path_.size());
@@ -78,5 +81,22 @@ void PathAnalyzer::BuildBasicTraj() {
     }
     const TileNodePtr& n = path_[i];
     traj_tiles.push_back(TrajTilePtr(new TrajTile(type, n->x, n->y, n->dir)));
+  }
+
+  // fill tiles optimized trajectory for turns
+  PathPattern* current_pattern = nullptr;
+  for (auto& p : patterns_) {
+    if (p.CheckIfNow(dir_path_)) {
+      current_pattern = &p;
+      break;
+    }
+  }
+  if (current_pattern) {
+    switch (current_pattern->type) {
+    case RIGHT_TURN:
+    case LEFT_TURN:
+      current_pattern->ApplyField(traj_tiles);
+      break;
+    }
   }
 }

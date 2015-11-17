@@ -2,6 +2,7 @@
 
 #include "Structs.h"
 #include "Direction.h"
+#include "PathPattern.h"
 
 namespace model {
   class World;
@@ -63,33 +64,6 @@ public:
 
 private:
   std::vector<std::vector<double>> field_;
-};
-
-typedef std::shared_ptr<TrajTile> TrajTilePtr;
-
-enum PathPatternType {
-  RIGHT_TURN = 0,
-  LEFT_TURN,
-  LONG_LINE,
-  LINE
-};
-
-class PathPattern {
-public:
-  PathPattern(std::vector<model::Direction> seq, PathPatternType type_tmp) :
-  seq_(seq),
-  type(type_tmp) {};
-  
-  bool CheckIfNow(const std::vector<model::Direction>& path) {
-    if (seq_.size() > path.size())
-      return false;
-    std::vector<model::Direction> path_tmp(path.begin(), path.begin() + seq_.size());
-    return seq_ == path_tmp;
-  }
-  
-  PathPatternType type;
-private:
-  std::vector<model::Direction> seq_;
 };
 
 class PathAnalyzer {

@@ -91,6 +91,7 @@
     <ClCompile Include="MyStrategy.cpp" />
     <ClCompile Include="PathAnalyzer.cpp" />
     <ClCompile Include="PathFinder.cpp" />
+    <ClCompile Include="PathPattern.cpp" />
     <ClCompile Include="RemoteProcessClient.cpp" />
     <ClCompile Include="Runner.cpp" />
     <ClCompile Include="Strategy.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="MyStrategy.h" />
     <ClInclude Include="PathAnalyzer.h" />
     <ClInclude Include="PathFinder.h" />
+    <ClInclude Include="PathPattern.h" />
     <ClInclude Include="RemoteProcessClient.h" />
     <ClInclude Include="Runner.h" />
     <ClInclude Include="stdafx.h" />
