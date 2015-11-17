@@ -17,12 +17,12 @@ bool PathFinder::FindPathChain() {
   int prev_waypoint = -1;
   int next_waypoint = car_->getNextWaypointIndex();
   result_.clear();
-  while (result_.size() < PATH_CHAIN_SIZE) {
+  while ((int)result_.size() < PATH_CHAIN_SIZE) {
     if (!FindPathFromTo(prev_waypoint, next_waypoint))
       return false;
     prev_waypoint = next_waypoint;
     next_waypoint++;
-    if (next_waypoint >= world_->getWaypoints().size())
+    if (next_waypoint >= (int)world_->getWaypoints().size())
       next_waypoint = 0;
   }
   

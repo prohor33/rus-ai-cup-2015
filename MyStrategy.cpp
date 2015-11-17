@@ -36,7 +36,7 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   if (!PathFinder::Instance()->FindPathChain())
     cout << "error: can't find path" << endl;
   
-  const std::list<TileNodePtr> path = PathFinder::Instance()->get_result();
+  const std::vector<TileNodePtr> path = PathFinder::Instance()->get_result();
   
   PathAnalyzer::Instance()->Analyze(path);
   

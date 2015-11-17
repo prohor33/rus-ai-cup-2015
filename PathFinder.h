@@ -52,8 +52,12 @@ public:
     game_ = game;
   }
   bool FindPathChain();
-  const std::list<TileNodePtr>& get_result() const {
-    return result_;
+  std::vector<TileNodePtr> get_result() const {
+    std::vector<TileNodePtr> res;
+    res.reserve(result_.size());
+    for (auto& n : result_)
+      res.push_back(n);
+    return res;
   }
   
 private:

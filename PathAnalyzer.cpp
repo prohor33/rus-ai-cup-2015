@@ -22,7 +22,7 @@ game_(nullptr) {
   patterns_.push_back(PathPattern({ UP, UP }, LINE));
 };
 
-void PathAnalyzer::Analyze(const std::list<TileNodePtr>& path) {
+void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
   path_ = path;
   
   //int car_x = Utils::CoordToTile(car_->getX());
@@ -48,4 +48,35 @@ void PathAnalyzer::Analyze(const std::list<TileNodePtr>& path) {
     Utils::PrintPattern(current_pattern->type);
   else
     cout << "no pattern :(\n";
+
+
+}
+
+void PathAnalyzer::BuildBasicTraj() {
+  std::vector<TrajTilePtr> traj_tiles;
+
+  assert(dir_path_.size() == path_.size());
+
+  for (int i = 0; i + 1 < (int)dir_path_.size(); i++) {
+    model::Direction dir = dir_path_[i];
+    model::Direction next_dir = dir_path_[i + 1]; // normalized to start tile direction
+    TrajTileType type(TTT_FORWARD);
+    if (dir == next_dir) {
+      type = TTT_FORWARD;
+    } else {
+      model::Direction local_next = Utils::ConvertDirToLocal(next_dir, dir);
+      switch (local_next) {
+      case RIGHT:
+        type = TTT_RIGHT_TURN;
+        break;
+      case LEFT:
+        type = TTT_LEFT_TURN;
+        break;
+      default:
+        assert(0);
+      }
+    }
+    const TileNodePtr& n = path_[i];
+    traj_tiles.push_back(TrajTilePtr(new TrajTile(type, n->x, n->y, n->dir)));
+  }
 }
