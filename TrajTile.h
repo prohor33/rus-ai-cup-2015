@@ -22,6 +22,7 @@ public:
   void FindOptimizedEnd(double start_p, double& best_end_p, double& best_sum);
   void StartPointToWorldCoord(double start_p, double& x, double& y);
   void GetSum(double start_p, double end_p, double& sum);
+  static double GetFineBetweenTwoPoints(double start_p, double end_p);
   
   static const int N_CELLS_IN_TILE;
   static const double VAL_BORDER;

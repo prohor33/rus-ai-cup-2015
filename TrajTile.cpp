@@ -12,7 +12,7 @@ using namespace model;
 const int TrajTile::N_CELLS_IN_TILE = 10;
 const double TrajTile::VAL_BORDER = -10.;
 const double TrajTile::VAL_OPTIMIZED_TRAJ = 1.;
-const double TrajTile::VAL_FOR_TURNS_ON_FORWARD_LINE = -0.1;
+const double TrajTile::VAL_FOR_TURNS_ON_FORWARD_LINE = -0.01;
 
 TrajTile::TrajTile(TrajTileType type_tmp, int x_tmp, int y_tmp, model::Direction orientation_tmp) :
 type(type_tmp),
@@ -134,9 +134,13 @@ void TrajTile::GetSum(double start_p, double end_p, double& sum) {
     sum += field[x][y];
   });
   if (type == TTT_FORWARD) {
-    sum += abs(end_p - start_p) * VAL_FOR_TURNS_ON_FORWARD_LINE * 10.;
+    sum += GetFineBetweenTwoPoints(start_p, end_p);
   }
   cached_sums_[{start_p, end_p}] = sum;
+}
+
+double TrajTile::GetFineBetweenTwoPoints(double start_p, double end_p) {
+  return abs(end_p - start_p) * VAL_FOR_TURNS_ON_FORWARD_LINE * 10.;
 }
 
 void TrajTile::StartPointToWorldCoord(double start_p, double& world_x, double& world_y) {

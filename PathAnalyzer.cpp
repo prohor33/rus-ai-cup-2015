@@ -109,9 +109,9 @@ void FindBestTrajRec(vector<double> var, int tile_n, vector<vector<double>>& var
     variants.push_back(var);
     return;
   }
-  const double delta = 0.2;
+  const double delta = 0.1;
   var.push_back(0.);
-  for (double start_p = 0.2; start_p <= 0.8; start_p += delta) {
+  for (double start_p = 0.25; start_p <= 0.75; start_p += delta) {
     var.back() = start_p;
     FindBestTrajRec(var, tile_n, variants);
   }
@@ -133,17 +133,17 @@ void PathAnalyzer::FindBestTraj() {
   case RIGHT:
   case LEFT:
     current_car_point = (car_->getY() - tile0_y) / game_->getTrackTileSize() + 0.5;
-    if (tile0->orientation == RIGHT)
+    if (tile0->orientation == LEFT)
       current_car_point = 1. - current_car_point;
     break;
   default:
     assert(0);
   }
 
-  const int TRAJ_ANALYZE_LENGTH = 5;
+  const int TRAJ_ANALYZE_LENGTH = 4;
   vector<vector<double>> variants;
   const int traj_analyze_length = std::min<int>(traj_tiles_.size(), TRAJ_ANALYZE_LENGTH);
-  FindBestTrajRec({ current_car_point }, traj_analyze_length - 1, variants);
+  FindBestTrajRec({}, traj_analyze_length, variants);
 
   vector<vector<double>> results;
   int index = 0;
@@ -155,6 +155,9 @@ void PathAnalyzer::FindBestTraj() {
       double sum_tmp;
       traj_tiles_[tile_i]->GetSum(var[tile_i], var[tile_i + 1], sum_tmp);
       sum += sum_tmp;
+      if (tile_i == 0) {
+        sum += TrajTile::GetFineBetweenTwoPoints(current_car_point, var[tile_i]);
+      }
     }
     if (sum > max_sum) {
       best_index = index;
