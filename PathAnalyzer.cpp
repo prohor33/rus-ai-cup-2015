@@ -142,7 +142,7 @@ void PathAnalyzer::FindBestTraj() {
 
   const int TRAJ_ANALYZE_LENGTH = 4;
   vector<vector<double>> variants;
-  const int traj_analyze_length = std::min<int>(traj_tiles_.size(), TRAJ_ANALYZE_LENGTH);
+  const int traj_analyze_length = std::min<int>((int)traj_tiles_.size(), TRAJ_ANALYZE_LENGTH);
   FindBestTrajRec({}, traj_analyze_length, variants);
 
   vector<vector<double>> results;
@@ -170,6 +170,8 @@ void PathAnalyzer::FindBestTraj() {
   vector<double> start_points = variants[best_index];
   
   res_world_points_.clear();
+  cout << "current car point: " << current_car_point << endl;
+  
   cout << "start points:\n";
   for (int i = 0; i < start_points.size(); i++) {
     cout << start_points[i] << endl;

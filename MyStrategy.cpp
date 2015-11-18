@@ -55,7 +55,7 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   double angleToWaypoint = self.getAngleTo(nextWaypointX, nextWaypointY);
   double speedModule = hypot(self.getSpeedX(), self.getSpeedY());
   
-  move.setWheelTurn(angleToWaypoint * 180.0 / PI);
+  move.setWheelTurn(angleToWaypoint * 180.0 / PI / 35.0);
   move.setEnginePower(1.0);
   
 /*  if (speedModule * speedModule * abs(angleToWaypoint) > 2.5 * 2.5 * PI) {
