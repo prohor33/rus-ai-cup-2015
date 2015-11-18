@@ -55,7 +55,7 @@ void TrajTile::IterareThroughPath(double start_p, double end_p, FuncT func) {
   
   double s_x = start_p * (N_CELLS_IN_TILE - 1);
   double s_y = 0.;
-  double e_x, e_y;
+  double e_x(0.), e_y(0.);
   switch (type) {
     case TTT_RIGHT_TURN:
       e_x = N_CELLS_IN_TILE - 1;
@@ -68,7 +68,9 @@ void TrajTile::IterareThroughPath(double start_p, double end_p, FuncT func) {
     case TTT_FORWARD:
       e_x = end_p * (N_CELLS_IN_TILE - 1);
       e_y = N_CELLS_IN_TILE - 1;
+      break;
     default:
+      assert(0);
       break;
   }
   double v_x = e_x - s_x;

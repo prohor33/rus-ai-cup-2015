@@ -91,24 +91,13 @@ void PathAnalyzer::BuildBasicTraj() {
   }
 
   // fill tiles optimized trajectory for turns
-  PathPattern* current_pattern = nullptr;
-  for (auto& p : patterns_) {
-    if (p.CheckIfNow(dir_path_)) {
-      current_pattern = &p;
-      break;
-    }
-  }
-  if (current_pattern) {
-    switch (current_pattern->type) {
-    case RIGHT_TURN:
-    case LEFT_TURN:
-    case LEFT_CUT_TURN:
-    case RIGHT_CUT_TURN:
-      cout << "applying turn pattern" << endl;
-      current_pattern->ApplyField(traj_tiles_);
-      break;
-    default:
-      {}
+  for (int start_index = 0; start_index < traj_tiles_.size(); start_index++) {
+    for (auto& p : patterns_) {
+      if (p.CheckPatternOnIndex(dir_path_, start_index)) {
+        p.ApplyField(traj_tiles_, start_index);
+        start_index += p.length();
+        break;
+      }
     }
   }
 }

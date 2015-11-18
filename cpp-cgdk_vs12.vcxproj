@@ -111,6 +111,7 @@
     <ClCompile Include="model\OilSlick.cpp" />
     <ClCompile Include="model\Projectile.cpp" />
     <ClCompile Include="model\RectangularUnit.cpp" />
+    <ClCompile Include="TrajTile.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="csimplesocket\SimpleSocket.h" />
     <ClInclude Include="csimplesocket\StatTimer.h" />
     <ClInclude Include="Structs.h" />
+    <ClInclude Include="TrajTile.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
