@@ -119,20 +119,24 @@ void FindBestTrajRec(vector<double> var, int tile_n, vector<vector<double>>& var
 
 void PathAnalyzer::FindBestTraj() {
 
+  // find current car point
   TrajTilePtr& tile0 = traj_tiles_[0];
   double tile0_x = Utils::TileToCoord(tile0->x);
   double tile0_y = Utils::TileToCoord(tile0->y);
   double current_car_point = 0.;
+  double current_car_pos_coef_in_tile = 0.;
   switch (tile0->orientation) {
   case UP:
   case DOWN:
     current_car_point = (car_->getX() - tile0_x) / game_->getTrackTileSize() + 0.5;
+    current_car_pos_coef_in_tile = abs(tile0_y - car_->getY()) / game_->getTrackTileSize() - 0.5;
     if (tile0->orientation == DOWN)
       current_car_point = 1. - current_car_point;
     break;
   case RIGHT:
   case LEFT:
     current_car_point = (car_->getY() - tile0_y) / game_->getTrackTileSize() + 0.5;
+    current_car_pos_coef_in_tile = abs(tile0_x - car_->getX()) / game_->getTrackTileSize() - 0.5;
     if (tile0->orientation == LEFT)
       current_car_point = 1. - current_car_point;
     break;
@@ -148,15 +152,15 @@ void PathAnalyzer::FindBestTraj() {
   vector<vector<double>> results;
   int index = 0;
   int best_index = -1;
-  double max_sum = -10000.;
+  double max_sum = -numeric_limits<double>::max();
   for (auto& var : variants) {
     double sum = 0.;
     for (int tile_i = 0; tile_i + 1 < var.size(); tile_i++) {
-      double sum_tmp;
+      double sum_tmp = 0.;
       traj_tiles_[tile_i]->GetSum(var[tile_i], var[tile_i + 1], sum_tmp);
       sum += sum_tmp;
-      if (tile_i == 0) {
-        sum += TrajTile::GetFineBetweenTwoPoints(current_car_point, var[tile_i]);
+      if (tile_i == 0 && traj_tiles_[0]->type == TTT_FORWARD) {
+        sum += TrajTile::GetFineFromDelta((current_car_point - var[0]) / current_car_pos_coef_in_tile);
       }
     }
     if (sum > max_sum) {
@@ -166,7 +170,10 @@ void PathAnalyzer::FindBestTraj() {
     index++;
   }
 
-  assert(best_index >= 0);
+  if (best_index < 0) {
+    assert(0);
+    best_index = 0;
+  }
   vector<double> start_points = variants[best_index];
   
   res_world_points_.clear();
@@ -179,8 +186,6 @@ void PathAnalyzer::FindBestTraj() {
     traj_tiles_[i]->StartPointToWorldCoord(start_points[i], x, y);
     res_world_points_.push_back({x, y});
   }
-  
-  cout << "\n\n";
 }
 
 

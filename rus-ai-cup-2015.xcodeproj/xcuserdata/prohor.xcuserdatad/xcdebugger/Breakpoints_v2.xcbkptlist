@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PathAnalyzer.cpp"
-            timestampString = "469488184.564587"
+            timestampString = "469568013.967918"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
@@ -32,6 +32,22 @@
             startingLineNumber = "64"
             endingLineNumber = "64"
             landmarkName = "PathAnalyzer::BuildBasicTraj()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PathAnalyzer.cpp"
+            timestampString = "469568414.569347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "PathAnalyzer::FindBestTraj()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

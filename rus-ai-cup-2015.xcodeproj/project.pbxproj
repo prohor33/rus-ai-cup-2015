@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		546262211BFD130A00413510 /* Mover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5462621F1BFD130A00413510 /* Mover.cpp */; };
 		54B430881BF7CE0800E2336E /* Bonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430631BF7CE0800E2336E /* Bonus.cpp */; };
 		54B430891BF7CE0800E2336E /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430661BF7CE0800E2336E /* Car.cpp */; };
 		54B4308A1BF7CE0800E2336E /* CircularUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430691BF7CE0800E2336E /* CircularUnit.cpp */; };
@@ -48,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		5407A7561BF7CC8100477F6F /* rus-ai-cup-2015 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rus-ai-cup-2015"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5462621F1BFD130A00413510 /* Mover.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mover.cpp; sourceTree = SOURCE_ROOT; };
+		546262201BFD130A00413510 /* Mover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mover.h; sourceTree = SOURCE_ROOT; };
 		54B430631BF7CE0800E2336E /* Bonus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bonus.cpp; sourceTree = "<group>"; };
 		54B430641BF7CE0800E2336E /* Bonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bonus.h; sourceTree = "<group>"; };
 		54B430651BF7CE0800E2336E /* BonusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonusType.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 		5407A7581BF7CC8100477F6F /* rus-ai-cup-2015 */ = {
 			isa = PBXGroup;
 			children = (
+				5462621F1BFD130A00413510 /* Mover.cpp */,
+				546262201BFD130A00413510 /* Mover.h */,
 				54B430B81BFBA4A800E2336E /* TrajTile.cpp */,
 				54B430B91BFBA4A800E2336E /* TrajTile.h */,
 				54B430B51BFB9D8B00E2336E /* PathPattern.cpp */,
@@ -297,6 +302,7 @@
 				54B430A61BF7CF8200E2336E /* SimpleSocket.cpp in Sources */,
 				54B430A31BF7CF8200E2336E /* ActiveSocket.cpp in Sources */,
 				54B430B01BF8C2FF00E2336E /* Utils.cpp in Sources */,
+				546262211BFD130A00413510 /* Mover.cpp in Sources */,
 				54B430941BF7CE0800E2336E /* MyStrategy.cpp in Sources */,
 				54B4308B1BF7CE0800E2336E /* Game.cpp in Sources */,
 			);

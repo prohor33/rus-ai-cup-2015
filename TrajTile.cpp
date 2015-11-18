@@ -140,7 +140,11 @@ void TrajTile::GetSum(double start_p, double end_p, double& sum) {
 }
 
 double TrajTile::GetFineBetweenTwoPoints(double start_p, double end_p) {
-  return abs(end_p - start_p) * VAL_FOR_TURNS_ON_FORWARD_LINE * 10.;
+  return GetFineFromDelta(end_p - start_p);
+}
+
+double TrajTile::GetFineFromDelta(double delta) {
+  return pow(abs(delta), 2.0) * VAL_FOR_TURNS_ON_FORWARD_LINE;
 }
 
 void TrajTile::StartPointToWorldCoord(double start_p, double& world_x, double& world_y) {
