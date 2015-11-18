@@ -4,6 +4,7 @@
 #include "Car.h"
 #include "World.h"
 #include "Game.h"
+#include "RectangularUnit.h"
 
 
 using namespace std;
@@ -13,6 +14,7 @@ const int TrajTile::N_CELLS_IN_TILE = 10;
 const double TrajTile::VAL_BORDER = -10.;
 const double TrajTile::VAL_OPTIMIZED_TRAJ = 1.;
 const double TrajTile::VAL_FOR_TURNS_ON_FORWARD_LINE = -0.01;
+const double TrajTile::VAL_BONUS = 0.6;
 
 TrajTile::TrajTile(TrajTileType type_tmp, int x_tmp, int y_tmp, model::Direction orientation_tmp) :
 type(type_tmp),
@@ -175,5 +177,33 @@ void TrajTile::StartPointToWorldCoord(double start_p, double& world_x, double& w
       break;
   }
 }
+
+void TrajTile::ApplyObject(const RectangularUnit& obj, double v) {
+  double min_x = obj.getX() - obj.getWidth() / 2.;
+  double max_x = obj.getX() + obj.getWidth() / 2.;
+  double min_y = obj.getY() - obj.getHeight() / 2.;
+  double max_y = obj.getY() + obj.getHeight() / 2.;
+  
+  double tile_x = Utils::TileToCoord(x);
+  double tile_y = Utils::TileToCoord(y);
+  double tile_size = Utils::game->getTrackTileSize();
+  
+  if (min_x > tile_x + tile_size / 2. ||
+      max_x < tile_x - tile_size / 2. ||
+      min_y > tile_y + tile_size / 2. ||
+      max_y < tile_y - tile_size / 2.) {
+    return;
+  }
+}
+
+void TrajTile::ApplyBonus(const Bonus& b) {
+  switch (b.getType()) {
+    default:
+      ApplyObject(b, VAL_BONUS);
+      break;
+  }
+}
+
+
 
 

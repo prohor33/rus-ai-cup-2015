@@ -188,6 +188,14 @@ void PathAnalyzer::FindBestTraj() {
   }
 }
 
+void PathAnalyzer::ApplyBonuses() {
+  for (auto& tile : traj_tiles_) {
+    for (auto& b : world_->getBonuses()) {
+      tile->ApplyBonus(b);
+    }
+  }
+}
+
 
 
 

@@ -3,6 +3,8 @@
 #include "Structs.h"
 #include "Direction.h"
 #include "PathPattern.h"
+#include "Bonus.h"
+
 
 enum TrajTileType {
   TTT_FORWARD = 0,
@@ -24,11 +26,14 @@ public:
   void GetSum(double start_p, double end_p, double& sum);
   static double GetFineBetweenTwoPoints(double start_p, double end_p);
   static double GetFineFromDelta(double delta);
+  void ApplyObject(const model::RectangularUnit& obj, double v);
+  void ApplyBonus(const model::Bonus& b);
   
   static const int N_CELLS_IN_TILE;
   static const double VAL_BORDER;
   static const double VAL_OPTIMIZED_TRAJ;
   static const double VAL_FOR_TURNS_ON_FORWARD_LINE;
+  static const double VAL_BONUS;
   
   TrajTileType type;
   int x, y;

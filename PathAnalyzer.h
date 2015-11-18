@@ -31,6 +31,7 @@ public:
 private:
   void BuildBasicTraj();
   void FindBestTraj();
+  void ApplyBonuses();
 
   static PathAnalyzer* instance_;
   const model::Car* car_;
