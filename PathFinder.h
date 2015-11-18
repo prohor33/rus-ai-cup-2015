@@ -10,28 +10,6 @@ namespace model {
   class Car;
 }
 
-namespace std {
-  
-  template <>
-  struct hash<Coord>
-  {
-    std::size_t operator()(const Coord& k) const
-    {
-      using std::size_t;
-      using std::hash;
-      using std::string;
-      
-      // Compute individual hash values for first,
-      // second and third and combine them using XOR
-      // and bit shifting:
-      
-      return ((hash<int>()(k.x)
-               ^ (hash<int>()(k.y) << 1)) >> 1);
-    }
-  };
-  
-}
-
 class PathFinder {
 public:
   PathFinder() :

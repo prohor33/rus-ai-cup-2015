@@ -7,16 +7,6 @@ using namespace std;
 using namespace model;
 
 void PathPattern::ApplyField(const std::vector<TrajTilePtr>& tiles, int start_index) {
-  switch (type) {
-  case RIGHT_TURN:
-  case LEFT_TURN:
-  case LEFT_CUT_TURN:
-  case RIGHT_CUT_TURN:
-    break;
-  default:
-    return;
-  }
-
   for (int i = 0; i + 1 < (int)opt_points_.size(); i++) {
     if (start_index + i >= (int)tiles.size())
       break;

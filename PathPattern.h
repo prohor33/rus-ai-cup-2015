@@ -20,7 +20,7 @@ public:
     opt_points_(opt_points) {};
 
   bool CheckPatternOnIndex(const std::vector<model::Direction>& path, int start_index) {
-    if (seq_.size() > path.size() + start_index)
+    if (seq_.size() + start_index > path.size())
       return false;
     std::vector<model::Direction> path_tmp(path.begin() + start_index, path.begin() + start_index + seq_.size());
     return seq_ == path_tmp;
@@ -28,6 +28,17 @@ public:
   void ApplyField(const std::vector<TrajTilePtr>& tiles, int start_index);
   int length() const {
     return seq_.size();
+  }
+  bool IsTurn() {
+    switch (type) {
+    case RIGHT_TURN:
+    case LEFT_TURN:
+    case LEFT_CUT_TURN:
+    case RIGHT_CUT_TURN:
+      return true;
+    default:
+      return false;
+    }
   }
 
   PathPatternType type;

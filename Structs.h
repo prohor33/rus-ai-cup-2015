@@ -11,6 +11,55 @@ struct Coord {
   
 };
 
+struct CoordD {
+  double x;
+  double y;
+  bool operator==(const CoordD &other) const {
+    return x == other.x && y == other.y;
+  }
+
+};
+
+namespace std {
+
+  template <>
+  struct hash<Coord>
+  {
+    std::size_t operator()(const Coord& k) const
+    {
+      using std::size_t;
+      using std::hash;
+      using std::string;
+
+      // Compute individual hash values for first,
+      // second and third and combine them using XOR
+      // and bit shifting:
+
+      return ((hash<int>()(k.x)
+        ^ (hash<int>()(k.y) << 1)) >> 1);
+    }
+  };
+
+  template <>
+  struct hash<CoordD>
+  {
+    std::size_t operator()(const CoordD& k) const
+    {
+      using std::size_t;
+      using std::hash;
+      using std::string;
+
+      // Compute individual hash values for first,
+      // second and third and combine them using XOR
+      // and bit shifting:
+
+      return ((hash<double>()(k.x)
+        ^ (hash<double>()(k.y) << 1)) >> 1);
+    }
+  };
+
+}
+
 struct TileNode {
   TileNode(int tmp_x, int tmp_y, model::Direction tmp_dir, std::shared_ptr<TileNode> tmp_p) :
   x(tmp_x), y(tmp_y), dir(tmp_dir), parent(tmp_p) {};
