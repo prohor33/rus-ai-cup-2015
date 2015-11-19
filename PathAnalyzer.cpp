@@ -15,7 +15,8 @@ PathAnalyzer* PathAnalyzer::instance_ = nullptr;
 PathAnalyzer::PathAnalyzer() :
 car_(nullptr),
 world_(nullptr),
-game_(nullptr) {
+game_(nullptr),
+is_line_now_(false) {
   
   const double PADDING = 0.2;
   const double PADDING_FROM_CENTER = 0.25;
@@ -30,6 +31,7 @@ game_(nullptr) {
 
 void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
   path_ = path;
+  is_line_now_ = false;
   
   //int car_x = Utils::CoordToTile(car_->getX());
   //int car_y = Utils::CoordToTile(car_->getY());
@@ -95,6 +97,10 @@ void PathAnalyzer::BuildBasicTraj() {
   for (int start_index = 0; start_index < traj_tiles_.size(); start_index++) {
     for (auto& p : patterns_) {
       if (p.CheckPatternOnIndex(dir_path_, start_index)) {
+
+        if (start_index == 0 && (p.type == LONG_LINE || p.type == LINE))
+          is_line_now_ = true;
+
         if (p.IsTurn()) {
           p.ApplyField(traj_tiles_, start_index);
           start_index += p.length();

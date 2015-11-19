@@ -27,6 +27,9 @@ public:
   const std::vector<std::vector<double>>& GetPath() const {
     return res_world_points_;
   }
+  bool is_line_now() const {
+    return is_line_now_;
+  }
   
 private:
   void BuildBasicTraj();
@@ -42,4 +45,5 @@ private:
   std::vector<PathPattern> patterns_;
   std::vector<TrajTilePtr> traj_tiles_;
   std::vector<std::vector<double>> res_world_points_;
+  bool is_line_now_;
 };

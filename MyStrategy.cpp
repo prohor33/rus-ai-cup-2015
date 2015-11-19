@@ -9,20 +9,9 @@ using namespace model;
 using namespace std;
 
 void MyStrategy::move(const Car& self, const World& world, const Game& game, Move& move) {
-//  move.setEnginePower(1.0);
-//  move.setThrowProjectile(true);
-//  move.setSpillOil(true);
-//
-//  if (world.getTick() > game.getInitialFreezeDurationTicks()) {
-//      move.setUseNitro(true);
-//  }
-  
-//  for (auto p : world.getWaypoints()) {
-//    Utils::PrintCoord(p[0], p[1]);
-//  }
-//  cout << "\n\n\n";
-//  return;
-  
+  if (self.isFinishedTrack())
+    return;
+
   Utils::UpdateWorld(&world, &game);
   PathFinder::Instance()->UpdateWorld(&self, &world, &game);
   PathAnalyzer::Instance()->UpdateWorld(&self, &world, &game);
@@ -36,11 +25,7 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   PathAnalyzer::Instance()->Analyze(tile_path);
   const std::vector<std::vector<double>>& path = PathAnalyzer::Instance()->GetPath();
   
-  Mover::Instance()->Move(path);
-  
-//    cout << "already in place" << endl;
-//  cout << Utils::DirToStr(dir) << endl;
-  
+  Mover::Instance()->Move(path);  
 }
 
 MyStrategy::MyStrategy() { }

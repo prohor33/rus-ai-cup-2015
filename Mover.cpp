@@ -14,6 +14,7 @@ Mover* Mover::instance_ = nullptr;
 
 void Mover::Move(const std::vector<std::vector<double>>& path) {
   path_ = path;
+  AnalyzeHistory();
   
   cout << "next point coord: ";
   Utils::PrintCoord(path[0][0], path[0][1]);
@@ -55,4 +56,25 @@ void Mover::TurnToPoint(double x, double y) {
   /*  if (speedModule * speedModule * abs(angleToWaypoint) > 2.5 * 2.5 * PI) {
    move.setBrake(true);
    }	*/
+}
+
+void Mover::AnalyzeHistory() {
+  history_.push({ car_->getX(), car_->getY() });
+  const int MAX_HISTORY_SIZE = 100;
+  if (history_.size() > MAX_HISTORY_SIZE)
+    history_.pop();
+
+  CheckIfNotMoving();
+}
+
+void Mover::CheckIfNotMoving() {
+  const int NOT_MOVING_HIST_SIZE = 20;
+  double min_x = numeric_limits<double>::max();
+  double max_x = numeric_limits<double>::max();
+  double min_y = numeric_limits<double>::max();
+  double max_y = numeric_limits<double>::max();
+  for (int i = 0; i < history_.size() && i < NOT_MOVING_HIST_SIZE; i++) {
+    auto& p = history_[i];
+    min_x = min<double>(p[0], min_x);
+  }
 }

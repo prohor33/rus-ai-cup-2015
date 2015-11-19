@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BonusUser.cpp" />
     <ClCompile Include="Mover.cpp" />
     <ClCompile Include="MyStrategy.cpp" />
     <ClCompile Include="PathAnalyzer.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BonusUser.h" />
     <ClInclude Include="Mover.h" />
     <ClInclude Include="MyStrategy.h" />
     <ClInclude Include="PathAnalyzer.h" />

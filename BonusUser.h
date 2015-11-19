@@ -2,7 +2,6 @@
 
 #include "Structs.h"
 #include "Direction.h"
-#include "PathPattern.h"
 
 namespace model {
   class World;
@@ -11,11 +10,11 @@ namespace model {
   class Move;
 }
 
-class Mover {
+class BonusUser {
 public:
-  static Mover* Instance() {
+  static BonusUser* Instance() {
     if (!instance_)
-      instance_ = new Mover();
+      instance_ = new BonusUser();
     return instance_;
   }
   void UpdateWorld(const model::Car* car, const model::World* world, const model::Game* game, model::Move* move) {
@@ -24,18 +23,16 @@ public:
     game_ = game;
     move_ = move;
   }
-  void Move(const std::vector<std::vector<double>>& path);
+  void Use();
   
 private:
-  void TurnToPoint(double x, double y);
-  void AnalyzeHistory();
-  void CheckIfNotMoving();
+  void UseProjectile();
+  void UseNitro();
+  void UseOilStick();
 
-  static Mover* instance_;
+  static BonusUser* instance_;
   const model::Car* car_;
   const model::World* world_;
   const model::Game* game_;
   model::Move* move_;
-  std::vector<std::vector<double>> path_;
-  std::queue<std::vector<double>> history_;
 };
