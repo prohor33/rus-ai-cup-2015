@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Structs.h"
-#include "Direction.h"
+#include "model/Direction.h"
+#include "model/Bonus.h"
 #include "PathPattern.h"
-#include "Bonus.h"
 
 
 enum TrajTileType {

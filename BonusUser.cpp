@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "BonusUser.h"
 #include "Utils.h"
-#include "Car.h"
-#include "World.h"
-#include "Game.h"
-#include "Move.h"
+#include "model/Car.h"
+#include "model/World.h"
+#include "model/Game.h"
+#include "model/Move.h"
 #include "PathAnalyzer.h"
 
 

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "PathFinder.h"
-#include "Car.h"
-#include "World.h"
-#include "Game.h"
+#include "model/Car.h"
+#include "model/World.h"
+#include "model/Game.h"
 #include "Utils.h"
 
 using namespace std;

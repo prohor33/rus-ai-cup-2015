@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Direction.h"
+#include "model/Direction.h"
 
 struct Coord {
   int x;

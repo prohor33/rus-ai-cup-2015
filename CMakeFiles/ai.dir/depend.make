@@ -7,7 +7,6 @@ CMakeFiles/ai.dir/BonusUser.cpp.o: PathAnalyzer.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: PathPattern.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: Structs.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: Utils.h
-CMakeFiles/ai.dir/BonusUser.cpp.o: stdafx.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: model/Bonus.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: model/BonusType.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: model/Car.h
@@ -24,6 +23,7 @@ CMakeFiles/ai.dir/BonusUser.cpp.o: model/RectangularUnit.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: model/TileType.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: model/Unit.h
 CMakeFiles/ai.dir/BonusUser.cpp.o: model/World.h
+CMakeFiles/ai.dir/BonusUser.cpp.o: stdafx.h
 
 CMakeFiles/ai.dir/Mover.cpp.o: Mover.cpp
 CMakeFiles/ai.dir/Mover.cpp.o: Mover.h
@@ -31,7 +31,6 @@ CMakeFiles/ai.dir/Mover.cpp.o: PathAnalyzer.h
 CMakeFiles/ai.dir/Mover.cpp.o: PathPattern.h
 CMakeFiles/ai.dir/Mover.cpp.o: Structs.h
 CMakeFiles/ai.dir/Mover.cpp.o: Utils.h
-CMakeFiles/ai.dir/Mover.cpp.o: stdafx.h
 CMakeFiles/ai.dir/Mover.cpp.o: model/Bonus.h
 CMakeFiles/ai.dir/Mover.cpp.o: model/BonusType.h
 CMakeFiles/ai.dir/Mover.cpp.o: model/Car.h
@@ -48,6 +47,7 @@ CMakeFiles/ai.dir/Mover.cpp.o: model/RectangularUnit.h
 CMakeFiles/ai.dir/Mover.cpp.o: model/TileType.h
 CMakeFiles/ai.dir/Mover.cpp.o: model/Unit.h
 CMakeFiles/ai.dir/Mover.cpp.o: model/World.h
+CMakeFiles/ai.dir/Mover.cpp.o: stdafx.h
 
 CMakeFiles/ai.dir/MyStrategy.cpp.o: BonusUser.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: Mover.h
@@ -64,6 +64,7 @@ CMakeFiles/ai.dir/MyStrategy.cpp.o: model/BonusType.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/Car.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/CarType.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/CircularUnit.h
+CMakeFiles/ai.dir/MyStrategy.cpp.o: model/Direction.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/Game.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/Move.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/OilSlick.h
@@ -71,6 +72,7 @@ CMakeFiles/ai.dir/MyStrategy.cpp.o: model/Player.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/Projectile.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/ProjectileType.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/RectangularUnit.h
+CMakeFiles/ai.dir/MyStrategy.cpp.o: model/TileType.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/Unit.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: model/World.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o: stdafx.h
@@ -81,6 +83,21 @@ CMakeFiles/ai.dir/PathAnalyzer.cpp.o: PathPattern.h
 CMakeFiles/ai.dir/PathAnalyzer.cpp.o: Structs.h
 CMakeFiles/ai.dir/PathAnalyzer.cpp.o: TrajTile.h
 CMakeFiles/ai.dir/PathAnalyzer.cpp.o: Utils.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/Bonus.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/BonusType.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/Car.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/CarType.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/CircularUnit.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/Direction.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/Game.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/OilSlick.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/Player.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/Projectile.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/ProjectileType.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/RectangularUnit.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/TileType.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/Unit.h
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: model/World.h
 CMakeFiles/ai.dir/PathAnalyzer.cpp.o: stdafx.h
 
 CMakeFiles/ai.dir/PathFinder.cpp.o: PathAnalyzer.h
@@ -89,12 +106,32 @@ CMakeFiles/ai.dir/PathFinder.cpp.o: PathFinder.h
 CMakeFiles/ai.dir/PathFinder.cpp.o: PathPattern.h
 CMakeFiles/ai.dir/PathFinder.cpp.o: Structs.h
 CMakeFiles/ai.dir/PathFinder.cpp.o: Utils.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/Bonus.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/BonusType.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/Car.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/CarType.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/CircularUnit.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/Direction.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/Game.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/OilSlick.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/Player.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/Projectile.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/ProjectileType.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/RectangularUnit.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/TileType.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/Unit.h
+CMakeFiles/ai.dir/PathFinder.cpp.o: model/World.h
 CMakeFiles/ai.dir/PathFinder.cpp.o: stdafx.h
 
 CMakeFiles/ai.dir/PathPattern.cpp.o: PathPattern.cpp
 CMakeFiles/ai.dir/PathPattern.cpp.o: PathPattern.h
 CMakeFiles/ai.dir/PathPattern.cpp.o: Structs.h
 CMakeFiles/ai.dir/PathPattern.cpp.o: TrajTile.h
+CMakeFiles/ai.dir/PathPattern.cpp.o: model/Bonus.h
+CMakeFiles/ai.dir/PathPattern.cpp.o: model/BonusType.h
+CMakeFiles/ai.dir/PathPattern.cpp.o: model/Direction.h
+CMakeFiles/ai.dir/PathPattern.cpp.o: model/RectangularUnit.h
+CMakeFiles/ai.dir/PathPattern.cpp.o: model/Unit.h
 CMakeFiles/ai.dir/PathPattern.cpp.o: stdafx.h
 
 CMakeFiles/ai.dir/RemoteProcessClient.cpp.o: RemoteProcessClient.cpp
@@ -173,6 +210,21 @@ CMakeFiles/ai.dir/TrajTile.cpp.o: Structs.h
 CMakeFiles/ai.dir/TrajTile.cpp.o: TrajTile.cpp
 CMakeFiles/ai.dir/TrajTile.cpp.o: TrajTile.h
 CMakeFiles/ai.dir/TrajTile.cpp.o: Utils.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/Bonus.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/BonusType.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/Car.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/CarType.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/CircularUnit.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/Direction.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/Game.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/OilSlick.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/Player.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/Projectile.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/ProjectileType.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/RectangularUnit.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/TileType.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/Unit.h
+CMakeFiles/ai.dir/TrajTile.cpp.o: model/World.h
 CMakeFiles/ai.dir/TrajTile.cpp.o: stdafx.h
 
 CMakeFiles/ai.dir/Utils.cpp.o: PathAnalyzer.h
@@ -180,6 +232,21 @@ CMakeFiles/ai.dir/Utils.cpp.o: PathPattern.h
 CMakeFiles/ai.dir/Utils.cpp.o: Structs.h
 CMakeFiles/ai.dir/Utils.cpp.o: Utils.cpp
 CMakeFiles/ai.dir/Utils.cpp.o: Utils.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/Bonus.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/BonusType.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/Car.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/CarType.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/CircularUnit.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/Direction.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/Game.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/OilSlick.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/Player.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/Projectile.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/ProjectileType.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/RectangularUnit.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/TileType.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/Unit.h
+CMakeFiles/ai.dir/Utils.cpp.o: model/World.h
 CMakeFiles/ai.dir/Utils.cpp.o: stdafx.h
 
 CMakeFiles/ai.dir/csimplesocket/ActiveSocket.cpp.o: csimplesocket/ActiveSocket.cpp

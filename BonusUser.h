@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Structs.h"
-#include "Direction.h"
+#include "model/Direction.h"
 
 namespace model {
   class World;

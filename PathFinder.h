@@ -1,7 +1,7 @@
 #pragma once
 
-#include "TileType.h"
-#include "Direction.h"
+#include "model/TileType.h"
+#include "model/Direction.h"
 #include "Structs.h"
 
 namespace model {

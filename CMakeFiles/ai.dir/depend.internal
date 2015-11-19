@@ -8,23 +8,23 @@ CMakeFiles/ai.dir/BonusUser.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/PathPattern.h
  /Users/prohor/Code/rus-ai-cup-2015/Structs.h
  /Users/prohor/Code/rus-ai-cup-2015/Utils.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Bonus.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/BonusType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Car.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CarType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CircularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Game.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Move.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/OilSlick.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Player.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Projectile.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/ProjectileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/TileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/World.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
- model/Bonus.h
- model/BonusType.h
- model/Car.h
- model/CarType.h
- model/CircularUnit.h
- model/Direction.h
- model/Game.h
- model/Move.h
- model/OilSlick.h
- model/Player.h
- model/Projectile.h
- model/ProjectileType.h
- model/RectangularUnit.h
- model/TileType.h
- model/Unit.h
- model/World.h
 CMakeFiles/ai.dir/Mover.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/Mover.cpp
  /Users/prohor/Code/rus-ai-cup-2015/Mover.h
@@ -32,23 +32,23 @@ CMakeFiles/ai.dir/Mover.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/PathPattern.h
  /Users/prohor/Code/rus-ai-cup-2015/Structs.h
  /Users/prohor/Code/rus-ai-cup-2015/Utils.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Bonus.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/BonusType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Car.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CarType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CircularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Game.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Move.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/OilSlick.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Player.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Projectile.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/ProjectileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/TileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/World.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
- model/Bonus.h
- model/BonusType.h
- model/Car.h
- model/CarType.h
- model/CircularUnit.h
- model/Direction.h
- model/Game.h
- model/Move.h
- model/OilSlick.h
- model/Player.h
- model/Projectile.h
- model/ProjectileType.h
- model/RectangularUnit.h
- model/TileType.h
- model/Unit.h
- model/World.h
 CMakeFiles/ai.dir/MyStrategy.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/BonusUser.h
  /Users/prohor/Code/rus-ai-cup-2015/Mover.h
@@ -65,6 +65,7 @@ CMakeFiles/ai.dir/MyStrategy.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/model/Car.h
  /Users/prohor/Code/rus-ai-cup-2015/model/CarType.h
  /Users/prohor/Code/rus-ai-cup-2015/model/CircularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
  /Users/prohor/Code/rus-ai-cup-2015/model/Game.h
  /Users/prohor/Code/rus-ai-cup-2015/model/Move.h
  /Users/prohor/Code/rus-ai-cup-2015/model/OilSlick.h
@@ -72,6 +73,7 @@ CMakeFiles/ai.dir/MyStrategy.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/model/Projectile.h
  /Users/prohor/Code/rus-ai-cup-2015/model/ProjectileType.h
  /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/TileType.h
  /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
  /Users/prohor/Code/rus-ai-cup-2015/model/World.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
@@ -82,6 +84,21 @@ CMakeFiles/ai.dir/PathAnalyzer.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/Structs.h
  /Users/prohor/Code/rus-ai-cup-2015/TrajTile.h
  /Users/prohor/Code/rus-ai-cup-2015/Utils.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Bonus.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/BonusType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Car.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CarType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CircularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Game.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/OilSlick.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Player.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Projectile.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/ProjectileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/TileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/World.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
 CMakeFiles/ai.dir/PathFinder.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/PathAnalyzer.h
@@ -90,12 +107,32 @@ CMakeFiles/ai.dir/PathFinder.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/PathPattern.h
  /Users/prohor/Code/rus-ai-cup-2015/Structs.h
  /Users/prohor/Code/rus-ai-cup-2015/Utils.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Bonus.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/BonusType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Car.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CarType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CircularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Game.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/OilSlick.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Player.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Projectile.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/ProjectileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/TileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/World.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
 CMakeFiles/ai.dir/PathPattern.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/PathPattern.cpp
  /Users/prohor/Code/rus-ai-cup-2015/PathPattern.h
  /Users/prohor/Code/rus-ai-cup-2015/Structs.h
  /Users/prohor/Code/rus-ai-cup-2015/TrajTile.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Bonus.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/BonusType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
 CMakeFiles/ai.dir/RemoteProcessClient.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/RemoteProcessClient.cpp
@@ -174,6 +211,21 @@ CMakeFiles/ai.dir/TrajTile.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/TrajTile.cpp
  /Users/prohor/Code/rus-ai-cup-2015/TrajTile.h
  /Users/prohor/Code/rus-ai-cup-2015/Utils.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Bonus.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/BonusType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Car.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CarType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CircularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Game.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/OilSlick.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Player.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Projectile.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/ProjectileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/TileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/World.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
 CMakeFiles/ai.dir/Utils.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/PathAnalyzer.h
@@ -181,6 +233,21 @@ CMakeFiles/ai.dir/Utils.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/Structs.h
  /Users/prohor/Code/rus-ai-cup-2015/Utils.cpp
  /Users/prohor/Code/rus-ai-cup-2015/Utils.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Bonus.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/BonusType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Car.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CarType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/CircularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Direction.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Game.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/OilSlick.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Player.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Projectile.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/ProjectileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/RectangularUnit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/TileType.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/Unit.h
+ /Users/prohor/Code/rus-ai-cup-2015/model/World.h
  /Users/prohor/Code/rus-ai-cup-2015/stdafx.h
 CMakeFiles/ai.dir/csimplesocket/ActiveSocket.cpp.o
  /Users/prohor/Code/rus-ai-cup-2015/csimplesocket/ActiveSocket.cpp

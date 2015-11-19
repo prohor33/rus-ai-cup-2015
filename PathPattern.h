@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Structs.h"
-#include "Direction.h"
+#include "model/Direction.h"
 
 enum PathPatternType {
   RIGHT_TURN = 0,

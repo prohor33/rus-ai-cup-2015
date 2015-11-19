@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Direction.h"
-#include "Game.h"
+#include "model/Direction.h"
+#include "model/Game.h"
 #include "PathAnalyzer.h"
 
 

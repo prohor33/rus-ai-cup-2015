@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Utils.h"
-#include "World.h"
-#include "Game.h"
+#include "model/World.h"
+#include "model/Game.h"
 
 using namespace model;
 

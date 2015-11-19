@@ -3,8 +3,6 @@ project(ai)
 
 SET(CMAKE_CXX_FLAGS "-D_MARCH -std=c++11 -O2 -Wall -Wno-unknown-pragmas")
 
-include_directories("model")
-
 add_executable (ai
     csimplesocket/HTTPActiveSocket.cpp
     csimplesocket/ActiveSocket.cpp

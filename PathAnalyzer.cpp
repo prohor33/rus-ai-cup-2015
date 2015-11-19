@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "PathAnalyzer.h"
 #include "Utils.h"
-#include "Car.h"
-#include "World.h"
-#include "Game.h"
+#include "model/Car.h"
+#include "model/World.h"
+#include "model/Game.h"
 #include "TrajTile.h"
 
 
