@@ -55,12 +55,25 @@ void BonusUser::UseOilStick() {
   if (car_->getOilCanisterCount() > 1)
     move_->setSpillOil(true);
 
+  const double MIN_ANGLE = 165.0 / 180.0 * PI;
+  const double MAX_DIST = game_->getTrackTileSize() * 4.;
+  for (auto& targ_car : world_->getCars()) {
+    if (targ_car.isTeammate())
+      continue;
+    double angle = car_->getAngleTo(targ_car);
+    if (abs(angle) < MIN_ANGLE)
+      continue;
+    double dist = car_->getDistanceTo(targ_car);
+    if (dist > MAX_DIST)
+      continue; // too far with not 0 angle
+    move_->setSpillOil(true);
+    return;
+  }
 
-
-  //getOilCanisterCount
   //getOilSlickRadius
   //getOilSlickInitialRange
   //getOilSlickLifetime
   //isSpillOil
-  //setSpillOil
 }
+
+

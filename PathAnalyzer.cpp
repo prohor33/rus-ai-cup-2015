@@ -73,17 +73,17 @@ void PathAnalyzer::BuildBasicTraj() {
     TrajTileType type(TTT_FORWARD);
     if (dir == next_dir) {
       type = TTT_FORWARD;
-      cout << "tile: TTT_FORWARD" << endl;
+//      cout << "tile: TTT_FORWARD" << endl;
     } else {
       model::Direction local_next = Utils::ConvertDirToLocal(next_dir, dir);
       switch (local_next) {
       case RIGHT:
         type = TTT_RIGHT_TURN;
-        cout << "tile: TTT_RIGHT_TURN" << endl;
+//        cout << "tile: TTT_RIGHT_TURN" << endl;
         break;
       case LEFT:
         type = TTT_LEFT_TURN;
-        cout << "tile: TTT_LEFT_TURN" << endl;
+//        cout << "tile: TTT_LEFT_TURN" << endl;
         break;
       default:
         assert(0);
@@ -184,11 +184,11 @@ void PathAnalyzer::FindBestTraj() {
   vector<double> start_points = variants[best_index];
   
   res_world_points_.clear();
-  cout << "current car point: " << current_car_point << endl;
+//  cout << "current car point: " << current_car_point << endl;
   
-  cout << "start points:\n";
+//  cout << "start points:\n";
   for (int i = 0; i < start_points.size(); i++) {
-    cout << start_points[i] << endl;
+//    cout << start_points[i] << endl;
     double x, y;
     traj_tiles_[i]->StartPointToWorldCoord(start_points[i], x, y);
     res_world_points_.push_back({x, y});

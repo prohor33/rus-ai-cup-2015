@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
             endingLineNumber = "121"
-            landmarkName = "PathAnalyzer::FindBestTraj()"
-            landmarkType = "5">
+            landmarkName = "FindBestTrajRec(vector&lt;double&gt; var, int tile_n, vector&lt;vector&lt;double&gt;&gt;&amp; variants)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,9 +30,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "PathAnalyzer::BuildBasicTraj()"
-            landmarkType = "5">
+            endingLineNumber = "64">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

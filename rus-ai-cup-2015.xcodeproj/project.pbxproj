@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		546262211BFD130A00413510 /* Mover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5462621F1BFD130A00413510 /* Mover.cpp */; };
+		546262241BFE44A200413510 /* BonusUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 546262221BFE44A200413510 /* BonusUser.cpp */; };
 		54B430881BF7CE0800E2336E /* Bonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430631BF7CE0800E2336E /* Bonus.cpp */; };
 		54B430891BF7CE0800E2336E /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430661BF7CE0800E2336E /* Car.cpp */; };
 		54B4308A1BF7CE0800E2336E /* CircularUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54B430691BF7CE0800E2336E /* CircularUnit.cpp */; };
@@ -51,6 +52,8 @@
 		5407A7561BF7CC8100477F6F /* rus-ai-cup-2015 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rus-ai-cup-2015"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5462621F1BFD130A00413510 /* Mover.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mover.cpp; sourceTree = SOURCE_ROOT; };
 		546262201BFD130A00413510 /* Mover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mover.h; sourceTree = SOURCE_ROOT; };
+		546262221BFE44A200413510 /* BonusUser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BonusUser.cpp; sourceTree = SOURCE_ROOT; };
+		546262231BFE44A200413510 /* BonusUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonusUser.h; sourceTree = SOURCE_ROOT; };
 		54B430631BF7CE0800E2336E /* Bonus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bonus.cpp; sourceTree = "<group>"; };
 		54B430641BF7CE0800E2336E /* Bonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bonus.h; sourceTree = "<group>"; };
 		54B430651BF7CE0800E2336E /* BonusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonusType.h; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 		5407A7581BF7CC8100477F6F /* rus-ai-cup-2015 */ = {
 			isa = PBXGroup;
 			children = (
+				546262221BFE44A200413510 /* BonusUser.cpp */,
+				546262231BFE44A200413510 /* BonusUser.h */,
 				5462621F1BFD130A00413510 /* Mover.cpp */,
 				546262201BFD130A00413510 /* Mover.h */,
 				54B430B81BFBA4A800E2336E /* TrajTile.cpp */,
@@ -293,6 +298,7 @@
 				54B430891BF7CE0800E2336E /* Car.cpp in Sources */,
 				54B4308A1BF7CE0800E2336E /* CircularUnit.cpp in Sources */,
 				54B430881BF7CE0800E2336E /* Bonus.cpp in Sources */,
+				546262241BFE44A200413510 /* BonusUser.cpp in Sources */,
 				54B430951BF7CE0800E2336E /* RemoteProcessClient.cpp in Sources */,
 				54B430AD1BF8C03300E2336E /* PathFinder.cpp in Sources */,
 				54B430BA1BFBA4A800E2336E /* TrajTile.cpp in Sources */,

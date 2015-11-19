@@ -4,11 +4,16 @@
 #include "PathFinder.h"
 #include "PathAnalyzer.h"
 #include "Mover.h"
+#include "BonusUser.h"
 
 using namespace model;
 using namespace std;
 
 void MyStrategy::move(const Car& self, const World& world, const Game& game, Move& move) {
+//  std::list<std::vector<double>> a;
+//  a.push_front({0., 1.});
+//  return;
+  
   if (self.isFinishedTrack())
     return;
 
@@ -16,6 +21,7 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   PathFinder::Instance()->UpdateWorld(&self, &world, &game);
   PathAnalyzer::Instance()->UpdateWorld(&self, &world, &game);
   Mover::Instance()->UpdateWorld(&self, &world, &game, &move);
+  BonusUser::Instance()->UpdateWorld(&self, &world, &game, &move);
   
   if (!PathFinder::Instance()->FindPathChain())
     cout << "error: can't find path" << endl;
@@ -25,7 +31,8 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   PathAnalyzer::Instance()->Analyze(tile_path);
   const std::vector<std::vector<double>>& path = PathAnalyzer::Instance()->GetPath();
   
-  Mover::Instance()->Move(path);  
+  Mover::Instance()->Move(path);
+  BonusUser::Instance()->Use();
 }
 
 MyStrategy::MyStrategy() { }
