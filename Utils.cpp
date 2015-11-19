@@ -54,3 +54,26 @@ Direction Utils::ConvertDirToLocal(Direction dir, Direction local) {
     return dir;
   }
 }
+
+void Utils::GlobalPointToLocalInsideTile(double x_in, double y_in, Direction orientation, double& x_out, double& y_out) {
+  switch (orientation) {
+  case UP:
+    x_out = x_in;
+    y_out = y_in;
+    return;
+  case DOWN:
+    x_out = 1. - x_in;
+    y_out = 1. - y_in;
+    return;
+  case RIGHT:
+    x_out = y_in;
+    y_out = 1. - x_in;
+    return;
+  case LEFT:
+    x_out = 1. - y_in;
+    y_out = x_in;
+    return;
+  default:
+    assert(0);
+  }
+}

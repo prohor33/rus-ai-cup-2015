@@ -55,6 +55,7 @@ public:
       break;
     }
   }
+  static void GlobalPointToLocalInsideTile(double x_in, double y_in, model::Direction orientation, double& x_out, double& y_out);
   
   static const model::World* world;
   static const model::Game* game;

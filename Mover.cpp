@@ -44,10 +44,10 @@ void Mover::TurnToPoint(double x, double y) {
   Utils::PrintCoord(x, y);
   
   double angleToWaypoint = car_->getAngleTo(x, y) * 180.0 / PI;
-  cout << "angle to waypoint: " << angleToWaypoint;
+  cout << "angle to waypoint: " << angleToWaypoint << endl;
   double speedModule = hypot(car_->getSpeedX(), car_->getSpeedY());
   
-  cout << "wheel turn: " << angleToWaypoint / 35.0;
+  cout << "wheel turn: " << angleToWaypoint / 35.0 << endl;
   move_->setWheelTurn(angleToWaypoint / 35.0);
   move_->setEnginePower(1.0);
   

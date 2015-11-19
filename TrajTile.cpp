@@ -11,9 +11,10 @@ using namespace std;
 using namespace model;
 
 const int TrajTile::N_CELLS_IN_TILE = 10;
-const double TrajTile::VAL_BORDER = -10.;
+const double TrajTile::VAL_BORDER = -100.;
 const double TrajTile::VAL_OPTIMIZED_TRAJ = 1.;
 const double TrajTile::VAL_FOR_TURNS_ON_FORWARD_LINE = -0.01;
+//const double TrajTile::VAL_FOR_TURNS_ON_FORWARD_LINE = 0.;
 const double TrajTile::VAL_BONUS = 0.6;
 
 TrajTile::TrajTile(TrajTileType type_tmp, int x_tmp, int y_tmp, model::Direction orientation_tmp) :
@@ -179,20 +180,32 @@ void TrajTile::StartPointToWorldCoord(double start_p, double& world_x, double& w
 }
 
 void TrajTile::ApplyObject(const RectangularUnit& obj, double v) {
-  double min_x = obj.getX() - obj.getWidth() / 2.;
-  double max_x = obj.getX() + obj.getWidth() / 2.;
-  double min_y = obj.getY() - obj.getHeight() / 2.;
-  double max_y = obj.getY() + obj.getHeight() / 2.;
-  
   double tile_x = Utils::TileToCoord(x);
   double tile_y = Utils::TileToCoord(y);
   double tile_size = Utils::game->getTrackTileSize();
   
-  if (min_x > tile_x + tile_size / 2. ||
-      max_x < tile_x - tile_size / 2. ||
-      min_y > tile_y + tile_size / 2. ||
-      max_y < tile_y - tile_size / 2.) {
+  double obj_x = (obj.getX() - (tile_x - tile_size / 2.)) / tile_size;
+  double obj_y = (obj.getY() - (tile_y - tile_size / 2.)) / tile_size;
+  if (obj_x < 0. || obj_x > 1. || obj_y < 0. || obj_y > 1.)
     return;
+
+  {
+    // apply tile orientation
+    double obj_local_x, obj_local_y;
+    Utils::GlobalPointToLocalInsideTile(obj_x, obj_y, orientation, obj_local_x, obj_local_y);
+
+    int x = obj_local_x * (N_CELLS_IN_TILE - 1);
+    int y = obj_local_y * (N_CELLS_IN_TILE - 1);
+
+    field_[x][y] += v;
+    if (x > 0)
+      field_[x - 1][y] += v / 4.;
+    if (x < N_CELLS_IN_TILE - 1)
+      field_[x + 1][y] += v / 4.;
+    if (y > 0)
+      field_[x][y - 1] += v / 4.;
+    if (y < N_CELLS_IN_TILE - 1)
+      field_[x][y + 1] += v / 4.;
   }
 }
 

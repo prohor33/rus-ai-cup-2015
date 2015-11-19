@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Mover.cpp" />
     <ClCompile Include="MyStrategy.cpp" />
     <ClCompile Include="PathAnalyzer.cpp" />
     <ClCompile Include="PathFinder.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mover.h" />
     <ClInclude Include="MyStrategy.h" />
     <ClInclude Include="PathAnalyzer.h" />
     <ClInclude Include="PathFinder.h" />

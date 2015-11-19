@@ -56,6 +56,7 @@ void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
 //    cout << "no pattern :(\n";
 
   BuildBasicTraj();
+  ApplyBonuses();
   FindBestTraj();
 }
 
