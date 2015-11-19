@@ -31,9 +31,9 @@ void BonusUser::UseProjectile() {
     if (abs(angle) > game_->getSideWasherAngle())
       continue;
     double dist = car_->getDistanceTo(targ_car);
-    const double zero_angle = 0.2 / 180.0 * PI;
-    if (dist > game_->getTrackTileSize() * 4 && abs(angle) > zero_angle)
-      continue; // too far with not 0 angle
+//    const double zero_angle = 0.2 / 180.0 * PI;
+    if (dist > game_->getTrackTileSize() * 4)
+      continue; // too far
     move_->setThrowProjectile(true);
     return;
   }

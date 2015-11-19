@@ -4,10 +4,17 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/prohor/Code/rus-ai-cup-2015/BonusUser.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/BonusUser.cpp.o"
+  "/Users/prohor/Code/rus-ai-cup-2015/Mover.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/Mover.cpp.o"
   "/Users/prohor/Code/rus-ai-cup-2015/MyStrategy.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/MyStrategy.cpp.o"
+  "/Users/prohor/Code/rus-ai-cup-2015/PathAnalyzer.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/PathAnalyzer.cpp.o"
+  "/Users/prohor/Code/rus-ai-cup-2015/PathFinder.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/PathFinder.cpp.o"
+  "/Users/prohor/Code/rus-ai-cup-2015/PathPattern.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/PathPattern.cpp.o"
   "/Users/prohor/Code/rus-ai-cup-2015/RemoteProcessClient.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/RemoteProcessClient.cpp.o"
   "/Users/prohor/Code/rus-ai-cup-2015/Runner.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/Runner.cpp.o"
   "/Users/prohor/Code/rus-ai-cup-2015/Strategy.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/Strategy.cpp.o"
+  "/Users/prohor/Code/rus-ai-cup-2015/TrajTile.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/TrajTile.cpp.o"
+  "/Users/prohor/Code/rus-ai-cup-2015/Utils.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/Utils.cpp.o"
   "/Users/prohor/Code/rus-ai-cup-2015/csimplesocket/ActiveSocket.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/csimplesocket/ActiveSocket.cpp.o"
   "/Users/prohor/Code/rus-ai-cup-2015/csimplesocket/HTTPActiveSocket.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/csimplesocket/HTTPActiveSocket.cpp.o"
   "/Users/prohor/Code/rus-ai-cup-2015/csimplesocket/PassiveSocket.cpp" "/Users/prohor/Code/rus-ai-cup-2015/CMakeFiles/ai.dir/csimplesocket/PassiveSocket.cpp.o"
@@ -33,6 +40,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
+  "model"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

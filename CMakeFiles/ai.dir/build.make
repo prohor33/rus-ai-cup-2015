@@ -512,6 +512,167 @@ CMakeFiles/ai.dir/Strategy.cpp.o.provides: CMakeFiles/ai.dir/Strategy.cpp.o.requ
 
 CMakeFiles/ai.dir/Strategy.cpp.o.provides.build: CMakeFiles/ai.dir/Strategy.cpp.o
 
+CMakeFiles/ai.dir/BonusUser.cpp.o: CMakeFiles/ai.dir/flags.make
+CMakeFiles/ai.dir/BonusUser.cpp.o: BonusUser.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/prohor/Code/rus-ai-cup-2015/CMakeFiles $(CMAKE_PROGRESS_21)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ai.dir/BonusUser.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ai.dir/BonusUser.cpp.o -c /Users/prohor/Code/rus-ai-cup-2015/BonusUser.cpp
+
+CMakeFiles/ai.dir/BonusUser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ai.dir/BonusUser.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/prohor/Code/rus-ai-cup-2015/BonusUser.cpp > CMakeFiles/ai.dir/BonusUser.cpp.i
+
+CMakeFiles/ai.dir/BonusUser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ai.dir/BonusUser.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/prohor/Code/rus-ai-cup-2015/BonusUser.cpp -o CMakeFiles/ai.dir/BonusUser.cpp.s
+
+CMakeFiles/ai.dir/BonusUser.cpp.o.requires:
+.PHONY : CMakeFiles/ai.dir/BonusUser.cpp.o.requires
+
+CMakeFiles/ai.dir/BonusUser.cpp.o.provides: CMakeFiles/ai.dir/BonusUser.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/BonusUser.cpp.o.provides.build
+.PHONY : CMakeFiles/ai.dir/BonusUser.cpp.o.provides
+
+CMakeFiles/ai.dir/BonusUser.cpp.o.provides.build: CMakeFiles/ai.dir/BonusUser.cpp.o
+
+CMakeFiles/ai.dir/Mover.cpp.o: CMakeFiles/ai.dir/flags.make
+CMakeFiles/ai.dir/Mover.cpp.o: Mover.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/prohor/Code/rus-ai-cup-2015/CMakeFiles $(CMAKE_PROGRESS_22)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ai.dir/Mover.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ai.dir/Mover.cpp.o -c /Users/prohor/Code/rus-ai-cup-2015/Mover.cpp
+
+CMakeFiles/ai.dir/Mover.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ai.dir/Mover.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/prohor/Code/rus-ai-cup-2015/Mover.cpp > CMakeFiles/ai.dir/Mover.cpp.i
+
+CMakeFiles/ai.dir/Mover.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ai.dir/Mover.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/prohor/Code/rus-ai-cup-2015/Mover.cpp -o CMakeFiles/ai.dir/Mover.cpp.s
+
+CMakeFiles/ai.dir/Mover.cpp.o.requires:
+.PHONY : CMakeFiles/ai.dir/Mover.cpp.o.requires
+
+CMakeFiles/ai.dir/Mover.cpp.o.provides: CMakeFiles/ai.dir/Mover.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Mover.cpp.o.provides.build
+.PHONY : CMakeFiles/ai.dir/Mover.cpp.o.provides
+
+CMakeFiles/ai.dir/Mover.cpp.o.provides.build: CMakeFiles/ai.dir/Mover.cpp.o
+
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: CMakeFiles/ai.dir/flags.make
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o: PathAnalyzer.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/prohor/Code/rus-ai-cup-2015/CMakeFiles $(CMAKE_PROGRESS_23)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ai.dir/PathAnalyzer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ai.dir/PathAnalyzer.cpp.o -c /Users/prohor/Code/rus-ai-cup-2015/PathAnalyzer.cpp
+
+CMakeFiles/ai.dir/PathAnalyzer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ai.dir/PathAnalyzer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/prohor/Code/rus-ai-cup-2015/PathAnalyzer.cpp > CMakeFiles/ai.dir/PathAnalyzer.cpp.i
+
+CMakeFiles/ai.dir/PathAnalyzer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ai.dir/PathAnalyzer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/prohor/Code/rus-ai-cup-2015/PathAnalyzer.cpp -o CMakeFiles/ai.dir/PathAnalyzer.cpp.s
+
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o.requires:
+.PHONY : CMakeFiles/ai.dir/PathAnalyzer.cpp.o.requires
+
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o.provides: CMakeFiles/ai.dir/PathAnalyzer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathAnalyzer.cpp.o.provides.build
+.PHONY : CMakeFiles/ai.dir/PathAnalyzer.cpp.o.provides
+
+CMakeFiles/ai.dir/PathAnalyzer.cpp.o.provides.build: CMakeFiles/ai.dir/PathAnalyzer.cpp.o
+
+CMakeFiles/ai.dir/PathFinder.cpp.o: CMakeFiles/ai.dir/flags.make
+CMakeFiles/ai.dir/PathFinder.cpp.o: PathFinder.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/prohor/Code/rus-ai-cup-2015/CMakeFiles $(CMAKE_PROGRESS_24)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ai.dir/PathFinder.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ai.dir/PathFinder.cpp.o -c /Users/prohor/Code/rus-ai-cup-2015/PathFinder.cpp
+
+CMakeFiles/ai.dir/PathFinder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ai.dir/PathFinder.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/prohor/Code/rus-ai-cup-2015/PathFinder.cpp > CMakeFiles/ai.dir/PathFinder.cpp.i
+
+CMakeFiles/ai.dir/PathFinder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ai.dir/PathFinder.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/prohor/Code/rus-ai-cup-2015/PathFinder.cpp -o CMakeFiles/ai.dir/PathFinder.cpp.s
+
+CMakeFiles/ai.dir/PathFinder.cpp.o.requires:
+.PHONY : CMakeFiles/ai.dir/PathFinder.cpp.o.requires
+
+CMakeFiles/ai.dir/PathFinder.cpp.o.provides: CMakeFiles/ai.dir/PathFinder.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathFinder.cpp.o.provides.build
+.PHONY : CMakeFiles/ai.dir/PathFinder.cpp.o.provides
+
+CMakeFiles/ai.dir/PathFinder.cpp.o.provides.build: CMakeFiles/ai.dir/PathFinder.cpp.o
+
+CMakeFiles/ai.dir/PathPattern.cpp.o: CMakeFiles/ai.dir/flags.make
+CMakeFiles/ai.dir/PathPattern.cpp.o: PathPattern.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/prohor/Code/rus-ai-cup-2015/CMakeFiles $(CMAKE_PROGRESS_25)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ai.dir/PathPattern.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ai.dir/PathPattern.cpp.o -c /Users/prohor/Code/rus-ai-cup-2015/PathPattern.cpp
+
+CMakeFiles/ai.dir/PathPattern.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ai.dir/PathPattern.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/prohor/Code/rus-ai-cup-2015/PathPattern.cpp > CMakeFiles/ai.dir/PathPattern.cpp.i
+
+CMakeFiles/ai.dir/PathPattern.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ai.dir/PathPattern.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/prohor/Code/rus-ai-cup-2015/PathPattern.cpp -o CMakeFiles/ai.dir/PathPattern.cpp.s
+
+CMakeFiles/ai.dir/PathPattern.cpp.o.requires:
+.PHONY : CMakeFiles/ai.dir/PathPattern.cpp.o.requires
+
+CMakeFiles/ai.dir/PathPattern.cpp.o.provides: CMakeFiles/ai.dir/PathPattern.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathPattern.cpp.o.provides.build
+.PHONY : CMakeFiles/ai.dir/PathPattern.cpp.o.provides
+
+CMakeFiles/ai.dir/PathPattern.cpp.o.provides.build: CMakeFiles/ai.dir/PathPattern.cpp.o
+
+CMakeFiles/ai.dir/TrajTile.cpp.o: CMakeFiles/ai.dir/flags.make
+CMakeFiles/ai.dir/TrajTile.cpp.o: TrajTile.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/prohor/Code/rus-ai-cup-2015/CMakeFiles $(CMAKE_PROGRESS_26)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ai.dir/TrajTile.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ai.dir/TrajTile.cpp.o -c /Users/prohor/Code/rus-ai-cup-2015/TrajTile.cpp
+
+CMakeFiles/ai.dir/TrajTile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ai.dir/TrajTile.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/prohor/Code/rus-ai-cup-2015/TrajTile.cpp > CMakeFiles/ai.dir/TrajTile.cpp.i
+
+CMakeFiles/ai.dir/TrajTile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ai.dir/TrajTile.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/prohor/Code/rus-ai-cup-2015/TrajTile.cpp -o CMakeFiles/ai.dir/TrajTile.cpp.s
+
+CMakeFiles/ai.dir/TrajTile.cpp.o.requires:
+.PHONY : CMakeFiles/ai.dir/TrajTile.cpp.o.requires
+
+CMakeFiles/ai.dir/TrajTile.cpp.o.provides: CMakeFiles/ai.dir/TrajTile.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/TrajTile.cpp.o.provides.build
+.PHONY : CMakeFiles/ai.dir/TrajTile.cpp.o.provides
+
+CMakeFiles/ai.dir/TrajTile.cpp.o.provides.build: CMakeFiles/ai.dir/TrajTile.cpp.o
+
+CMakeFiles/ai.dir/Utils.cpp.o: CMakeFiles/ai.dir/flags.make
+CMakeFiles/ai.dir/Utils.cpp.o: Utils.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/prohor/Code/rus-ai-cup-2015/CMakeFiles $(CMAKE_PROGRESS_27)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/ai.dir/Utils.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/ai.dir/Utils.cpp.o -c /Users/prohor/Code/rus-ai-cup-2015/Utils.cpp
+
+CMakeFiles/ai.dir/Utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ai.dir/Utils.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/prohor/Code/rus-ai-cup-2015/Utils.cpp > CMakeFiles/ai.dir/Utils.cpp.i
+
+CMakeFiles/ai.dir/Utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ai.dir/Utils.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/prohor/Code/rus-ai-cup-2015/Utils.cpp -o CMakeFiles/ai.dir/Utils.cpp.s
+
+CMakeFiles/ai.dir/Utils.cpp.o.requires:
+.PHONY : CMakeFiles/ai.dir/Utils.cpp.o.requires
+
+CMakeFiles/ai.dir/Utils.cpp.o.provides: CMakeFiles/ai.dir/Utils.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Utils.cpp.o.provides.build
+.PHONY : CMakeFiles/ai.dir/Utils.cpp.o.provides
+
+CMakeFiles/ai.dir/Utils.cpp.o.provides.build: CMakeFiles/ai.dir/Utils.cpp.o
+
 # Object files for target ai
 ai_OBJECTS = \
 "CMakeFiles/ai.dir/csimplesocket/HTTPActiveSocket.cpp.o" \
@@ -533,7 +694,14 @@ ai_OBJECTS = \
 "CMakeFiles/ai.dir/MyStrategy.cpp.o" \
 "CMakeFiles/ai.dir/RemoteProcessClient.cpp.o" \
 "CMakeFiles/ai.dir/Runner.cpp.o" \
-"CMakeFiles/ai.dir/Strategy.cpp.o"
+"CMakeFiles/ai.dir/Strategy.cpp.o" \
+"CMakeFiles/ai.dir/BonusUser.cpp.o" \
+"CMakeFiles/ai.dir/Mover.cpp.o" \
+"CMakeFiles/ai.dir/PathAnalyzer.cpp.o" \
+"CMakeFiles/ai.dir/PathFinder.cpp.o" \
+"CMakeFiles/ai.dir/PathPattern.cpp.o" \
+"CMakeFiles/ai.dir/TrajTile.cpp.o" \
+"CMakeFiles/ai.dir/Utils.cpp.o"
 
 # External object files for target ai
 ai_EXTERNAL_OBJECTS =
@@ -558,6 +726,13 @@ ai: CMakeFiles/ai.dir/MyStrategy.cpp.o
 ai: CMakeFiles/ai.dir/RemoteProcessClient.cpp.o
 ai: CMakeFiles/ai.dir/Runner.cpp.o
 ai: CMakeFiles/ai.dir/Strategy.cpp.o
+ai: CMakeFiles/ai.dir/BonusUser.cpp.o
+ai: CMakeFiles/ai.dir/Mover.cpp.o
+ai: CMakeFiles/ai.dir/PathAnalyzer.cpp.o
+ai: CMakeFiles/ai.dir/PathFinder.cpp.o
+ai: CMakeFiles/ai.dir/PathPattern.cpp.o
+ai: CMakeFiles/ai.dir/TrajTile.cpp.o
+ai: CMakeFiles/ai.dir/Utils.cpp.o
 ai: CMakeFiles/ai.dir/build.make
 ai: CMakeFiles/ai.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ai"
@@ -587,6 +762,13 @@ CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/MyStrategy.cpp.o.requires
 CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/RemoteProcessClient.cpp.o.requires
 CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/Runner.cpp.o.requires
 CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/Strategy.cpp.o.requires
+CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/BonusUser.cpp.o.requires
+CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/Mover.cpp.o.requires
+CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/PathAnalyzer.cpp.o.requires
+CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/PathFinder.cpp.o.requires
+CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/PathPattern.cpp.o.requires
+CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/TrajTile.cpp.o.requires
+CMakeFiles/ai.dir/requires: CMakeFiles/ai.dir/Utils.cpp.o.requires
 .PHONY : CMakeFiles/ai.dir/requires
 
 CMakeFiles/ai.dir/clean:

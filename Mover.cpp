@@ -54,14 +54,15 @@ void Mover::TurnToPoint(double x, double y) {
   
   double angleToWaypoint = car_->getAngleTo(x, y) * 180.0 / PI;
   bool go_backward = false;
-  if (angleToWaypoint > 90.) {
-    angleToWaypoint -= 180.;
-    go_backward = true;
-  }
-  if (angleToWaypoint < -90.) {
-    angleToWaypoint += 180.;
-    go_backward = true;
-  }
+  // TODO: disabled because it's not right + if stuck backward, rollback will not help!
+//  if (angleToWaypoint > 90.) {
+//    angleToWaypoint -= 180.;
+//    go_backward = true;
+//  }
+//  if (angleToWaypoint < -90.) {
+//    angleToWaypoint += 180.;
+//    go_backward = true;
+//  }
 //  cout << "angle to waypoint: " << angleToWaypoint << endl;
 //  double speedModule = hypot(car_->getSpeedX(), car_->getSpeedY());
   SetAngle(angleToWaypoint * PI / 180.0);
@@ -115,7 +116,7 @@ bool Mover::CheckIfNotMoving() {
   double move_v = hypot(max_x - min_x, max_y - min_y);
   const double MIN_MOVE = game_->getTrackTileSize() / 100.;
   
-  cout << "move: " << move_v << " min_move: " << MIN_MOVE << endl;
+//  cout << "move: " << move_v << " min_move: " << MIN_MOVE << endl;
   if (move_v < MIN_MOVE) {
     return true;
   }
@@ -124,18 +125,18 @@ bool Mover::CheckIfNotMoving() {
 
 void Mover::StartRollingBack() {
   if (rolling_back_) {
-    cout << "already rolling back => not starting to roll" << endl;
+//    cout << "already rolling back => not starting to roll" << endl;
     return;
   }
   const int ROLLBACK_COOLDOWN_TICKS = 200;
   if (world_->getTick() - last_roll_back_tick < ROLLBACK_COOLDOWN_TICKS) {
     
-    cout << "world_->getTick(): " << world_->getTick() << endl;
-    cout << "last_roll_back_tick: " << last_roll_back_tick << endl;
-    cout << "cooldown, tick left: " << ROLLBACK_COOLDOWN_TICKS - (world_->getTick() - last_roll_back_tick) << endl;
+//    cout << "world_->getTick(): " << world_->getTick() << endl;
+//    cout << "last_roll_back_tick: " << last_roll_back_tick << endl;
+//    cout << "cooldown, tick left: " << ROLLBACK_COOLDOWN_TICKS - (world_->getTick() - last_roll_back_tick) << endl;
     return;
   }
-  cout << ">>>>>>>>>>>>>>>>>>>>>>>>> START ROLLING BACK <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
+//  cout << ">>>>>>>>>>>>>>>>>>>>>>>>> START ROLLING BACK <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
   rolling_back_ = true;
   start_rolling_back_p_x_ = car_->getX();
   start_rolling_back_p_y_ = car_->getY();
@@ -143,7 +144,7 @@ void Mover::StartRollingBack() {
 }
 
 void Mover::StopRollingBack() {
-  cout << "stop rolling back" << endl;
+//  cout << "stop rolling back" << endl;
   rolling_back_ = false;
   move_->setEnginePower(0.);
   move_->setWheelTurn(0.);
@@ -151,7 +152,7 @@ void Mover::StopRollingBack() {
 }
 
 void Mover::RollingBack() {
-  cout << "rolling back" << endl;
+//  cout << "rolling back" << endl;
   move_->setEnginePower(-1.);
   
   double x, y;

@@ -19,6 +19,13 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/ai.dir/RemoteProcessClient.cpp.o"
   "CMakeFiles/ai.dir/Runner.cpp.o"
   "CMakeFiles/ai.dir/Strategy.cpp.o"
+  "CMakeFiles/ai.dir/BonusUser.cpp.o"
+  "CMakeFiles/ai.dir/Mover.cpp.o"
+  "CMakeFiles/ai.dir/PathAnalyzer.cpp.o"
+  "CMakeFiles/ai.dir/PathFinder.cpp.o"
+  "CMakeFiles/ai.dir/PathPattern.cpp.o"
+  "CMakeFiles/ai.dir/TrajTile.cpp.o"
+  "CMakeFiles/ai.dir/Utils.cpp.o"
   "ai.pdb"
   "ai"
 )

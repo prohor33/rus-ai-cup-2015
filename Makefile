@@ -114,6 +114,54 @@ ai/fast:
 	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/build
 .PHONY : ai/fast
 
+BonusUser.o: BonusUser.cpp.o
+.PHONY : BonusUser.o
+
+# target to build an object file
+BonusUser.cpp.o:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/BonusUser.cpp.o
+.PHONY : BonusUser.cpp.o
+
+BonusUser.i: BonusUser.cpp.i
+.PHONY : BonusUser.i
+
+# target to preprocess a source file
+BonusUser.cpp.i:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/BonusUser.cpp.i
+.PHONY : BonusUser.cpp.i
+
+BonusUser.s: BonusUser.cpp.s
+.PHONY : BonusUser.s
+
+# target to generate assembly for a file
+BonusUser.cpp.s:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/BonusUser.cpp.s
+.PHONY : BonusUser.cpp.s
+
+Mover.o: Mover.cpp.o
+.PHONY : Mover.o
+
+# target to build an object file
+Mover.cpp.o:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Mover.cpp.o
+.PHONY : Mover.cpp.o
+
+Mover.i: Mover.cpp.i
+.PHONY : Mover.i
+
+# target to preprocess a source file
+Mover.cpp.i:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Mover.cpp.i
+.PHONY : Mover.cpp.i
+
+Mover.s: Mover.cpp.s
+.PHONY : Mover.s
+
+# target to generate assembly for a file
+Mover.cpp.s:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Mover.cpp.s
+.PHONY : Mover.cpp.s
+
 MyStrategy.o: MyStrategy.cpp.o
 .PHONY : MyStrategy.o
 
@@ -137,6 +185,78 @@ MyStrategy.s: MyStrategy.cpp.s
 MyStrategy.cpp.s:
 	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/MyStrategy.cpp.s
 .PHONY : MyStrategy.cpp.s
+
+PathAnalyzer.o: PathAnalyzer.cpp.o
+.PHONY : PathAnalyzer.o
+
+# target to build an object file
+PathAnalyzer.cpp.o:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathAnalyzer.cpp.o
+.PHONY : PathAnalyzer.cpp.o
+
+PathAnalyzer.i: PathAnalyzer.cpp.i
+.PHONY : PathAnalyzer.i
+
+# target to preprocess a source file
+PathAnalyzer.cpp.i:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathAnalyzer.cpp.i
+.PHONY : PathAnalyzer.cpp.i
+
+PathAnalyzer.s: PathAnalyzer.cpp.s
+.PHONY : PathAnalyzer.s
+
+# target to generate assembly for a file
+PathAnalyzer.cpp.s:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathAnalyzer.cpp.s
+.PHONY : PathAnalyzer.cpp.s
+
+PathFinder.o: PathFinder.cpp.o
+.PHONY : PathFinder.o
+
+# target to build an object file
+PathFinder.cpp.o:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathFinder.cpp.o
+.PHONY : PathFinder.cpp.o
+
+PathFinder.i: PathFinder.cpp.i
+.PHONY : PathFinder.i
+
+# target to preprocess a source file
+PathFinder.cpp.i:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathFinder.cpp.i
+.PHONY : PathFinder.cpp.i
+
+PathFinder.s: PathFinder.cpp.s
+.PHONY : PathFinder.s
+
+# target to generate assembly for a file
+PathFinder.cpp.s:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathFinder.cpp.s
+.PHONY : PathFinder.cpp.s
+
+PathPattern.o: PathPattern.cpp.o
+.PHONY : PathPattern.o
+
+# target to build an object file
+PathPattern.cpp.o:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathPattern.cpp.o
+.PHONY : PathPattern.cpp.o
+
+PathPattern.i: PathPattern.cpp.i
+.PHONY : PathPattern.i
+
+# target to preprocess a source file
+PathPattern.cpp.i:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathPattern.cpp.i
+.PHONY : PathPattern.cpp.i
+
+PathPattern.s: PathPattern.cpp.s
+.PHONY : PathPattern.s
+
+# target to generate assembly for a file
+PathPattern.cpp.s:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/PathPattern.cpp.s
+.PHONY : PathPattern.cpp.s
 
 RemoteProcessClient.o: RemoteProcessClient.cpp.o
 .PHONY : RemoteProcessClient.o
@@ -209,6 +329,54 @@ Strategy.s: Strategy.cpp.s
 Strategy.cpp.s:
 	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Strategy.cpp.s
 .PHONY : Strategy.cpp.s
+
+TrajTile.o: TrajTile.cpp.o
+.PHONY : TrajTile.o
+
+# target to build an object file
+TrajTile.cpp.o:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/TrajTile.cpp.o
+.PHONY : TrajTile.cpp.o
+
+TrajTile.i: TrajTile.cpp.i
+.PHONY : TrajTile.i
+
+# target to preprocess a source file
+TrajTile.cpp.i:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/TrajTile.cpp.i
+.PHONY : TrajTile.cpp.i
+
+TrajTile.s: TrajTile.cpp.s
+.PHONY : TrajTile.s
+
+# target to generate assembly for a file
+TrajTile.cpp.s:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/TrajTile.cpp.s
+.PHONY : TrajTile.cpp.s
+
+Utils.o: Utils.cpp.o
+.PHONY : Utils.o
+
+# target to build an object file
+Utils.cpp.o:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Utils.cpp.o
+.PHONY : Utils.cpp.o
+
+Utils.i: Utils.cpp.i
+.PHONY : Utils.i
+
+# target to preprocess a source file
+Utils.cpp.i:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Utils.cpp.i
+.PHONY : Utils.cpp.i
+
+Utils.s: Utils.cpp.s
+.PHONY : Utils.s
+
+# target to generate assembly for a file
+Utils.cpp.s:
+	$(MAKE) -f CMakeFiles/ai.dir/build.make CMakeFiles/ai.dir/Utils.cpp.s
+.PHONY : Utils.cpp.s
 
 csimplesocket/ActiveSocket.o: csimplesocket/ActiveSocket.cpp.o
 .PHONY : csimplesocket/ActiveSocket.o
@@ -603,9 +771,24 @@ help:
 	@echo "... ai"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... BonusUser.o"
+	@echo "... BonusUser.i"
+	@echo "... BonusUser.s"
+	@echo "... Mover.o"
+	@echo "... Mover.i"
+	@echo "... Mover.s"
 	@echo "... MyStrategy.o"
 	@echo "... MyStrategy.i"
 	@echo "... MyStrategy.s"
+	@echo "... PathAnalyzer.o"
+	@echo "... PathAnalyzer.i"
+	@echo "... PathAnalyzer.s"
+	@echo "... PathFinder.o"
+	@echo "... PathFinder.i"
+	@echo "... PathFinder.s"
+	@echo "... PathPattern.o"
+	@echo "... PathPattern.i"
+	@echo "... PathPattern.s"
 	@echo "... RemoteProcessClient.o"
 	@echo "... RemoteProcessClient.i"
 	@echo "... RemoteProcessClient.s"
@@ -615,6 +798,12 @@ help:
 	@echo "... Strategy.o"
 	@echo "... Strategy.i"
 	@echo "... Strategy.s"
+	@echo "... TrajTile.o"
+	@echo "... TrajTile.i"
+	@echo "... TrajTile.s"
+	@echo "... Utils.o"
+	@echo "... Utils.i"
+	@echo "... Utils.s"
 	@echo "... csimplesocket/ActiveSocket.o"
 	@echo "... csimplesocket/ActiveSocket.i"
 	@echo "... csimplesocket/ActiveSocket.s"
