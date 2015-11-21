@@ -40,6 +40,19 @@ public:
       return false;
     }
   }
+  bool IsRightTurn() {
+    switch (type) {
+      case RIGHT_TURN:
+      case RIGHT_CUT_TURN:
+        return true;
+      case LEFT_TURN:
+      case LEFT_CUT_TURN:
+        return false;
+      default:
+        assert(0);
+        return false;
+    }
+  }
 
   PathPatternType type;
 private:

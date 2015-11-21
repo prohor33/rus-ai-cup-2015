@@ -217,6 +217,17 @@ void TrajTile::ApplyBonus(const Bonus& b) {
   }
 }
 
+bool TrajTile::IsPointInside(double p_x, double p_y) {
+  double tile_x = Utils::TileToCoord(x);
+  double tile_y = Utils::TileToCoord(y);
+  double tile_half_size = Utils::game->getTrackTileSize() / 2.0;
+  
+  if (p_x > tile_x + tile_half_size || p_x < tile_x - tile_half_size ||
+      p_y > tile_y + tile_half_size || p_y < tile_y - tile_half_size)
+    return false;
+  return true;
+}
+
 
 
 

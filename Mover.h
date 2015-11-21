@@ -44,6 +44,7 @@ private:
   void StartRollingBack();
   void StopRollingBack();
   void RollingBack();
+  void UseApproachToTurn();
 
   static Mover* instance_;
   const model::Car* car_;

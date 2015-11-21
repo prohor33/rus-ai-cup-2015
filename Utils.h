@@ -35,7 +35,8 @@ public:
   static double TileToCoord(int v) {
     return (v + 0.5) * game->getTrackTileSize();
   }
-  static void PrintCoord(int x, int y) {
+  template<class T>
+  static void PrintCoord(const T& x, const T& y) {
     std::cout << "(" << x << ", " << y << ")\n";
   }
   static model::Direction ConvertDirToLocal(model::Direction dir, model::Direction local);
