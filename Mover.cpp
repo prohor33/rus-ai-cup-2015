@@ -66,17 +66,21 @@ void Mover::TurnToPoint(double x, double y) {
   
   double angleToWaypoint = car_->getAngleTo(x, y) * 180.0 / PI;
   bool go_backward = false;
-  // TODO: disabled because it's not right + if stuck backward, rollback will not help!
-//  if (angleToWaypoint > 90.) {
-//    angleToWaypoint -= 180.;
-//    go_backward = true;
-//  }
-//  if (angleToWaypoint < -90.) {
-//    angleToWaypoint += 180.;
-//    go_backward = true;
-//  }
-//  cout << "angle to waypoint: " << angleToWaypoint << endl;
-//  double speedModule = hypot(car_->getSpeedX(), car_->getSpeedY());
+
+  {
+    // TODO: this code disabled because it's not right + if stuck backward, rollback will not help!
+    //  if (angleToWaypoint > 90.) {
+    //    angleToWaypoint -= 180.;
+    //    go_backward = true;
+    //  }
+    //  if (angleToWaypoint < -90.) {
+    //    angleToWaypoint += 180.;
+    //    go_backward = true;
+    //  }
+    //  cout << "angle to waypoint: " << angleToWaypoint << endl;
+    //  double speedModule = hypot(car_->getSpeedX(), car_->getSpeedY());
+  }
+
   SetAngle(angleToWaypoint * PI / 180.0);
   move_->setEnginePower(go_backward ? -1.0 : 1.0);
   
