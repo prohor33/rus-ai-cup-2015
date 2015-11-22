@@ -222,9 +222,53 @@ bool TrajTile::IsPointInside(double p_x, double p_y) {
   double tile_y = Utils::TileToCoord(y);
   double tile_half_size = Utils::game->getTrackTileSize() / 2.0;
   
+  // TODO: use padding
+  
   if (p_x > tile_x + tile_half_size || p_x < tile_x - tile_half_size ||
       p_y > tile_y + tile_half_size || p_y < tile_y - tile_half_size)
     return false;
+  return true;
+}
+
+bool TrajTile::IsCarInside(const StateInTurn& s) {
+  if (!IsPointInside(s.x, s.y))
+    return false;
+  
+  double tile_x = Utils::TileToCoord(x);
+  double tile_y = Utils::TileToCoord(y);
+  double tile_half_size = Utils::game->getTrackTileSize() / 2.0;
+  
+  // x - longwise
+  double half_size_x = Utils::car->getWidth() / 2.;
+  double half_size_y = Utils::car->getHeight() / 2.;
+  
+  double car_point_x = 0.;
+  double car_point_y = 0.;
+  // to world coord system
+  Utils::RotateVector(half_size_x, half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y))
+    return false;
+  
+  Utils::RotateVector(-half_size_x, half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y))
+    return false;
+  
+  Utils::RotateVector(-half_size_x, -half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y))
+    return false;
+  
+  Utils::RotateVector(half_size_x, -half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y))
+    return false;
+  
   return true;
 }
 

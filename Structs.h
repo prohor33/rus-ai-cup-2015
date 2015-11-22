@@ -77,3 +77,12 @@ typedef std::shared_ptr<class TrajTile> TrajTilePtr;
 template <typename T> int sgn(T val) {
   return (T(0) < val) - (val < T(0));
 }
+
+struct StateInTurn {
+  double x, y;
+  double v_x, v_y;
+  double wheel_turn;
+  double car_angle;  // radians
+};
+
+

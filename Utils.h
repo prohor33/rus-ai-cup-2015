@@ -13,7 +13,8 @@ namespace model {
 
 class Utils {
 public:
-  static void UpdateWorld(const model::World* world_tmp, const model::Game* game_tmp) {
+  static void UpdateWorld(const model::Car* car_tmp, const model::World* world_tmp, const model::Game* game_tmp) {
+    car = car_tmp;
     world = world_tmp;
     game = game_tmp;
   }
@@ -57,7 +58,11 @@ public:
     }
   }
   static void GlobalPointToLocalInsideTile(double x_in, double y_in, model::Direction orientation, double& x_out, double& y_out);
+  static double AngleToNormal(double angle);
+  static bool IsRightTurn(double from, double to);
+  static void RotateVector(double v_in_x, double v_in_y, double angle, double& v_out_x, double& v_out_y);
   
+  static const model::Car* car;
   static const model::World* world;
   static const model::Game* game;
 };

@@ -29,6 +29,7 @@ public:
   void ApplyObject(const model::RectangularUnit& obj, double v);
   void ApplyBonus(const model::Bonus& b);
   bool IsPointInside(double p_x, double p_y);
+  bool IsCarInside(const StateInTurn& car_state);
   
   static const int N_CELLS_IN_TILE;
   static const double VAL_BORDER;

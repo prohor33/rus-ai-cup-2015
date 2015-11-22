@@ -17,7 +17,7 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   if (self.isFinishedTrack())
     return;
 
-  Utils::UpdateWorld(&world, &game);
+  Utils::UpdateWorld(&self, &world, &game);
   PathFinder::Instance()->UpdateWorld(&self, &world, &game);
   PathAnalyzer::Instance()->UpdateWorld(&self, &world, &game);
   Mover::Instance()->UpdateWorld(&self, &world, &game, &move);

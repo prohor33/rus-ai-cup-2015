@@ -5,6 +5,7 @@
 
 using namespace model;
 
+const Car* Utils::car = nullptr;
 const World* Utils::world = nullptr;
 const Game* Utils::game = nullptr;
 
@@ -77,3 +78,29 @@ void Utils::GlobalPointToLocalInsideTile(double x_in, double y_in, Direction ori
     assert(0);
   }
 }
+
+double Utils::AngleToNormal(double angle) {
+  if (angle < -PI)
+    angle += 2 * PI;
+  if (angle > PI)
+    angle -= 2 * PI;
+  return angle;
+}
+
+bool Utils::IsRightTurn(double from, double to) {
+  assert(from >= - PI && from <= PI);
+  assert(to >= - PI && to <= PI);
+  double delta = to - from;
+  if (delta > PI)
+    delta -= 2 * PI;
+  if (delta < -PI)
+    delta += 2 * PI;
+  return delta > 0;
+}
+
+void Utils::RotateVector(double v_in_x, double v_in_y, double angle, double& v_out_x, double& v_out_y) {
+  v_out_x = v_in_x * cos(angle) + v_in_y * sin(angle);
+  v_out_y = -v_in_x * sin(angle) + v_in_y * cos(angle);
+}
+
+

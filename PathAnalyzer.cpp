@@ -111,7 +111,7 @@ void PathAnalyzer::BuildBasicTraj() {
         if (p.IsTurn()) {
           
           // for debug
-          if (start_index == 0 && world_->getTick() > 800) {
+          if (p.IsCutTurn() && start_index == 0 && world_->getTick() > 800) {
             if (FindApproachToTurn(p))
               return;
             // ok, go standart strategy
@@ -221,20 +221,24 @@ void PathAnalyzer::ApplyBonuses() {
 }
 
 const int TICK_STEP = 4;
+const int MAX_SEARCH_DEPTH = 1000 / TICK_STEP;
 
-void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn) {
+void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn, int depth) {
+//  if (depth > MAX_SEARCH_DEPTH)
+//    return;
   
   if (f_check_end(state, first_wheel_turn)) {
     return; // continue iterating
   }
   
-  cout << "\n\nnext step:\n";
-  cout << "wheel turn: " << state.wheel_turn << endl;
-  Utils::PrintCoord(state.x, state.y);
-  cout << "speed: (" << state.v_x << ", " << state.v_y << ")" << endl;
-  cout << "car angle: " << state.car_angle * 180.0 / PI << endl;
+//  cout << "\n\nnext step:\n";
+//  cout << "wheel turn: " << state.wheel_turn << endl;
+//  Utils::PrintCoord(state.x, state.y);
+//  cout << "speed: (" << state.v_x << ", " << state.v_y << ")" << endl;
+//  cout << "car angle: " << state.car_angle * 180.0 / PI << endl;
   
   StateInTurn next;
+  next.wheel_turn = state.wheel_turn;
   {
     next.x = state.x + state.v_x;
     next.y = state.y + state.v_y;
@@ -244,8 +248,7 @@ void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTu
   double v_y_in_car = 0.;
   {
     // find v in car coordinate system
-    v_x_in_car = state.v_x * cos(state.car_angle) + state.v_y * sin(state.car_angle);
-    v_y_in_car = -state.v_x * sin(state.car_angle) + state.v_y * cos(state.car_angle);
+    Utils::RotateVector(state.v_x, state.v_y, state.car_angle, v_x_in_car, v_y_in_car);
     
     // v_x_in_car - lengthwise
     if (v_x_in_car < 0) {
@@ -272,33 +275,48 @@ void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTu
     }
     
     // back to world coordinate system
-    next.v_x = v_x_in_car * cos(-state.car_angle) + v_y_in_car * sin(-state.car_angle);
-    next.v_y = -v_x_in_car * sin(-state.car_angle) + v_y_in_car * cos(-state.car_angle);
+    Utils::RotateVector(v_x_in_car, v_y_in_car, -state.car_angle, next.v_x, next.v_y);
   }
+  
+  // TODO: use angle speed too
   
   {
-    next.car_angle = state.car_angle + state.wheel_turn * game_->getCarAngularSpeedFactor() * v_y_in_car * TICK_STEP;
+    next.car_angle = state.car_angle + state.wheel_turn * game_->getCarAngularSpeedFactor() * v_x_in_car * TICK_STEP;
+    next.car_angle = Utils::AngleToNormal(next.car_angle);
   }
   
-  next.wheel_turn = state.wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
-  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0)
-    FindApproachToTurnRec(next, f_check_end, first_wheel_turn);
-    
+//  cout << "\n\nstep out:\n";
+//  cout << "wheel turn: " << next.wheel_turn << endl;
+//  Utils::PrintCoord(next.x, next.y);
+//  cout << "speed: (" << next.v_x << ", " << next.v_y << ")" << endl;
+//  cout << "car angle: " << next.car_angle * 180.0 / PI << endl;
+//  cout << "delta wheel: " << game_->getCarWheelTurnChangePerTick() * TICK_STEP << endl;
+  
   next.wheel_turn = state.wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
-  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0)
-    FindApproachToTurnRec(next, f_check_end, first_wheel_turn);
+  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+//    cout << "go -\n";
+    FindApproachToTurnRec(next, f_check_end, first_wheel_turn, depth + 1);
+  }
+  
+//  next.wheel_turn = state.wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+//  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+//    cout << "go +\n";
+//    FindApproachToTurnRec(next, f_check_end, first_wheel_turn, depth + 1);
+//  }
   
   next.wheel_turn = state.wheel_turn;
-  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0)
-    FindApproachToTurnRec(next, f_check_end, first_wheel_turn);
+  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+//   cout << "go =\n";
+   FindApproachToTurnRec(next, f_check_end, first_wheel_turn, depth + 1);
+  }
 }
 
 bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
   
-  const int MAX_CHECK_NUMBER = 10000;
+  const long long MAX_CHECK_NUMBER = 100000;
   
-  const int MAX_RESULT_SIZE = MAX_CHECK_NUMBER;
-  int results_number = 0;
+  const long long MAX_RESULT_SIZE = MAX_CHECK_NUMBER;
+  long long results_number = 0;
   double results[MAX_RESULT_SIZE];
   double first_wheel_turns[MAX_RESULT_SIZE];
   
@@ -313,36 +331,72 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
   int car_x = Utils::CoordToTile(car_->getX());
   int car_y = Utils::CoordToTile(car_->getY());
   TrajTilePtr current_tile = TrajTilePtr(new TrajTile(TTT_FORWARD, car_x, car_y, traj_tiles_[0]->orientation));
+  double start_tile_angle = 0.;
+  switch (traj_tiles_[0]->orientation) {
+    case UP:
+      start_tile_angle = -PI / 2.;
+      break;
+    case DOWN:
+      start_tile_angle = PI / 2.;
+      break;
+    case RIGHT:
+      start_tile_angle = 0;
+      break;
+    case LEFT:
+      start_tile_angle = PI;
+      break;
+    default:
+      break;
+  }
   
-  int check_number = 0;
+  long long check_number = 0;
   auto f_check_end = [&] (const StateInTurn& s, double first_wheel_turn) -> bool {
     check_number++;
     if (check_number > MAX_CHECK_NUMBER)
       return true;
     
+    const double max_angle_deviation = 15.0 / 180.0 * PI;
     if (p.IsRightTurn()) {
-      if (s.car_angle < start_state.car_angle)
+      if (!Utils::IsRightTurn(Utils::AngleToNormal(start_tile_angle - max_angle_deviation), s.car_angle)) {
+//        cout << "stop: angle < start_tile_angle on the right turn\n";
         return true;
+      }
+      if (!Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle + PI / 2.))) {
+//        cout << "stop: angle > turn right turn angle\n";
+        return true;
+      }
     } else {
-      if (s.car_angle > start_state.car_angle)
+      if (Utils::IsRightTurn(Utils::AngleToNormal(start_tile_angle + max_angle_deviation), s.car_angle)) {
+//        cout << "stop: angle > start_tile_angle on the left turn\n";
         return true;
+      }
+      if (Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle - PI / 2.))) {
+//        cout << "stop: angle < turn left turn angle\n";
+        return true;
+      }
     }
     
     const double min_velocity = 5.;
-    if (hypot(s.v_x, s.v_y) < min_velocity)
+    if (hypot(s.v_x, s.v_y) < min_velocity) {
+//      cout << "stop: too small velocity\n";
       return true;
+    }
     
     int inside_tile_index = -1;
     for (int i = 0; i < traj_tiles_.size(); i++) {
-      if (traj_tiles_[i]->IsPointInside(s.x, s.y)) {
+      if (traj_tiles_[i]->IsCarInside(s)) {
         inside_tile_index = i;
         break;
       }
     }
-    if (current_tile->IsPointInside(s.x, s.y))
+    if (current_tile->IsCarInside(s)) {
+//      cout << "continue: inside current (not the last) tile\n";
       return false; // ok, inside current (not the last) tile
-    if (inside_tile_index < 0)
+    }
+    if (inside_tile_index < 0) {
+//      cout << "stop: out of trajectory\n";
       return true; // out of trajectory
+    }
     
     int target_tile_index = p.length() - 2; // one before last
     TrajTilePtr& last_tile = traj_tiles_[p.length() - 1];
@@ -364,6 +418,15 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
           assert(0);
           break;
       }
+      
+//      cout << "\n get to target tile! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n";
+//      cout << "check_number: " << check_number << endl;
+//      cout << "results_number: " << results_number << endl;
+//      cout << "wheel turn: " << s.wheel_turn << endl;
+//      Utils::PrintCoord(s.x, s.y);
+//      cout << "speed: (" << s.v_x << ", " << s.v_y << ")" << endl;
+//      cout << "car angle: " << s.car_angle * 180.0 / PI << endl;
+      
       results[results_number] = v_out - 5.0 * v_to_targ_border;
       first_wheel_turns[results_number] = first_wheel_turn;
       results_number++;
@@ -374,13 +437,14 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
   };
   
   double start_wheel_turn = start_state.wheel_turn;
-  FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
-  start_state.wheel_turn = start_wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
-  if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
-    FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
   start_state.wheel_turn = start_wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
   if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
     FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
+//  start_state.wheel_turn = start_wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+//  if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
+//    FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
+  start_state.wheel_turn = start_wheel_turn;
+  FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
   
   if (check_number > MAX_CHECK_NUMBER)
     cout << "warning: check number overflow\n";
@@ -390,10 +454,10 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
     return false;
   }
   
-  int best_result_index = -1;
+  long long best_result_index = -1;
   double best_result = -numeric_limits<double>::max();
   double worst_result = numeric_limits<double>::max();
-  for (int i = 0; i < results_number; i++) {
+  for (long long i = 0; i < results_number; i++) {
     worst_result = min<double>(results[i], worst_result);
     if (results[i] > best_result) {
       best_result = results[i];

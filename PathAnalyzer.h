@@ -10,14 +10,6 @@ namespace model {
   class Car;
 }
 
-struct StateInTurn {
-  double x, y;
-  double v_x, v_y;
-  double wheel_turn;
-  double car_angle;  // radians
-};
-
-
 class PathAnalyzer {
 public:
   PathAnalyzer();
@@ -52,7 +44,7 @@ private:
   void ApplyBonuses();
   bool FindApproachToTurn(PathPattern p);
   typedef std::function<bool (const StateInTurn&, double first_wheel_turn)> CheckTurnEndF;
-  void FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn);
+  void FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn, int depth = 0);
 
   static PathAnalyzer* instance_;
   const model::Car* car_;

@@ -53,6 +53,15 @@ public:
         return false;
     }
   }
+  bool IsCutTurn() const {
+    switch (type) {
+      case LEFT_CUT_TURN:
+      case RIGHT_CUT_TURN:
+        return true;
+      default:
+        return false;
+    }
+  }
 
   PathPatternType type;
 private:
