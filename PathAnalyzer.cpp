@@ -111,7 +111,7 @@ void PathAnalyzer::BuildBasicTraj() {
         if (p.IsTurn()) {
           
           // for debug
-          if (start_index == 0 && world_->getTick() > 800) {
+          if (p.IsCutTurn() && start_index == 0 && world_->getTick() > 800) {
             if (FindApproachToTurn(p))
               return;
             // ok, go standart strategy
@@ -224,8 +224,8 @@ const int TICK_STEP = 1;
 const int MAX_SEARCH_DEPTH = 100 / TICK_STEP;
 
 void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn, int depth) {
-  if (depth > MAX_SEARCH_DEPTH)
-    return;
+//  if (depth > MAX_SEARCH_DEPTH)
+//    return;
   
   if (f_check_end(state, first_wheel_turn)) {
     return; // continue iterating
@@ -361,7 +361,7 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
 //        cout << "stop: angle < start_tile_angle on the right turn\n";
         return true;
       }
-      if (!Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle + PI / 2.))) {
+      if (!Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle + PI / 2. + max_angle_deviation))) {
 //        cout << "stop: angle > turn right turn angle\n";
         return true;
       }
@@ -370,7 +370,7 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
 //        cout << "stop: angle > start_tile_angle on the left turn\n";
         return true;
       }
-      if (Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle - PI / 2.))) {
+      if (Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle - PI / 2. - max_angle_deviation))) {
 //        cout << "stop: angle < turn left turn angle\n";
         return true;
       }
@@ -384,12 +384,12 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
     
     int inside_tile_index = -1;
     for (int i = 0; i < traj_tiles_.size(); i++) {
-      if (traj_tiles_[i]->IsPointInside(s.x, s.y)) {
+      if (traj_tiles_[i]->IsCarInside(s)) {
         inside_tile_index = i;
         break;
       }
     }
-    if (current_tile->IsPointInside(s.x, s.y)) {
+    if (current_tile->IsCarInside(s)) {
 //      cout << "continue: inside current (not the last) tile\n";
       return false; // ok, inside current (not the last) tile
     }

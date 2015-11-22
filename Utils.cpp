@@ -103,4 +103,30 @@ void Utils::RotateVector(double v_in_x, double v_in_y, double angle, double& v_o
   v_out_y = -v_in_x * sin(angle) + v_in_y * cos(angle);
 }
 
+void Utils::RotateToOrientation(double x_in, double y_in, model::Direction orientation, double& x_out, double& y_out) {
+  switch (orientation) {
+    case UP:
+      x_out = x_in;
+      y_out = y_in;
+      return;
+    case DOWN:
+      RotateVector(x_in, y_in, PI, x_out, y_out);
+      return;
+    case RIGHT:
+      RotateVector(x_in, y_in, PI / 2., x_out, y_out);
+      return;
+    case LEFT:
+      RotateVector(x_in, y_in, -PI / 2., x_out, y_out);
+      return;
+    default:
+      assert(0);
+      break;
+  }
+}
+
+
+
+
+
+
 

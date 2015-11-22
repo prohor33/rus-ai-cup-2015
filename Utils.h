@@ -61,6 +61,7 @@ public:
   static double AngleToNormal(double angle);
   static bool IsRightTurn(double from, double to);
   static void RotateVector(double v_in_x, double v_in_y, double angle, double& v_out_x, double& v_out_y);
+  static void RotateToOrientation(double x_in, double y_in, model::Direction orientation, double& x_out, double& y_out);
   
   static const model::Car* car;
   static const model::World* world;
