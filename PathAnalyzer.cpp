@@ -111,7 +111,7 @@ void PathAnalyzer::BuildBasicTraj() {
         if (p.IsTurn()) {
           
           // for debug
-          if (p.IsCutTurn() && start_index == 0 && world_->getTick() > 800) {
+          if (start_index == 0 && world_->getTick() > 800) {
             if (FindApproachToTurn(p))
               return;
             // ok, go standart strategy
@@ -220,12 +220,12 @@ void PathAnalyzer::ApplyBonuses() {
   }
 }
 
-const int TICK_STEP = 4;
-const int MAX_SEARCH_DEPTH = 1000 / TICK_STEP;
+const int TICK_STEP = 1;
+const int MAX_SEARCH_DEPTH = 100 / TICK_STEP;
 
 void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn, int depth) {
-//  if (depth > MAX_SEARCH_DEPTH)
-//    return;
+  if (depth > MAX_SEARCH_DEPTH)
+    return;
   
   if (f_check_end(state, first_wheel_turn)) {
     return; // continue iterating
@@ -313,10 +313,10 @@ void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTu
 
 bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
   
-  const long long MAX_CHECK_NUMBER = 100000;
+  const long long int MAX_CHECK_NUMBER = 100000L;
   
-  const long long MAX_RESULT_SIZE = MAX_CHECK_NUMBER;
-  long long results_number = 0;
+  const long long int MAX_RESULT_SIZE = MAX_CHECK_NUMBER;
+  long long int results_number = 0L;
   double results[MAX_RESULT_SIZE];
   double first_wheel_turns[MAX_RESULT_SIZE];
   
@@ -349,7 +349,7 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
       break;
   }
   
-  long long check_number = 0;
+  long long int check_number = 0L;
   auto f_check_end = [&] (const StateInTurn& s, double first_wheel_turn) -> bool {
     check_number++;
     if (check_number > MAX_CHECK_NUMBER)
@@ -376,7 +376,7 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
       }
     }
     
-    const double min_velocity = 5.;
+    const double min_velocity = 0.05;
     if (hypot(s.v_x, s.v_y) < min_velocity) {
 //      cout << "stop: too small velocity\n";
       return true;
@@ -384,12 +384,12 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
     
     int inside_tile_index = -1;
     for (int i = 0; i < traj_tiles_.size(); i++) {
-      if (traj_tiles_[i]->IsCarInside(s)) {
+      if (traj_tiles_[i]->IsPointInside(s.x, s.y)) {
         inside_tile_index = i;
         break;
       }
     }
-    if (current_tile->IsCarInside(s)) {
+    if (current_tile->IsPointInside(s.x, s.y)) {
 //      cout << "continue: inside current (not the last) tile\n";
       return false; // ok, inside current (not the last) tile
     }
@@ -450,14 +450,15 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
     cout << "warning: check number overflow\n";
   
   if (results_number == 0) {
-    cout << "error: no results\n";
+    cout << "error: no results ===========================\n";
     return false;
   }
   
-  long long best_result_index = -1;
+  long long int best_result_index = -1;
   double best_result = -numeric_limits<double>::max();
   double worst_result = numeric_limits<double>::max();
-  for (long long i = 0; i < results_number; i++) {
+  for (long long int i = 0L; i < results_number; i++) {
+    double res = results[i];
     worst_result = min<double>(results[i], worst_result);
     if (results[i] > best_result) {
       best_result = results[i];
@@ -466,8 +467,10 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
   }
   
   cout << "get best wheel turn: " << first_wheel_turns[best_result_index] << endl;
-  cout << "best result: " << best_result;
+  cout << "best result: " << best_result << endl;
+  cout << "worst result: " << worst_result << endl;
   founded_approach_wheel_turn_ = first_wheel_turns[best_result_index];
+  is_found_approach_to_turn_ = true;
   
   return true;
 }

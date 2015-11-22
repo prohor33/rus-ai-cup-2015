@@ -234,6 +234,9 @@ bool TrajTile::IsCarInside(const StateInTurn& s) {
   if (!IsPointInside(s.x, s.y))
     return false;
   
+  // TODO: this function checks wether the car is fully inside the tile
+  // and you can do nothing with this information
+  
   double tile_x = Utils::TileToCoord(x);
   double tile_y = Utils::TileToCoord(y);
   double tile_half_size = Utils::game->getTrackTileSize() / 2.0;

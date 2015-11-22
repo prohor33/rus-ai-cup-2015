@@ -26,8 +26,8 @@ void Mover::Move(const std::vector<std::vector<double>>& path) {
     return;
   }
   
-  if (world_->getTick() > 800)
-    return;
+//  if (world_->getTick() > 800)
+//    return;
   
 //  cout << "next point coord: ";
 //  Utils::PrintCoord(path[0][0], path[0][1]);
