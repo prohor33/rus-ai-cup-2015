@@ -111,7 +111,8 @@ void PathAnalyzer::BuildBasicTraj() {
         if (p.IsTurn()) {
           
           // for debug
-          if (p.IsCutTurn() && start_index == 0 && world_->getTick() > 800) {
+//          if (p.IsCutTurn() && start_index == 0 && world_->getTick() > 800) {
+          if (p.IsCutTurn() && start_index == 0) {
             if (FindApproachToTurn(p))
               return;
             // ok, go standart strategy
@@ -223,7 +224,7 @@ void PathAnalyzer::ApplyBonuses() {
 const int TICK_STEP = 1;
 const int MAX_SEARCH_DEPTH = 100 / TICK_STEP;
 
-void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn, int depth) {
+void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn, bool right_turn, int depth) {
 //  if (depth > MAX_SEARCH_DEPTH)
 //    return;
   
@@ -292,22 +293,24 @@ void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTu
 //  cout << "car angle: " << next.car_angle * 180.0 / PI << endl;
 //  cout << "delta wheel: " << game_->getCarWheelTurnChangePerTick() * TICK_STEP << endl;
   
-  next.wheel_turn = state.wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
-  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
-//    cout << "go -\n";
-    FindApproachToTurnRec(next, f_check_end, first_wheel_turn, depth + 1);
+  if (!right_turn) {
+      next.wheel_turn = state.wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+      if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+//        cout << "go +\n";
+        FindApproachToTurnRec(next, f_check_end, first_wheel_turn, right_turn, depth + 1);
+      }
+  } else {
+    next.wheel_turn = state.wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+    if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+      //    cout << "go -\n";
+      FindApproachToTurnRec(next, f_check_end, first_wheel_turn, right_turn, depth + 1);
+    }
   }
-  
-//  next.wheel_turn = state.wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
-//  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
-//    cout << "go +\n";
-//    FindApproachToTurnRec(next, f_check_end, first_wheel_turn, depth + 1);
-//  }
   
   next.wheel_turn = state.wheel_turn;
   if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
 //   cout << "go =\n";
-   FindApproachToTurnRec(next, f_check_end, first_wheel_turn, depth + 1);
+   FindApproachToTurnRec(next, f_check_end, first_wheel_turn, right_turn, depth + 1);
   }
 }
 
@@ -437,14 +440,17 @@ bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
   };
   
   double start_wheel_turn = start_state.wheel_turn;
-  start_state.wheel_turn = start_wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
-  if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
-    FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
-//  start_state.wheel_turn = start_wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
-//  if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
-//    FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
+  if (p.IsRightTurn()) {
+    start_state.wheel_turn = start_wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+    if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
+      FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn, p.IsRightTurn());
+  } else {
+    start_state.wheel_turn = start_wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+    if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
+      FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn, p.IsRightTurn());
+  }
   start_state.wheel_turn = start_wheel_turn;
-  FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn);
+  FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn, p.IsRightTurn());
   
   if (check_number > MAX_CHECK_NUMBER)
     cout << "warning: check number overflow\n";
