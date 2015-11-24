@@ -3,3 +3,9 @@
 Debug/cpp-cgdk_vs12.exe
 *.lastbuildstate
 *.tlog
+*.pdb
+*.tlog
+*.ilk
+*.exe
+*.pdb
+*.pdb
