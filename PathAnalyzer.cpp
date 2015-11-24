@@ -16,7 +16,9 @@ PathAnalyzer::PathAnalyzer() :
 car_(nullptr),
 world_(nullptr),
 game_(nullptr),
-is_line_now_(false) {
+is_line_now_(false),
+is_found_approach_to_turn_(false),
+founded_approach_wheel_turn_(0.) {
   
   const double PADDING = 0.2;
   const double PADDING_FROM_CENTER = 0.25;
@@ -32,6 +34,7 @@ is_line_now_(false) {
 void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
   path_ = path;
   is_line_now_ = false;
+  is_found_approach_to_turn_ = false;
   
   //int car_x = Utils::CoordToTile(car_->getX());
   //int car_y = Utils::CoordToTile(car_->getY());
@@ -58,6 +61,10 @@ void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
 //    cout << "no pattern :(\n";
 
   BuildBasicTraj();
+  
+  if (is_found_approach_to_turn_)
+    return;
+  
   ApplyBonuses();
   FindBestTraj();
 }
@@ -102,6 +109,16 @@ void PathAnalyzer::BuildBasicTraj() {
           is_line_now_ = true;
 
         if (p.IsTurn()) {
+          
+          // for debug
+//          if (p.IsCutTurn() && start_index == 0 && world_->getTick() > 800) {
+          if (p.IsCutTurn() && start_index == 0) {
+            if (FindApproachToTurn(p))
+              return;
+            // ok, go standart strategy
+          }
+          
+          // for debug
           p.ApplyField(traj_tiles_, start_index);
           start_index += p.length();
         }
@@ -109,6 +126,7 @@ void PathAnalyzer::BuildBasicTraj() {
       }
     }
   }
+  return;
 }
 
 void FindBestTrajRec(vector<double> var, int tile_n, vector<vector<double>>& variants) {
@@ -203,6 +221,265 @@ void PathAnalyzer::ApplyBonuses() {
   }
 }
 
+const int TICK_STEP = 1;
+const int MAX_SEARCH_DEPTH = 100 / TICK_STEP;
+
+void PathAnalyzer::FindApproachToTurnRec(const StateInTurn& state, const CheckTurnEndF& f_check_end, double first_wheel_turn, bool right_turn, int depth) {
+//  if (depth > MAX_SEARCH_DEPTH)
+//    return;
+  
+  if (f_check_end(state, first_wheel_turn)) {
+    return; // continue iterating
+  }
+  
+//  cout << "\n\nnext step:\n";
+//  cout << "wheel turn: " << state.wheel_turn << endl;
+//  Utils::PrintCoord(state.x, state.y);
+//  cout << "speed: (" << state.v_x << ", " << state.v_y << ")" << endl;
+//  cout << "car angle: " << state.car_angle * 180.0 / PI << endl;
+  
+  StateInTurn next;
+  next.wheel_turn = state.wheel_turn;
+  {
+    next.x = state.x + state.v_x;
+    next.y = state.y + state.v_y;
+  }
+  
+  double v_x_in_car = 0.;
+  double v_y_in_car = 0.;
+  {
+    // find v in car coordinate system
+    Utils::RotateVector(state.v_x, state.v_y, state.car_angle, v_x_in_car, v_y_in_car);
+    
+    // v_x_in_car - lengthwise
+    if (v_x_in_car < 0) {
+      // moving backward
+      assert(0);
+      return;
+    }
+    
+    {
+      // v_x
+      v_x_in_car += -sgn(v_x_in_car) * game_->getCarMovementAirFrictionFactor() * v_x_in_car * TICK_STEP;
+      
+      double d_v_x = -sgn(v_x_in_car) * game_->getCarLengthwiseMovementFrictionFactor() * TICK_STEP;
+      if (abs(v_x_in_car) > abs(d_v_x))
+        v_x_in_car -= d_v_x;
+      v_x_in_car += d_v_x;
+      
+      // assume engine power = 1.0
+      v_x_in_car += 0.25 * TICK_STEP;
+    }
+    {
+      // v_y
+      v_y_in_car += -sgn(v_y_in_car) * game_->getCarCrosswiseMovementFrictionFactor() * TICK_STEP;
+    }
+    
+    // back to world coordinate system
+    Utils::RotateVector(v_x_in_car, v_y_in_car, -state.car_angle, next.v_x, next.v_y);
+  }
+  
+  // TODO: use angle speed too
+  
+  {
+    next.car_angle = state.car_angle + state.wheel_turn * game_->getCarAngularSpeedFactor() * v_x_in_car * TICK_STEP;
+    next.car_angle = Utils::AngleToNormal(next.car_angle);
+  }
+  
+//  cout << "\n\nstep out:\n";
+//  cout << "wheel turn: " << next.wheel_turn << endl;
+//  Utils::PrintCoord(next.x, next.y);
+//  cout << "speed: (" << next.v_x << ", " << next.v_y << ")" << endl;
+//  cout << "car angle: " << next.car_angle * 180.0 / PI << endl;
+//  cout << "delta wheel: " << game_->getCarWheelTurnChangePerTick() * TICK_STEP << endl;
+  
+  if (!right_turn) {
+      next.wheel_turn = state.wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+      if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+//        cout << "go +\n";
+        FindApproachToTurnRec(next, f_check_end, first_wheel_turn, right_turn, depth + 1);
+      }
+  } else {
+    next.wheel_turn = state.wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+    if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+      //    cout << "go -\n";
+      FindApproachToTurnRec(next, f_check_end, first_wheel_turn, right_turn, depth + 1);
+    }
+  }
+  
+  next.wheel_turn = state.wheel_turn;
+  if (next.wheel_turn > -1.0 && next.wheel_turn < 1.0) {
+//   cout << "go =\n";
+   FindApproachToTurnRec(next, f_check_end, first_wheel_turn, right_turn, depth + 1);
+  }
+}
+
+bool PathAnalyzer::FindApproachToTurn(PathPattern p) {
+  
+  const long long int MAX_CHECK_NUMBER = 100000L;
+  
+  const long long int MAX_RESULT_SIZE = MAX_CHECK_NUMBER;
+  long long int results_number = 0L;
+  double results[MAX_RESULT_SIZE];
+  double first_wheel_turns[MAX_RESULT_SIZE];
+  
+  StateInTurn start_state;
+  start_state.x = car_->getX();
+  start_state.y = car_->getY();
+  start_state.v_x = car_->getSpeedX();
+  start_state.v_y = car_->getSpeedY();
+  start_state.wheel_turn = car_->getWheelTurn();
+  start_state.car_angle = car_->getAngle();
+  
+  int car_x = Utils::CoordToTile(car_->getX());
+  int car_y = Utils::CoordToTile(car_->getY());
+  TrajTilePtr current_tile = TrajTilePtr(new TrajTile(TTT_FORWARD, car_x, car_y, traj_tiles_[0]->orientation));
+  double start_tile_angle = 0.;
+  switch (traj_tiles_[0]->orientation) {
+    case UP:
+      start_tile_angle = -PI / 2.;
+      break;
+    case DOWN:
+      start_tile_angle = PI / 2.;
+      break;
+    case RIGHT:
+      start_tile_angle = 0;
+      break;
+    case LEFT:
+      start_tile_angle = PI;
+      break;
+    default:
+      break;
+  }
+  
+  long long int check_number = 0L;
+  auto f_check_end = [&] (const StateInTurn& s, double first_wheel_turn) -> bool {
+    check_number++;
+    if (check_number > MAX_CHECK_NUMBER)
+      return true;
+    
+    const double max_angle_deviation = 15.0 / 180.0 * PI;
+    if (p.IsRightTurn()) {
+      if (!Utils::IsRightTurn(Utils::AngleToNormal(start_tile_angle - max_angle_deviation), s.car_angle)) {
+//        cout << "stop: angle < start_tile_angle on the right turn\n";
+        return true;
+      }
+      if (!Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle + PI / 2. + max_angle_deviation))) {
+//        cout << "stop: angle > turn right turn angle\n";
+        return true;
+      }
+    } else {
+      if (Utils::IsRightTurn(Utils::AngleToNormal(start_tile_angle + max_angle_deviation), s.car_angle)) {
+//        cout << "stop: angle > start_tile_angle on the left turn\n";
+        return true;
+      }
+      if (Utils::IsRightTurn(s.car_angle, Utils::AngleToNormal(start_tile_angle - PI / 2. - max_angle_deviation))) {
+//        cout << "stop: angle < turn left turn angle\n";
+        return true;
+      }
+    }
+    
+    const double min_velocity = 0.05;
+    if (hypot(s.v_x, s.v_y) < min_velocity) {
+//      cout << "stop: too small velocity\n";
+      return true;
+    }
+    
+    int inside_tile_index = -1;
+    for (int i = 0; i < traj_tiles_.size(); i++) {
+      if (traj_tiles_[i]->IsCarInside(s)) {
+        inside_tile_index = i;
+        break;
+      }
+    }
+    if (current_tile->IsCarInside(s)) {
+//      cout << "continue: inside current (not the last) tile\n";
+      return false; // ok, inside current (not the last) tile
+    }
+    if (inside_tile_index < 0) {
+//      cout << "stop: out of trajectory\n";
+      return true; // out of trajectory
+    }
+    
+    int target_tile_index = p.length() - 2; // one before last
+    TrajTilePtr& last_tile = traj_tiles_[p.length() - 1];
+    if (inside_tile_index == target_tile_index) {
+      double v_out = 0.; // -> max
+      double v_to_targ_border = 0.; // velocity to border which we are crashing in. -> min
+      switch (last_tile->orientation) {
+        case UP:
+        case DOWN:
+          v_out = abs(s.v_y);
+          v_to_targ_border = abs(s.v_x);
+          break;
+        case RIGHT:
+        case LEFT:
+          v_out = abs(s.v_x);
+          v_to_targ_border = abs(s.v_y);
+          break;
+        default:
+          assert(0);
+          break;
+      }
+      
+//      cout << "\n get to target tile! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n";
+//      cout << "check_number: " << check_number << endl;
+//      cout << "results_number: " << results_number << endl;
+//      cout << "wheel turn: " << s.wheel_turn << endl;
+//      Utils::PrintCoord(s.x, s.y);
+//      cout << "speed: (" << s.v_x << ", " << s.v_y << ")" << endl;
+//      cout << "car angle: " << s.car_angle * 180.0 / PI << endl;
+      
+      results[results_number] = v_out - 5.0 * v_to_targ_border;
+      first_wheel_turns[results_number] = first_wheel_turn;
+      results_number++;
+      return true;
+    }
+    
+    return false;
+  };
+  
+  double start_wheel_turn = start_state.wheel_turn;
+  if (p.IsRightTurn()) {
+    start_state.wheel_turn = start_wheel_turn + game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+    if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
+      FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn, p.IsRightTurn());
+  } else {
+    start_state.wheel_turn = start_wheel_turn - game_->getCarWheelTurnChangePerTick() * TICK_STEP;
+    if (start_state.wheel_turn > -1.0 && start_state.wheel_turn < 1.0)
+      FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn, p.IsRightTurn());
+  }
+  start_state.wheel_turn = start_wheel_turn;
+  FindApproachToTurnRec(start_state, f_check_end, start_state.wheel_turn, p.IsRightTurn());
+  
+  if (check_number > MAX_CHECK_NUMBER)
+    cout << "warning: check number overflow\n";
+  
+  if (results_number == 0) {
+    cout << "error: no results ===========================\n";
+    return false;
+  }
+  
+  long long int best_result_index = -1;
+  double best_result = -numeric_limits<double>::max();
+  double worst_result = numeric_limits<double>::max();
+  for (long long int i = 0L; i < results_number; i++) {
+    double res = results[i];
+    worst_result = min<double>(results[i], worst_result);
+    if (results[i] > best_result) {
+      best_result = results[i];
+      best_result_index = i;
+    }
+  }
+  
+  cout << "get best wheel turn: " << first_wheel_turns[best_result_index] << endl;
+  cout << "best result: " << best_result << endl;
+  cout << "worst result: " << worst_result << endl;
+  founded_approach_wheel_turn_ = first_wheel_turns[best_result_index];
+  is_found_approach_to_turn_ = true;
+  
+  return true;
+}
 
 
 

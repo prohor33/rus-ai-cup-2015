@@ -17,14 +17,19 @@ void MyStrategy::move(const Car& self, const World& world, const Game& game, Mov
   if (self.isFinishedTrack())
     return;
 
-  Utils::UpdateWorld(&world, &game);
+  Utils::UpdateWorld(&self, &world, &game);
   PathFinder::Instance()->UpdateWorld(&self, &world, &game);
   PathAnalyzer::Instance()->UpdateWorld(&self, &world, &game);
   Mover::Instance()->UpdateWorld(&self, &world, &game, &move);
   BonusUser::Instance()->UpdateWorld(&self, &world, &game, &move);
   
-  if (!PathFinder::Instance()->FindPathChain())
+  if (!PathFinder::Instance()->FindPathChain()) {
     cout << "error: can't find path" << endl;
+    std::vector<std::vector<double>> path;
+    path.push_back({ Utils::TileToCoord(self.getNextWaypointX()), Utils::TileToCoord(self.getNextWaypointY())});
+    Mover::Instance()->Move(path);
+    return;
+  }
   
   const std::vector<TileNodePtr> tile_path = PathFinder::Instance()->get_result();
   

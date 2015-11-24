@@ -217,6 +217,101 @@ void TrajTile::ApplyBonus(const Bonus& b) {
   }
 }
 
+bool TrajTile::IsPointInside(double p_x_world, double p_y_world, bool only_for_direction) {
+  double tile_x = Utils::TileToCoord(x);
+  double tile_y = Utils::TileToCoord(y);
+  double tile_half_size = Utils::game->getTrackTileSize() / 2.0;
+  
+  p_x_world -= tile_x;
+  p_y_world -= tile_y;
+  
+  double p_x, p_y;
+  Utils::RotateToOrientation(p_x_world, p_y_world, orientation, p_x, p_y);
+  
+  bool check_max_x = true;
+  bool check_min_x = true;
+  bool check_max_y = true;
+  bool check_min_y = true;
+  
+  if (only_for_direction) {
+    assert(type == TTT_FORWARD); // develope only for this case
+    check_min_y = false;
+    check_max_y = false;
+  }
+  
+  double padding_max_x = type == TTT_RIGHT_TURN ? 0. : Utils::game->getTrackTileMargin();
+  double padding_min_x = type == TTT_LEFT_TURN ? 0. : Utils::game->getTrackTileMargin();
+  double padding_max_y = 0.;
+  double padding_min_y = type == TTT_FORWARD ? 0. : Utils::game->getTrackTileMargin();
+//  double padding_max_x = 0.;
+//  double padding_min_x = 0.;
+//  double padding_max_y = 0.;
+//  double padding_min_y = 0.;
+  
+  if (check_max_x) {
+    if (p_x > tile_half_size - padding_max_x)
+      return false;
+  }
+  
+  if (check_min_x) {
+    if (p_x < -tile_half_size + padding_min_x)
+      return false;
+  }
+  
+  if (check_max_y) {
+    if (p_y > tile_half_size - padding_max_y)
+      return false;
+  }
+  
+  if (check_min_y) {
+    if (p_y < -tile_half_size + padding_min_y)
+      return false;
+  }
+
+  return true;
+}
+
+bool TrajTile::IsCarInside(const StateInTurn& s) {
+  if (!IsPointInside(s.x, s.y))
+    return false;
+  
+  if (type != TTT_FORWARD)  // more complex solution only for forward
+    return true;
+  
+  // x - longwise
+  double half_size_x = Utils::car->getWidth() / 2.;
+  double half_size_y = Utils::car->getHeight() / 2.;
+  
+  double car_point_x = 0.;
+  double car_point_y = 0.;
+  // to world coord system
+  Utils::RotateVector(half_size_x, half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y, true))
+    return false;
+  
+  Utils::RotateVector(-half_size_x, half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y, true))
+    return false;
+  
+  Utils::RotateVector(-half_size_x, -half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y, true))
+    return false;
+  
+  Utils::RotateVector(half_size_x, -half_size_y, -s.car_angle, car_point_x, car_point_y);
+  car_point_x += s.x;
+  car_point_y += s.y;
+  if (!IsPointInside(car_point_x, car_point_y, true))
+    return false;
+  
+  return true;
+}
+
 
 
 

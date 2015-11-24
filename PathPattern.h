@@ -40,6 +40,28 @@ public:
       return false;
     }
   }
+  bool IsRightTurn() {
+    switch (type) {
+      case RIGHT_TURN:
+      case RIGHT_CUT_TURN:
+        return true;
+      case LEFT_TURN:
+      case LEFT_CUT_TURN:
+        return false;
+      default:
+        assert(0);
+        return false;
+    }
+  }
+  bool IsCutTurn() const {
+    switch (type) {
+      case LEFT_CUT_TURN:
+      case RIGHT_CUT_TURN:
+        return true;
+      default:
+        return false;
+    }
+  }
 
   PathPatternType type;
 private:

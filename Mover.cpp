@@ -21,6 +21,11 @@ void Mover::Move(const std::vector<std::vector<double>>& path) {
     return;
   }
   
+  if (PathAnalyzer::Instance()->is_found_approach_to_turn()) {
+    UseApproachToTurn();
+    return;
+  }
+  
 //  cout << "next point coord: ";
 //  Utils::PrintCoord(path[0][0], path[0][1]);
   double x, y;
@@ -32,6 +37,10 @@ void Mover::GetNextPoint(double& x, double& y) {
   const double rad = game_->getTrackTileSize() / 2.0;
   x = 0.;
   y = 0.;
+  if (path_.empty())
+    return;
+  x = path_[0][0];
+  y = path_[0][1];
   for (int i = 0; i + 1 < path_.size(); i++) {
     auto& p0 = path_[i];
     auto& p1 = path_[i + 1];
@@ -171,6 +180,11 @@ void Mover::RollingBack() {
   const int MAX_ROLLBACK_TICKS = 200;
   if (world_->getTick() - last_roll_back_tick > MAX_ROLLBACK_TICKS)
     StopRollingBack();
+}
+
+void Mover::UseApproachToTurn() {
+  move_->setWheelTurn(PathAnalyzer::Instance()->founded_approach_wheel_turn());
+  move_->setEnginePower(1.);
 }
 
 
