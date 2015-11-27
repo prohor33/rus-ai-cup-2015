@@ -9,7 +9,7 @@ using namespace std;
 using namespace model;
 
 PathFinder* PathFinder::instance_ = nullptr;
-int PathFinder::PATH_CHAIN_SIZE = 6;
+int PathFinder::PATH_CHAIN_SIZE = 8;
 
 bool PathFinder::FindPathChain() {
   assert(world_ && game_);

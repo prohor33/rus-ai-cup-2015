@@ -22,10 +22,10 @@ is_found_approach_to_turn_(false),
 founded_approach_wheel_turn_(0.),
 max_speed_(NO_SPEED_LIMIT) {
   
-  const double PADDING = 0.2;
-  const double PADDING_FROM_CENTER = 0.25;
+  const double PADDING = 0.35;
+  const double PADDING_FROM_CENTER = 0.35;
   const double MIDDLE = 0.5;
-  const double SPEED_LIMIT = 30.;
+  const double SPEED_LIMIT = 20.;
 
   patterns_.push_back(PathPattern({ UP, UP, RIGHT, LEFT, DOWN }, RIGHT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, RIGHT, RIGHT, DOWN }, RIGHT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.4 * SPEED_LIMIT));
@@ -33,9 +33,11 @@ max_speed_(NO_SPEED_LIMIT) {
   patterns_.push_back(PathPattern({ UP, LEFT, LEFT, DOWN }, LEFT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.4 * SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, UP, DOWN }, U_TURN, { 0., 0., 0. }, 0.3 * SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, DOWN }, U_TURN_CUT, { 0., 0. }, 0.25 * SPEED_LIMIT));
-  patterns_.push_back(PathPattern({ UP, UP, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }, SPEED_LIMIT));
+//  patterns_.push_back(PathPattern({ UP, UP, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }, SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, RIGHT, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER, MIDDLE }, SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, RIGHT }, RIGHT_CUT_TURN, { 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }, 0.6 * SPEED_LIMIT));
-  patterns_.push_back(PathPattern({ UP, UP, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER }, SPEED_LIMIT));
+//  patterns_.push_back(PathPattern({ UP, UP, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER }, SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, LEFT, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER, MIDDLE }, SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, LEFT }, LEFT_CUT_TURN, { PADDING_FROM_CENTER, PADDING_FROM_CENTER }, 0.6 * SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, UP, UP, UP }, LONG_LINE, {}, NO_SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, UP, UP }, LINE, {}, NO_SPEED_LIMIT));
@@ -113,17 +115,48 @@ void PathAnalyzer::BuildBasicTraj() {
     const TileNodePtr& n = path_[i];
     traj_tiles_.push_back(TrajTilePtr(new TrajTile(type, n->x, n->y, n->dir)));
   }
+  
+  if (current_pattern_.index >= 0) {
+    int new_index_inside = patterns_[current_pattern_.index].GetIndexInsidePattern(current_pattern_.orientation, current_pattern_.start_x, current_pattern_.start_y, traj_tiles_[0]->x, traj_tiles_[0]->y);
+    
+    if (new_index_inside == current_pattern_.index_inside_pattern ||
+        new_index_inside == current_pattern_.index_inside_pattern + 1) {
+      current_pattern_.index_inside_pattern = new_index_inside;
+//      cout << "going on pattern ";
+      Utils::PrintPattern(patterns_[current_pattern_.index].type);
+//      cout << "inside: " << current_pattern_.index_inside_pattern << "/" << patterns_[current_pattern_.index].length() << endl;
+    } else {
+      current_pattern_.index = -1;
+//      cout << "<<<<<<<<<<< lost pattern, new_index_inside:" << new_index_inside << " old_index_inside: " << current_pattern_.index_inside_pattern  << "\n";
+    }
+  }
 
   // fill tiles optimized trajectory for turns
-  for (int start_index = 0; start_index < traj_tiles_.size(); start_index++) {
-    for (auto& p : patterns_) {
+  int start_index = 0;
+  if (current_pattern_.index >= 0) {
+    auto& p = patterns_[current_pattern_.index];
+    int fields_applyed = p.ApplyField(traj_tiles_, 0, current_pattern_.index_inside_pattern);
+//    cout << "fields_applyed: " << fields_applyed << endl;
+    if (p.IsTurn())
+      start_index += fields_applyed;
+  }
+  for (; start_index < traj_tiles_.size(); start_index++) {
+    for (int pattern_i = 0; pattern_i < patterns_.size(); pattern_i++) {
+      auto& p = patterns_[pattern_i];
       if (p.CheckPatternOnIndex(dir_path_, start_index)) {
 
         if (start_index == 0 && (p.type == LONG_LINE))
           is_line_now_ = true;
         
-        if (start_index == 0)
-          max_speed_ = p.max_speed;
+        if (start_index == 0) {
+//          cout << ">>>>>>>>>>>> new pattern founded: ";
+          Utils::PrintPattern(p.type);
+          current_pattern_ = CurrentPattern();
+          current_pattern_.index = pattern_i;
+          current_pattern_.start_x = traj_tiles_[start_index]->x;
+          current_pattern_.start_y = traj_tiles_[start_index]->y;
+          current_pattern_.orientation = traj_tiles_[start_index]->orientation;
+        }
 
         if (p.IsTurn()) {
 
@@ -134,7 +167,6 @@ void PathAnalyzer::BuildBasicTraj() {
 //            // ok, go standart strategy
 //          }
           
-          // for debug
           p.ApplyField(traj_tiles_, start_index);
           start_index += p.length();
         }
@@ -142,7 +174,9 @@ void PathAnalyzer::BuildBasicTraj() {
       }
     }
   }
-  return;
+  
+  if (current_pattern_.index >= 0)
+    max_speed_ = patterns_[current_pattern_.index].max_speed;
 }
 
 void FindBestTrajRec(vector<double> var, int tile_n, vector<vector<double>>& variants) {

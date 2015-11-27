@@ -124,7 +124,49 @@ void Utils::RotateToOrientation(double x_in, double y_in, model::Direction orien
   }
 }
 
-
+void Utils::PrintPattern(PathPatternType type) {
+  switch (type) {
+    case RIGHT_TURN:
+      std::cout << "RIGHT_TURN" << std::endl;
+      break;
+    case RIGHT_CUT_TURN:
+      std::cout << "RIGHT_CUT_TURN" << std::endl;
+      break;
+    case LEFT_TURN:
+      std::cout << "LEFT_TURN" << std::endl;
+      break;
+    case LEFT_CUT_TURN:
+      std::cout << "LEFT_CUT_TURN" << std::endl;
+      break;
+    case LONG_LINE:
+      std::cout << "LONG_LINE" << std::endl;
+      break;
+    case LINE:
+      std::cout << "LINE" << std::endl;
+      break;
+    case U_TURN:
+      std::cout << "U_TURN" << std::endl;
+      break;
+    case U_TURN_CUT:
+      std::cout << "U_TURN_CUT" << std::endl;
+      break;
+    case LEFT_U_TURN:
+      std::cout << "LEFT_U_TURN" << std::endl;
+      break;
+    case LEFT_U_TURN_CUT:
+      std::cout << "LEFT_U_TURN_CUT" << std::endl;
+      break;
+    case RIGHT_U_TURN:
+      std::cout << "RIGHT_U_TURN" << std::endl;
+      break;
+    case RIGHT_U_TURN_CUT:
+      std::cout << "RIGHT_U_TURN_CUT" << std::endl;
+      break;
+    default:
+      assert(0);
+      break;
+  }
+}
 
 
 

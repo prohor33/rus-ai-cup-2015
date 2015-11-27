@@ -188,7 +188,9 @@ void Mover::ControlMaxSpeed() {
   double speed = hypot(car_->getSpeedX(), car_->getSpeedY());
   move_->setBrake(speed > max_speed);
 //  if (speed > max_speed) {
-//    cout << "speed > max_speed: " << speed << " > " << max_speed << endl;
+//    cout << "  brake  -> speed > max_speed:  " << speed << " >  " << max_speed << endl << endl;
+//  } else {
+//    cout << "speed up -> speed <= max_speed: " << speed << " <= " << max_speed << endl << endl;
 //  }
 }
 

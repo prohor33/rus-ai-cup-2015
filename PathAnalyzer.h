@@ -10,6 +10,21 @@ namespace model {
   class Car;
 }
 
+struct CurrentPattern {
+  CurrentPattern() :
+  index(-1),
+  index_inside_pattern(0),
+  orientation(model::UP),
+  start_x(-1),
+  start_y(-1) {};
+  
+  int index;
+  int index_inside_pattern;
+  model::Direction orientation;
+  int start_x; // pattern start
+  int start_y;
+};
+
 class PathAnalyzer {
 public:
   PathAnalyzer();
@@ -62,4 +77,5 @@ private:
   bool is_found_approach_to_turn_;
   double founded_approach_wheel_turn_;
   double max_speed_;
+  CurrentPattern current_pattern_;
 };

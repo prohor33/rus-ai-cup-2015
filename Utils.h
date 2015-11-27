@@ -41,22 +41,7 @@ public:
     std::cout << "(" << x << ", " << y << ")\n";
   }
   static model::Direction ConvertDirToLocal(model::Direction dir, model::Direction local);
-  static void PrintPattern(PathPatternType type) {
-    switch (type) {
-    case RIGHT_TURN:
-      std::cout << "RIGHT_TURN" << std::endl;
-      break;
-    case LEFT_TURN:
-      std::cout << "LEFT_TURN" << std::endl;
-      break;
-    case LONG_LINE:
-      std::cout << "LONG_LINE" << std::endl;
-      break;
-    case LINE:
-      std::cout << "LINE" << std::endl;
-      break;
-    }
-  }
+  static void PrintPattern(PathPatternType type);
   static void GlobalPointToLocalInsideTile(double x_in, double y_in, model::Direction orientation, double& x_out, double& y_out);
   static double AngleToNormal(double angle);
   static bool IsRightTurn(double from, double to);

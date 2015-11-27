@@ -32,7 +32,7 @@ public:
     std::vector<model::Direction> path_tmp(path.begin() + start_index, path.begin() + start_index + seq_.size());
     return seq_ == path_tmp;
   }
-  void ApplyField(const std::vector<TrajTilePtr>& tiles, int start_index);
+  int ApplyField(const std::vector<TrajTilePtr>& tiles, int start_index, int start_inside_pattern = 0);
   int length() const {
     return seq_.size();
   }
@@ -82,6 +82,7 @@ public:
         return false;
     }
   }
+  int GetIndexInsidePattern(model::Direction orientation, int start_x, int start_y, int x, int y);
 
   const PathPatternType type;
   const double max_speed;
