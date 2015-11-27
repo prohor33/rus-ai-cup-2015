@@ -20,7 +20,8 @@ public:
   rolling_back_(false),
   start_rolling_back_p_x_(0.),
   start_rolling_back_p_y_(0.),
-  last_roll_back_tick(-100) {};
+  last_roll_back_tick(-100),
+  current_angle_from_dir_(0.) {};
   
   static Mover* Instance() {
     if (!instance_)
@@ -58,4 +59,5 @@ private:
   double start_rolling_back_p_x_;
   double start_rolling_back_p_y_;
   int last_roll_back_tick;
+  double current_angle_from_dir_; // radians
 };

@@ -6,6 +6,8 @@
 enum PathPatternType {
   U_TURN = 0,
   U_TURN_CUT,
+  SHARP_LEFT_U_TURN,
+  SHARP_RIGHT_U_TURN,
   LEFT_U_TURN,
   LEFT_U_TURN_CUT,
   RIGHT_U_TURN,
@@ -20,11 +22,12 @@ enum PathPatternType {
 
 class PathPattern {
 public:
-  PathPattern(std::vector<model::Direction> seq, PathPatternType type_tmp, std::vector<double> opt_points, double max_speed_tmp) :
+  PathPattern(std::vector<model::Direction> seq, PathPatternType type_tmp, std::vector<double> opt_points, double max_speed_tmp, int priority_tmp = 0) :
     seq_(seq),
     type(type_tmp),
     opt_points_(opt_points),
-    max_speed(max_speed_tmp) {};
+    max_speed(max_speed_tmp),
+    priority(priority_tmp) {};
 
   bool CheckPatternOnIndex(const std::vector<model::Direction>& path, int start_index) {
     if (seq_.size() + start_index > path.size())
@@ -48,6 +51,8 @@ public:
     case LEFT_U_TURN_CUT:
     case U_TURN:
     case U_TURN_CUT:
+    case SHARP_LEFT_U_TURN:
+    case SHARP_RIGHT_U_TURN:
       return true;
     default:
       return false;
@@ -59,11 +64,13 @@ public:
       case RIGHT_CUT_TURN:
       case RIGHT_U_TURN:
       case RIGHT_U_TURN_CUT:
+      case SHARP_RIGHT_U_TURN:
         return true;
       case LEFT_TURN:
       case LEFT_CUT_TURN:
       case LEFT_U_TURN:
       case LEFT_U_TURN_CUT:
+      case SHARP_LEFT_U_TURN:
         return false;
       default:
         assert(0);
@@ -86,6 +93,7 @@ public:
 
   const PathPatternType type;
   const double max_speed;
+  const int priority;
 private:
   std::vector<model::Direction> seq_;
   std::vector<double> opt_points_;  // optimized default trajectory points

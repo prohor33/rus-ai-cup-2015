@@ -85,6 +85,7 @@ void Mover::TurnToPoint(double x, double y) {
 
 void Mover::SetAngle(double rad) {
   //  cout << "wheel turn: " << angleToWaypoint / 35.0 << endl;
+  current_angle_from_dir_ = rad;
   move_->setWheelTurn(rad * 180.0 / PI / 35.0);
 }
 
@@ -184,7 +185,21 @@ void Mover::UseApproachToTurn() {
 }
 
 void Mover::ControlMaxSpeed() {
-  const double& max_speed = PathAnalyzer::Instance()->max_speed();
+  const double& max_speed_from_traj = PathAnalyzer::Instance()->max_speed();
+  
+  double angle_from_dir = abs(current_angle_from_dir_ * 180. / PI);
+  double max_speed_from_angle = 800.;
+  if (angle_from_dir > 10.)
+    max_speed_from_angle = 30.;
+  if (angle_from_dir > 20.)
+    max_speed_from_angle = 20.;
+  if (angle_from_dir > 30.)
+    max_speed_from_angle = 15.;
+  
+  cout << "angle: " << angle_from_dir << " max_speed_from_angle: " << max_speed_from_angle << endl;
+  
+  const double max_speed = std::min<double>(max_speed_from_traj, max_speed_from_angle);
+  
   double speed = hypot(car_->getSpeedX(), car_->getSpeedY());
   move_->setBrake(speed > max_speed);
 //  if (speed > max_speed) {

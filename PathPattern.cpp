@@ -34,7 +34,10 @@ int PathPattern::GetIndexInsidePattern(Direction orientation, int start_x, int s
   index++;
   
   for (int i = 1; i < seq_.size(); i++) {
-    Direction dir = Utils::ConvertDirToLocal(seq_[i], orientation);
+    Direction dir = Utils::ConvertDirToGlobal(seq_[i], orientation);
+//    cout << "orientation: " << Utils::DirToStr(orientation) << endl;
+//    cout << "local: " << Utils::DirToStr(seq_[i]) << endl;
+//    cout << "global dir: " << Utils::DirToStr(dir) << endl;
     
     switch (dir) {
       case UP:

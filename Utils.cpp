@@ -13,6 +13,23 @@ int Utils::CoordToTile(double v) {
   return (int)(v / game->getTrackTileSize());
 }
 
+Direction Utils::ConvertDirToGlobal(Direction dir, Direction local) {
+  Direction res = UP;
+  if (ConvertDirToLocal(res, local) == dir)
+    return res;
+  res = DOWN;
+  if (ConvertDirToLocal(res, local) == dir)
+    return res;
+  res = RIGHT;
+  if (ConvertDirToLocal(res, local) == dir)
+    return res;
+  res = LEFT;
+  if (ConvertDirToLocal(res, local) == dir)
+    return res;
+  assert(0);
+  return UP;
+}
+
 Direction Utils::ConvertDirToLocal(Direction dir, Direction local) {
   switch (local) {
   case UP:
@@ -161,6 +178,12 @@ void Utils::PrintPattern(PathPatternType type) {
       break;
     case RIGHT_U_TURN_CUT:
       std::cout << "RIGHT_U_TURN_CUT" << std::endl;
+      break;
+    case SHARP_RIGHT_U_TURN:
+      std::cout << "SHARP_RIGHT_U_TURN" << std::endl;
+      break;
+    case SHARP_LEFT_U_TURN:
+      std::cout << "SHARP_LEFT_U_TURN" << std::endl;
       break;
     default:
       assert(0);

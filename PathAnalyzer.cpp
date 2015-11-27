@@ -27,16 +27,16 @@ max_speed_(NO_SPEED_LIMIT) {
   const double MIDDLE = 0.5;
   const double SPEED_LIMIT = 20.;
 
-  patterns_.push_back(PathPattern({ UP, UP, RIGHT, LEFT, DOWN }, RIGHT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT));
-  patterns_.push_back(PathPattern({ UP, RIGHT, RIGHT, DOWN }, RIGHT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.4 * SPEED_LIMIT));
-  patterns_.push_back(PathPattern({ UP, UP, LEFT, LEFT, DOWN }, LEFT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT));
-  patterns_.push_back(PathPattern({ UP, LEFT, LEFT, DOWN }, LEFT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.4 * SPEED_LIMIT));
-  patterns_.push_back(PathPattern({ UP, UP, DOWN }, U_TURN, { 0., 0., 0. }, 0.3 * SPEED_LIMIT));
-  patterns_.push_back(PathPattern({ UP, DOWN }, U_TURN_CUT, { 0., 0. }, 0.25 * SPEED_LIMIT));
-//  patterns_.push_back(PathPattern({ UP, UP, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }, SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, RIGHT, DOWN, DOWN }, SHARP_RIGHT_U_TURN, { 0.4, 0.6, 0.8, MIDDLE }, 0.25 * SPEED_LIMIT, 2));
+  patterns_.push_back(PathPattern({ UP, LEFT, DOWN, DOWN }, SHARP_LEFT_U_TURN, { 0.6, 0.4, 0.2, MIDDLE }, 0.25 * SPEED_LIMIT, 2));
+  patterns_.push_back(PathPattern({ UP, UP, RIGHT, RIGHT, DOWN }, RIGHT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.7 * SPEED_LIMIT, 1));
+  patterns_.push_back(PathPattern({ UP, RIGHT, RIGHT, DOWN }, RIGHT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT, 1));
+  patterns_.push_back(PathPattern({ UP, UP, LEFT, LEFT, DOWN }, LEFT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.7 * SPEED_LIMIT, 1));
+  patterns_.push_back(PathPattern({ UP, LEFT, LEFT, DOWN }, LEFT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT, 1));
+  patterns_.push_back(PathPattern({ UP, UP, DOWN }, U_TURN, { 0., 0., 0. }, 0.3 * SPEED_LIMIT, 3));
+  patterns_.push_back(PathPattern({ UP, DOWN }, U_TURN_CUT, { 0., 0. }, 0.25 * SPEED_LIMIT, 3));
   patterns_.push_back(PathPattern({ UP, UP, RIGHT, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER, MIDDLE }, SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, RIGHT }, RIGHT_CUT_TURN, { 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }, 0.6 * SPEED_LIMIT));
-//  patterns_.push_back(PathPattern({ UP, UP, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER }, SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, UP, LEFT, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER, MIDDLE }, SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, LEFT }, LEFT_CUT_TURN, { PADDING_FROM_CENTER, PADDING_FROM_CENTER }, 0.6 * SPEED_LIMIT));
   patterns_.push_back(PathPattern({ UP, UP, UP, UP }, LONG_LINE, {}, NO_SPEED_LIMIT));
@@ -116,6 +116,20 @@ void PathAnalyzer::BuildBasicTraj() {
     traj_tiles_.push_back(TrajTilePtr(new TrajTile(type, n->x, n->y, n->dir)));
   }
   
+  
+  // first check wether there is patterns with high priority
+  int max_priority = -1;
+  for (int pattern_i = 0; pattern_i < patterns_.size(); pattern_i++) {
+    auto& p = patterns_[pattern_i];
+    if (p.CheckPatternOnIndex(dir_path_, 0)) {
+      if (p.priority > max_priority) {
+        max_priority = p.priority;
+      }
+    }
+  }
+  
+//  cout << "max_priority: " << max_priority << "current_priority: " << patterns_[current_pattern_.index].priority << endl;
+  
   if (current_pattern_.index >= 0) {
     int new_index_inside = patterns_[current_pattern_.index].GetIndexInsidePattern(current_pattern_.orientation, current_pattern_.start_x, current_pattern_.start_y, traj_tiles_[0]->x, traj_tiles_[0]->y);
     
@@ -133,7 +147,7 @@ void PathAnalyzer::BuildBasicTraj() {
 
   // fill tiles optimized trajectory for turns
   int start_index = 0;
-  if (current_pattern_.index >= 0) {
+  if (current_pattern_.index >= 0 && patterns_[current_pattern_.index].priority >= max_priority) {
     auto& p = patterns_[current_pattern_.index];
     int fields_applyed = p.ApplyField(traj_tiles_, 0, current_pattern_.index_inside_pattern);
 //    cout << "fields_applyed: " << fields_applyed << endl;

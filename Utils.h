@@ -41,6 +41,7 @@ public:
     std::cout << "(" << x << ", " << y << ")\n";
   }
   static model::Direction ConvertDirToLocal(model::Direction dir, model::Direction local);
+  static model::Direction ConvertDirToGlobal(model::Direction dir, model::Direction local);
   static void PrintPattern(PathPatternType type);
   static void GlobalPointToLocalInsideTile(double x_in, double y_in, model::Direction orientation, double& x_out, double& y_out);
   static double AngleToNormal(double angle);
