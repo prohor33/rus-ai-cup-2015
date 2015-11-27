@@ -172,9 +172,15 @@ void Mover::RollingBack() {
   
   double dist = car_->getDistanceTo(start_rolling_back_p_x_, start_rolling_back_p_y_);
   const double MAX_ROLL_BACK_DIST = game_->getTrackTileSize() / 4.;
+
+  const int MAX_ROLLBACK_TICKS = 200;
+  if (dist > 0.7 * MAX_ROLL_BACK_DIST)
+    move_->setBrake(true);
   if (dist > MAX_ROLL_BACK_DIST)
     StopRollingBack();
-  const int MAX_ROLLBACK_TICKS = 200;
+  
+  if (world_->getTick() - last_roll_back_tick > 0.8 * MAX_ROLLBACK_TICKS)
+    move_->setBrake(true);
   if (world_->getTick() - last_roll_back_tick > MAX_ROLLBACK_TICKS)
     StopRollingBack();
 }

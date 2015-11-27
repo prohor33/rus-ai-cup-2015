@@ -2,9 +2,9 @@
 #include "PathPattern.h"
 #include "TrajTile.h"
 #include "Utils.h"
-#include "Car.h"
-#include "World.h"
-#include "Game.h"
+#include "model/Car.h"
+#include "model/World.h"
+#include "model/Game.h"
 
 
 using namespace std;
