@@ -12,7 +12,7 @@ using namespace model;
 
 const int TrajTile::N_CELLS_IN_TILE = 10;
 const double TrajTile::VAL_BORDER = -100.;
-const double TrajTile::VAL_OPTIMIZED_TRAJ = 1.;
+const double TrajTile::VAL_OPTIMIZED_TRAJ = 0.5;
 const double TrajTile::VAL_FOR_TURNS_ON_FORWARD_LINE = -0.01;
 //const double TrajTile::VAL_FOR_TURNS_ON_FORWARD_LINE = 0.;
 const double TrajTile::VAL_BONUS = 0.6;

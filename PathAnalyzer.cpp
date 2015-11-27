@@ -11,6 +11,7 @@ using namespace std;
 using namespace model;
 
 PathAnalyzer* PathAnalyzer::instance_ = nullptr;
+const double NO_SPEED_LIMIT = 800.;
 
 PathAnalyzer::PathAnalyzer() :
 car_(nullptr),
@@ -18,23 +19,33 @@ world_(nullptr),
 game_(nullptr),
 is_line_now_(false),
 is_found_approach_to_turn_(false),
-founded_approach_wheel_turn_(0.) {
+founded_approach_wheel_turn_(0.),
+max_speed_(NO_SPEED_LIMIT) {
   
   const double PADDING = 0.2;
   const double PADDING_FROM_CENTER = 0.25;
+  const double MIDDLE = 0.5;
+  const double SPEED_LIMIT = 30.;
 
-  patterns_.push_back(PathPattern({ UP, UP, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }));
-  patterns_.push_back(PathPattern({ UP, RIGHT }, RIGHT_CUT_TURN, { 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }));
-  patterns_.push_back(PathPattern({ UP, UP, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER }));
-  patterns_.push_back(PathPattern({ UP, LEFT }, LEFT_CUT_TURN, { PADDING_FROM_CENTER, PADDING_FROM_CENTER }));
-  patterns_.push_back(PathPattern({ UP, UP, UP, UP }, LONG_LINE, {}));
-  patterns_.push_back(PathPattern({ UP, UP, UP }, LINE, {}));
+  patterns_.push_back(PathPattern({ UP, UP, RIGHT, LEFT, DOWN }, RIGHT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, RIGHT, RIGHT, DOWN }, RIGHT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.4 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, LEFT, LEFT, DOWN }, LEFT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, LEFT, LEFT, DOWN }, LEFT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.4 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, DOWN }, U_TURN, { 0., 0., 0. }, 0.3 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, DOWN }, U_TURN_CUT, { 0., 0. }, 0.25 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, RIGHT }, RIGHT_TURN, { PADDING, 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }, SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, RIGHT }, RIGHT_CUT_TURN, { 1. - PADDING_FROM_CENTER, 1. - PADDING_FROM_CENTER }, 0.6 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, LEFT }, LEFT_TURN, { 1. - PADDING, PADDING_FROM_CENTER, PADDING_FROM_CENTER }, SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, LEFT }, LEFT_CUT_TURN, { PADDING_FROM_CENTER, PADDING_FROM_CENTER }, 0.6 * SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, UP, UP }, LONG_LINE, {}, NO_SPEED_LIMIT));
+  patterns_.push_back(PathPattern({ UP, UP, UP }, LINE, {}, NO_SPEED_LIMIT));
 };
 
 void PathAnalyzer::Analyze(const std::vector<TileNodePtr>& path) {
   path_ = path;
   is_line_now_ = false;
   is_found_approach_to_turn_ = false;
+  max_speed_ = NO_SPEED_LIMIT;
   
   //int car_x = Utils::CoordToTile(car_->getX());
   //int car_y = Utils::CoordToTile(car_->getY());
@@ -108,8 +119,11 @@ void PathAnalyzer::BuildBasicTraj() {
     for (auto& p : patterns_) {
       if (p.CheckPatternOnIndex(dir_path_, start_index)) {
 
-        if (start_index == 0 && (p.type == LONG_LINE || p.type == LINE))
+        if (start_index == 0 && (p.type == LONG_LINE))
           is_line_now_ = true;
+        
+        if (start_index == 0)
+          max_speed_ = p.max_speed;
 
         if (p.IsTurn()) {
 

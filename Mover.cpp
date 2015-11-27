@@ -31,6 +31,7 @@ void Mover::Move(const std::vector<std::vector<double>>& path) {
   double x, y;
   GetNextPoint(x, y);
   TurnToPoint(x, y);
+  ControlMaxSpeed();
 }
 
 void Mover::GetNextPoint(double& x, double& y) {
@@ -80,11 +81,6 @@ void Mover::TurnToPoint(double x, double y) {
 
   SetAngle(angleToWaypoint * PI / 180.0);
   move_->setEnginePower(go_backward ? -1.0 : 1.0);
-  
-//  cout << "\n\n";
-  /*  if (speedModule * speedModule * abs(angleToWaypoint) > 2.5 * 2.5 * PI) {
-   move.setBrake(true);
-   }	*/
 }
 
 void Mover::SetAngle(double rad) {
@@ -187,5 +183,13 @@ void Mover::UseApproachToTurn() {
   move_->setEnginePower(1.);
 }
 
+void Mover::ControlMaxSpeed() {
+  const double& max_speed = PathAnalyzer::Instance()->max_speed();
+  double speed = hypot(car_->getSpeedX(), car_->getSpeedY());
+  move_->setBrake(speed > max_speed);
+//  if (speed > max_speed) {
+//    cout << "speed > max_speed: " << speed << " > " << max_speed << endl;
+//  }
+}
 
 

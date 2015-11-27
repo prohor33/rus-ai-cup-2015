@@ -36,6 +36,9 @@ public:
   double founded_approach_wheel_turn() const {
     return founded_approach_wheel_turn_;
   }
+  double max_speed() const {
+    return max_speed_;
+  }
   
   
 private:
@@ -58,4 +61,5 @@ private:
   bool is_line_now_;
   bool is_found_approach_to_turn_;
   double founded_approach_wheel_turn_;
+  double max_speed_;
 };
