@@ -73,6 +73,8 @@ void TrajTile::IterareThroughPath(double start_p, double end_p, FuncT func) {
       e_x = end_p * (N_CELLS_IN_TILE - 1);
       e_y = N_CELLS_IN_TILE - 1;
       break;
+    case TTT_U_TURN:
+      return;
     default:
       assert(0);
       break;

@@ -9,7 +9,8 @@
 enum TrajTileType {
   TTT_FORWARD = 0,
   TTT_RIGHT_TURN,
-  TTT_LEFT_TURN
+  TTT_LEFT_TURN,
+  TTT_U_TURN
 };
 
 class TrajTile {

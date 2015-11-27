@@ -92,6 +92,9 @@ void PathAnalyzer::BuildBasicTraj() {
         type = TTT_LEFT_TURN;
 //        cout << "tile: TTT_LEFT_TURN" << endl;
         break;
+      case DOWN:
+        type = TTT_U_TURN;
+        break;
       default:
         assert(0);
       }
@@ -109,14 +112,13 @@ void PathAnalyzer::BuildBasicTraj() {
           is_line_now_ = true;
 
         if (p.IsTurn()) {
-          
-          // for debug
-//          if (p.IsCutTurn() && start_index == 0 && world_->getTick() > 800) {
-          if (p.IsCutTurn() && start_index == 0) {
-            if (FindApproachToTurn(p))
-              return;
-            // ok, go standart strategy
-          }
+
+            // not using this code for now
+//          if (p.IsCutTurn() && start_index == 0) {
+//            if (FindApproachToTurn(p))
+//              return;
+//            // ok, go standart strategy
+//          }
           
           // for debug
           p.ApplyField(traj_tiles_, start_index);
