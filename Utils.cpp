@@ -185,6 +185,12 @@ void Utils::PrintPattern(PathPatternType type) {
     case SHARP_LEFT_U_TURN:
       std::cout << "SHARP_LEFT_U_TURN" << std::endl;
       break;
+    case ZIG_ZAG_RIGHT:
+      std::cout << "ZIG_ZAG_RIGHT" << std::endl;
+      break;
+    case ZIG_ZAG_LEFT:
+      std::cout << "ZIG_ZAG_LEFT" << std::endl;
+      break;
     default:
       assert(0);
       break;

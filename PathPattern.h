@@ -6,6 +6,8 @@
 enum PathPatternType {
   U_TURN = 0,
   U_TURN_CUT,
+  ZIG_ZAG_RIGHT,
+  ZIG_ZAG_LEFT,
   SHARP_LEFT_U_TURN,
   SHARP_RIGHT_U_TURN,
   LEFT_U_TURN,
@@ -53,6 +55,8 @@ public:
     case U_TURN_CUT:
     case SHARP_LEFT_U_TURN:
     case SHARP_RIGHT_U_TURN:
+    case ZIG_ZAG_RIGHT:
+    case ZIG_ZAG_LEFT:
       return true;
     default:
       return false;

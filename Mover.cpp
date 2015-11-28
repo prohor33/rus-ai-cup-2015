@@ -179,7 +179,7 @@ void Mover::RollingBack() {
   if (dist > MAX_ROLL_BACK_DIST)
     StopRollingBack();
   
-  if (world_->getTick() - last_roll_back_tick > 0.8 * MAX_ROLLBACK_TICKS)
+  if (world_->getTick() - last_roll_back_tick > 0.6 * MAX_ROLLBACK_TICKS)
     move_->setBrake(true);
   if (world_->getTick() - last_roll_back_tick > MAX_ROLLBACK_TICKS)
     StopRollingBack();
@@ -202,7 +202,7 @@ void Mover::ControlMaxSpeed() {
   if (angle_from_dir > 30.)
     max_speed_from_angle = 15.;
   
-  cout << "angle: " << angle_from_dir << " max_speed_from_angle: " << max_speed_from_angle << endl;
+//  cout << "angle: " << angle_from_dir << " max_speed_from_angle: " << max_speed_from_angle << endl;
   
   const double max_speed = std::min<double>(max_speed_from_traj, max_speed_from_angle);
   

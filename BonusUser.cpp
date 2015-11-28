@@ -27,12 +27,21 @@ void BonusUser::UseProjectile() {
   for (auto& targ_car : world_->getCars()) {
     if (targ_car.isTeammate())
       continue;
-    double angle = car_->getAngleTo(targ_car);
+    
+    double dist = car_->getDistanceTo(targ_car);
+    double washer_speed = game_->getWasherInitialSpeed();
+    double t = dist / washer_speed;
+    double targ_x = targ_car.getX() + targ_car.getSpeedX() * t;
+    double targ_y = targ_car.getY() + targ_car.getSpeedY() * t;
+    
+    double angle = car_->getAngleTo(targ_x, targ_y);
     if (abs(angle) > game_->getSideWasherAngle())
       continue;
-    double dist = car_->getDistanceTo(targ_car);
-//    const double zero_angle = 0.2 / 180.0 * PI;
-    if (dist > game_->getTrackTileSize() * 4)
+
+    const double zero_angle = 0.2 / 180.0 * PI;
+    if (dist > game_->getTrackTileSize() * 3 && abs(angle) > zero_angle)
+      continue; // too far
+    if (dist > game_->getTrackTileSize() * 5)
       continue; // too far
     move_->setThrowProjectile(true);
     return;

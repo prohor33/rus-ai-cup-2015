@@ -27,7 +27,9 @@ max_speed_(NO_SPEED_LIMIT) {
   const double MIDDLE = 0.5;
   const double SPEED_LIMIT = 20.;
 
-  patterns_.push_back(PathPattern({ UP, RIGHT, DOWN, DOWN }, SHARP_RIGHT_U_TURN, { 0.4, 0.6, 0.8, MIDDLE }, 0.25 * SPEED_LIMIT, 2));
+  patterns_.push_back(PathPattern({ UP, RIGHT, UP, RIGHT }, ZIG_ZAG_RIGHT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, NO_SPEED_LIMIT, 2));
+  patterns_.push_back(PathPattern({ UP, LEFT, UP, LEFT }, ZIG_ZAG_LEFT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, NO_SPEED_LIMIT, 2));
+  patterns_.push_back(PathPattern({ UP, RIGHT, DOWN, DOWN }, SHARP_RIGHT_U_TURN, { 0.4, 0.6, 0.8, MIDDLE }, SPEED_LIMIT, 2));
   patterns_.push_back(PathPattern({ UP, LEFT, DOWN, DOWN }, SHARP_LEFT_U_TURN, { 0.6, 0.4, 0.2, MIDDLE }, 0.25 * SPEED_LIMIT, 2));
   patterns_.push_back(PathPattern({ UP, UP, RIGHT, RIGHT, DOWN }, RIGHT_U_TURN, { MIDDLE, MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.7 * SPEED_LIMIT, 1));
   patterns_.push_back(PathPattern({ UP, RIGHT, RIGHT, DOWN }, RIGHT_U_TURN_CUT, { MIDDLE, MIDDLE, MIDDLE, MIDDLE }, 0.5 * SPEED_LIMIT, 1));
@@ -164,7 +166,7 @@ void PathAnalyzer::BuildBasicTraj() {
         
         if (start_index == 0) {
 //          cout << ">>>>>>>>>>>> new pattern founded: ";
-          Utils::PrintPattern(p.type);
+//          Utils::PrintPattern(p.type);
           current_pattern_ = CurrentPattern();
           current_pattern_.index = pattern_i;
           current_pattern_.start_x = traj_tiles_[start_index]->x;
