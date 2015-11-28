@@ -211,8 +211,29 @@ void TrajTile::ApplyObject(const RectangularUnit& obj, double v) {
   }
 }
 
+const double VAL_BONUS_NITRO_BOOST = 0.3;
+const double VAL_BONUS_REPAIR_KIT_MAX = 1.8;
+const double VAL_BONUS_AMMO_CRATE = 1.0;
+const double VAL_BONUS_OIL_KANISTER = 0.2;
+const double VAL_BONUS_PURE_SCORE = 2.0;
+
 void TrajTile::ApplyBonus(const Bonus& b) {
   switch (b.getType()) {
+    case NITRO_BOOST:
+      ApplyObject(b, VAL_BONUS_NITRO_BOOST);
+      break;
+    case REPAIR_KIT:
+      ApplyObject(b, 0.2 + VAL_BONUS_REPAIR_KIT_MAX * (1.0 - Utils::car->getDurability()));
+      break;
+    case AMMO_CRATE:
+      ApplyObject(b, VAL_BONUS_AMMO_CRATE);
+      break;
+    case OIL_CANISTER:
+      ApplyObject(b, VAL_BONUS_OIL_KANISTER);
+      break;
+    case PURE_SCORE:
+      ApplyObject(b, VAL_BONUS_PURE_SCORE);
+      break;
     default:
       ApplyObject(b, VAL_BONUS);
       break;
